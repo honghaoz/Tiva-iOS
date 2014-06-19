@@ -1,5 +1,5 @@
 //
-//  ZHHMainViewController.h
+//  TVMainViewController.h
 //  Tiva
 //
 //  Created by Zhang Honghao on 6/17/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZHHMainViewController : UIViewController
+@interface TVMainViewController : UIViewController
 
 @end

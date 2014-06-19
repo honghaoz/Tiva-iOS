@@ -1,5 +1,5 @@
 //
-//  ZHHAppDelegate.h
+//  TVAppDelegate.h
 //  Tiva
 //
 //  Created by Zhang Honghao on 6/9/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZHHAppDelegate : UIResponder <UIApplicationDelegate>
+@interface TVAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

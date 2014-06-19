@@ -12,14 +12,14 @@
 		1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
 		1B7B31D519465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31D319465FE700848D85 /* InfoPlist.strings */; };
 		1B7B31D719465FE700848D85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31D619465FE700848D85 /* main.m */; };
-		1B7B31DB19465FE700848D85 /* ZHHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31DA19465FE700848D85 /* ZHHAppDelegate.m */; };
+		1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31DA19465FE700848D85 /* TVAppDelegate.m */; };
 		1B7B31DD19465FE700848D85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31DC19465FE700848D85 /* Images.xcassets */; };
 		1B7B31E419465FE700848D85 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31E319465FE700848D85 /* XCTest.framework */; };
 		1B7B31E519465FE700848D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
 		1B7B31E619465FE700848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
 		1B7B31EE19465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31EC19465FE700848D85 /* InfoPlist.strings */; };
 		1B7B31F019465FE700848D85 /* TivaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31EF19465FE700848D85 /* TivaTests.m */; };
-		1B9AE9941950CC3600F0691B /* ZHHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* ZHHMainViewController.m */; };
+		1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* TVMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,16 +41,16 @@
 		1B7B31D419465FE700848D85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B7B31D619465FE700848D85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B7B31D819465FE700848D85 /* Tiva-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tiva-Prefix.pch"; sourceTree = "<group>"; };
-		1B7B31D919465FE700848D85 /* ZHHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHHAppDelegate.h; sourceTree = "<group>"; };
-		1B7B31DA19465FE700848D85 /* ZHHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHHAppDelegate.m; sourceTree = "<group>"; };
+		1B7B31D919465FE700848D85 /* TVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVAppDelegate.h; sourceTree = "<group>"; };
+		1B7B31DA19465FE700848D85 /* TVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVAppDelegate.m; sourceTree = "<group>"; };
 		1B7B31DC19465FE700848D85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1B7B31E219465FE700848D85 /* TivaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TivaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7B31E319465FE700848D85 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1B7B31EB19465FE700848D85 /* TivaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TivaTests-Info.plist"; sourceTree = "<group>"; };
 		1B7B31ED19465FE700848D85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B7B31EF19465FE700848D85 /* TivaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TivaTests.m; sourceTree = "<group>"; };
-		1B9AE9921950CC3600F0691B /* ZHHMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHHMainViewController.h; path = ViewController/ZHHMainViewController.h; sourceTree = "<group>"; };
-		1B9AE9931950CC3600F0691B /* ZHHMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZHHMainViewController.m; path = ViewController/ZHHMainViewController.m; sourceTree = "<group>"; };
+		1B9AE9921950CC3600F0691B /* TVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainViewController.h; path = ViewController/TVMainViewController.h; sourceTree = "<group>"; };
+		1B9AE9931950CC3600F0691B /* TVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainViewController.m; path = ViewController/TVMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +110,8 @@
 		1B7B31D019465FE600848D85 /* Tiva */ = {
 			isa = PBXGroup;
 			children = (
-				1B7B31D919465FE700848D85 /* ZHHAppDelegate.h */,
-				1B7B31DA19465FE700848D85 /* ZHHAppDelegate.m */,
+				1B7B31D919465FE700848D85 /* TVAppDelegate.h */,
+				1B7B31DA19465FE700848D85 /* TVAppDelegate.m */,
 				1B9AE9951950CC4200F0691B /* ViewControllers */,
 				1B7B31DC19465FE700848D85 /* Images.xcassets */,
 				1B7B31D119465FE700848D85 /* Supporting Files */,
@@ -151,8 +151,8 @@
 		1B9AE9951950CC4200F0691B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1B9AE9921950CC3600F0691B /* ZHHMainViewController.h */,
-				1B9AE9931950CC3600F0691B /* ZHHMainViewController.m */,
+				1B9AE9921950CC3600F0691B /* TVMainViewController.h */,
+				1B9AE9931950CC3600F0691B /* TVMainViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -201,7 +201,7 @@
 		1B7B31BF19465FE600848D85 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = ZHH;
+				CLASSPREFIX = TV;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "org-honghao";
 				TargetAttributes = {
@@ -253,9 +253,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9AE9941950CC3600F0691B /* ZHHMainViewController.m in Sources */,
+				1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */,
 				1B7B31D719465FE700848D85 /* main.m in Sources */,
-				1B7B31DB19465FE700848D85 /* ZHHAppDelegate.m in Sources */,
+				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +375,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tiva/Tiva-Prefix.pch";
 				INFOPLIST_FILE = "Tiva/Tiva-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -390,7 +390,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tiva/Tiva-Prefix.pch";
 				INFOPLIST_FILE = "Tiva/Tiva-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

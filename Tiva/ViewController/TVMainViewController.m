@@ -1,18 +1,18 @@
 //
-//  ZHHMainViewController.m
+//  TVMainViewController.m
 //  Tiva
 //
 //  Created by Zhang Honghao on 6/17/14.
 //  Copyright (c) 2014 org-honghao. All rights reserved.
 //
 
-#import "ZHHMainViewController.h"
+#import "TVMainViewController.h"
 
-@interface ZHHMainViewController ()
+@interface TVMainViewController ()
 
 @end
 
-@implementation ZHHMainViewController
+@implementation TVMainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

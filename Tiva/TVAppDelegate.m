@@ -1,14 +1,14 @@
 //
-//  ZHHAppDelegate.m
+//  TVAppDelegate.m
 //  Tiva
 //
 //  Created by Zhang Honghao on 6/9/14.
 //  Copyright (c) 2014 org-honghao. All rights reserved.
 //
 
-#import "ZHHAppDelegate.h"
+#import "TVAppDelegate.h"
 
-@implementation ZHHAppDelegate
+@implementation TVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
