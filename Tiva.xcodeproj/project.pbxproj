@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969619536E3F004FD9BD /* TVMainScrollView.m */; };
+		1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */; };
+		1B0F96A01953EE5D004FD9BD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F969F1953EE5D004FD9BD /* Parse.framework */; };
+		1B0F96A21953EE77004FD9BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */; };
+		1B0F96A41953EE80004FD9BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A31953EE80004FD9BD /* CFNetwork.framework */; };
+		1B0F96A61953EE8C004FD9BD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A51953EE8C004FD9BD /* CoreLocation.framework */; };
+		1B0F96A81953EE91004FD9BD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A71953EE91004FD9BD /* libz.dylib */; };
+		1B0F96AA1953EE97004FD9BD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A91953EE97004FD9BD /* MobileCoreServices.framework */; };
+		1B0F96AC1953EE9D004FD9BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96AB1953EE9D004FD9BD /* QuartzCore.framework */; };
+		1B0F96AE1953EEA2004FD9BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96AD1953EEA2004FD9BD /* Security.framework */; };
+		1B0F96B01953EEA8004FD9BD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96AF1953EEA8004FD9BD /* StoreKit.framework */; };
+		1B0F96B21953EEAE004FD9BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96B11953EEAE004FD9BD /* SystemConfiguration.framework */; };
+		1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96B51953EF02004FD9BD /* UIApplication+AppVersion.m */; };
+		1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */; };
+		1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */; };
+		1B0F96C91953EF87004FD9BD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */; };
 		1B7B31CB19465FE600848D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
 		1B7B31CD19465FE600848D85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CC19465FE600848D85 /* CoreGraphics.framework */; };
 		1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
@@ -33,6 +49,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B0F969519536E3F004FD9BD /* TVMainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainScrollView.h; path = View/TVMainScrollView.h; sourceTree = "<group>"; };
+		1B0F969619536E3F004FD9BD /* TVMainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainScrollView.m; path = View/TVMainScrollView.m; sourceTree = "<group>"; };
+		1B0F969B1953DE13004FD9BD /* ZHHHandyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHHandyMacros.h; sourceTree = "<group>"; };
+		1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHHandyMacros.m; sourceTree = "<group>"; };
+		1B0F969F1953EE5D004FD9BD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1B0F96A31953EE80004FD9BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1B0F96A51953EE8C004FD9BD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1B0F96A71953EE91004FD9BD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		1B0F96A91953EE97004FD9BD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1B0F96AB1953EE9D004FD9BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1B0F96AD1953EEA2004FD9BD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1B0F96AF1953EEA8004FD9BD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1B0F96B11953EEAE004FD9BD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1B0F96B41953EF02004FD9BD /* UIApplication+AppVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+AppVersion.h"; sourceTree = "<group>"; };
+		1B0F96B51953EF02004FD9BD /* UIApplication+AppVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+AppVersion.m"; sourceTree = "<group>"; };
+		1B0F96B61953EF02004FD9BD /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
+		1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
+		1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHParseDevice.h; sourceTree = "<group>"; };
+		1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHParseDevice.m; sourceTree = "<group>"; };
+		1B0F96C21953EF87004FD9BD /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		1B0F96C31953EF87004FD9BD /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		1B0F96C41953EF87004FD9BD /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		1B0F96C51953EF87004FD9BD /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		1B0F96C61953EF87004FD9BD /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		1B0F96C71953EF87004FD9BD /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		1B7B31C719465FE600848D85 /* Tiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7B31CA19465FE600848D85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1B7B31CC19465FE600848D85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,8 +101,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0F96B21953EEAE004FD9BD /* SystemConfiguration.framework in Frameworks */,
+				1B0F96B01953EEA8004FD9BD /* StoreKit.framework in Frameworks */,
+				1B0F96AE1953EEA2004FD9BD /* Security.framework in Frameworks */,
+				1B0F96C91953EF87004FD9BD /* libGoogleAnalyticsServices.a in Frameworks */,
+				1B0F96AC1953EE9D004FD9BD /* QuartzCore.framework in Frameworks */,
+				1B0F96AA1953EE97004FD9BD /* MobileCoreServices.framework in Frameworks */,
+				1B0F96A81953EE91004FD9BD /* libz.dylib in Frameworks */,
+				1B0F96A61953EE8C004FD9BD /* CoreLocation.framework in Frameworks */,
 				1B7B31CD19465FE600848D85 /* CoreGraphics.framework in Frameworks */,
+				1B0F96A41953EE80004FD9BD /* CFNetwork.framework in Frameworks */,
+				1B0F96A21953EE77004FD9BD /* AudioToolbox.framework in Frameworks */,
 				1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */,
+				1B0F96A01953EE5D004FD9BD /* Parse.framework in Frameworks */,
 				1B7B31CB19465FE600848D85 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,9 +131,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B0F969819536E44004FD9BD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F969519536E3F004FD9BD /* TVMainScrollView.h */,
+				1B0F969619536E3F004FD9BD /* TVMainScrollView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1B0F96991953DE13004FD9BD /* OpenSource */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F969A1953DE13004FD9BD /* ZHHHandyMacros */,
+			);
+			name = OpenSource;
+			path = Tiva/OpenSource;
+			sourceTree = "<group>";
+		};
+		1B0F969A1953DE13004FD9BD /* ZHHHandyMacros */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F969B1953DE13004FD9BD /* ZHHHandyMacros.h */,
+				1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */,
+			);
+			path = ZHHHandyMacros;
+			sourceTree = "<group>";
+		};
+		1B0F969E1953EE5D004FD9BD /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F96C11953EF87004FD9BD /* GoogleAnalytics */,
+				1B0F969F1953EE5D004FD9BD /* Parse.framework */,
+			);
+			name = SDK;
+			path = Tiva/SDK;
+			sourceTree = "<group>";
+		};
+		1B0F96B31953EF02004FD9BD /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F96B41953EF02004FD9BD /* UIApplication+AppVersion.h */,
+				1B0F96B51953EF02004FD9BD /* UIApplication+AppVersion.m */,
+				1B0F96B61953EF02004FD9BD /* UIDevice-Hardware.h */,
+				1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */,
+			);
+			name = Category;
+			path = Tiva/Category;
+			sourceTree = "<group>";
+		};
+		1B0F96BA1953EF1E004FD9BD /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */,
+				1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */,
+			);
+			name = Others;
+			path = Tiva/Others;
+			sourceTree = "<group>";
+		};
+		1B0F96C11953EF87004FD9BD /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F96C21953EF87004FD9BD /* GAI.h */,
+				1B0F96C31953EF87004FD9BD /* GAIDictionaryBuilder.h */,
+				1B0F96C41953EF87004FD9BD /* GAIFields.h */,
+				1B0F96C51953EF87004FD9BD /* GAILogger.h */,
+				1B0F96C61953EF87004FD9BD /* GAITrackedViewController.h */,
+				1B0F96C71953EF87004FD9BD /* GAITracker.h */,
+				1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
 		1B7B31BE19465FE600848D85 = {
 			isa = PBXGroup;
 			children = (
+				1B0F969E1953EE5D004FD9BD /* SDK */,
+				1B0F96991953DE13004FD9BD /* OpenSource */,
+				1B0F96B31953EF02004FD9BD /* Category */,
+				1B0F96BA1953EF1E004FD9BD /* Others */,
 				1B7B31D019465FE600848D85 /* Tiva */,
 				1B7B31E919465FE700848D85 /* TivaTests */,
 				1B7B31C919465FE600848D85 /* Frameworks */,
@@ -99,6 +230,15 @@
 		1B7B31C919465FE600848D85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B0F96B11953EEAE004FD9BD /* SystemConfiguration.framework */,
+				1B0F96AF1953EEA8004FD9BD /* StoreKit.framework */,
+				1B0F96AD1953EEA2004FD9BD /* Security.framework */,
+				1B0F96AB1953EE9D004FD9BD /* QuartzCore.framework */,
+				1B0F96A91953EE97004FD9BD /* MobileCoreServices.framework */,
+				1B0F96A71953EE91004FD9BD /* libz.dylib */,
+				1B0F96A51953EE8C004FD9BD /* CoreLocation.framework */,
+				1B0F96A31953EE80004FD9BD /* CFNetwork.framework */,
+				1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */,
 				1B7B31CA19465FE600848D85 /* Foundation.framework */,
 				1B7B31CC19465FE600848D85 /* CoreGraphics.framework */,
 				1B7B31CE19465FE600848D85 /* UIKit.framework */,
@@ -112,7 +252,8 @@
 			children = (
 				1B7B31D919465FE700848D85 /* TVAppDelegate.h */,
 				1B7B31DA19465FE700848D85 /* TVAppDelegate.m */,
-				1B9AE9951950CC4200F0691B /* ViewControllers */,
+				1B0F969819536E44004FD9BD /* View */,
+				1B9AE9951950CC4200F0691B /* ViewController */,
 				1B7B31DC19465FE700848D85 /* Images.xcassets */,
 				1B7B31D119465FE700848D85 /* Supporting Files */,
 			);
@@ -148,13 +289,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1B9AE9951950CC4200F0691B /* ViewControllers */ = {
+		1B9AE9951950CC4200F0691B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				1B9AE9921950CC3600F0691B /* TVMainViewController.h */,
 				1B9AE9931950CC3600F0691B /* TVMainViewController.m */,
 			);
-			name = ViewControllers;
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +395,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */,
+				1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */,
 				1B7B31D719465FE700848D85 /* main.m in Sources */,
+				1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */,
+				1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
+				1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */,
+				1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,10 +518,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tiva/SDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tiva/Tiva-Prefix.pch";
 				INFOPLIST_FILE = "Tiva/Tiva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tiva/SDK/GoogleAnalytics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -387,10 +541,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tiva/SDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tiva/Tiva-Prefix.pch";
 				INFOPLIST_FILE = "Tiva/Tiva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tiva/SDK/GoogleAnalytics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
