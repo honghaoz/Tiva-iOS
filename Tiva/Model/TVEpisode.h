@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+@class TVShow;
 
 @interface TVEpisode : NSObject
+
+@property (nonatomic, weak) TVShow *show;
 
 @property (nonatomic, assign) NSInteger season;
 @property (nonatomic, assign) NSInteger number;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *overview;
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *URL;
 @property (nonatomic, strong) NSDate *airedDateUTC;
 @property (nonatomic, strong) NSDate *airedDateLocal;
 @property (nonatomic, strong) NSURL *screenImageURL;

@@ -7,6 +7,7 @@ pod 'AFNetworking', '~> 2.3'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
 pod 'Bolts', :git => 'https://github.com/BoltsFramework/Bolts-iOS'
 pod 'Parse', '~> 1.2'
+pod 'iCarousel', '~> 1.7'
 
 end
 

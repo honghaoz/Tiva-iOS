@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Tiva-iCarousel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Tiva.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1670D7D764C249F1997817E0</key>
+		<key>025E2195ABFE45019396548E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D9E9A400D3345C2BCBE928C</key>
+		<key>6DCA9B055419494F9C395682</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>769260FB015148C5A4A5AC12</key>
+		<key>88C12136669648F48328B4C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A37139C60E074164B230FBA1</key>
+		<key>9ED292197D2A4414B80B359A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C112F2CA02204670B7A2A316</key>
+		<key>C7872DCEC5CD456091C01600</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD48AB2A5D564D7480C51BE6</key>
+		<key>DC0CE605E3EB48A5BDD8EBFD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4F6AB8AE9874D81B69EA61D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -7,6 +7,8 @@
 //
 
 #import "TVMainViewController.h"
+#import "TVShowStore.h"
+#import "iCarousel.h"
 
 @interface TVMainViewController ()
 
@@ -23,23 +25,24 @@
     return self;
 }
 
+- (void)loadView {
+    self.view = [[UIView alloc] init];
+    CGRect mainScreen = [UIScreen mainScreen].bounds;
+    NSLog(@"%@", NSStringFromCGRect(mainScreen));
+    self.view.backgroundColor = [UIColor lightGrayColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [[TVShowStore sharedStore] retrieveShows];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)loadView {
-    self.view = [[UIView alloc] init];
-    CGRect mainScreen = [UIScreen mainScreen].bounds;
-    NSLog(@"%@", NSStringFromCGRect(mainScreen));
-    self.view.backgroundColor = [UIColor lightGrayColor];
 }
 
 @end

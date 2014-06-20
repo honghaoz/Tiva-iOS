@@ -24,6 +24,7 @@ PODS:
   - Facebook-iOS-SDK (3.15.0):
     - Bolts
   - GoogleAnalytics-iOS-SDK (3.0.7)
+  - iCarousel (1.7.6)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
 
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.3)
   - Bolts (from `https://github.com/BoltsFramework/Bolts-iOS`)
   - GoogleAnalytics-iOS-SDK (~> 3.0)
+  - iCarousel (~> 1.7)
   - Parse (~> 1.2)
 
 EXTERNAL SOURCES:
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   Bolts: b213a26615a5cc7ed1255f87e29074ed5a45efe2
   Facebook-iOS-SDK: d67a9aa373f28b581e00cefdfd5a1ab8f883ac14
   GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
+  iCarousel: c35a4e26b3c657847e523012b593e70ddbd84992
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
 
 COCOAPODS: 0.33.1

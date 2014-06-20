@@ -16,6 +16,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    LogMethod;
+    // Set Parse Id
+    [Parse setApplicationId:@"UjD956TYrxLbL58UwNqiSSaHcUBiSp4gs3S0oV5Q"
+                  clientKey:@"L4EWXdVhrhsc6GLzkxYe3IYcWsbaG2RMwPhIiiXi"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -24,9 +29,7 @@
     self.window.rootViewController = theMainVC;
     [self.window makeKeyAndVisible];
     
-    // Set Parse
-    [Parse setApplicationId:@"UjD956TYrxLbL58UwNqiSSaHcUBiSp4gs3S0oV5Q"
-                  clientKey:@"L4EWXdVhrhsc6GLzkxYe3IYcWsbaG2RMwPhIiiXi"];
+    // Parse Track
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     BOOL testMode = NO;
@@ -34,6 +37,14 @@
     if (!testMode) {
         [ZHHParseDevice trackDevice];
     }
+    
+//    [PFCloud callFunctionInBackground:@"updateTomorrowData"
+//                       withParameters:nil
+//                                block:^(NSNumber *ratings, NSError *error) {
+//                                    if (!error) {
+//                                        // ratings is 4.5
+//                                    }
+//                                }];
     
     return YES;
 }

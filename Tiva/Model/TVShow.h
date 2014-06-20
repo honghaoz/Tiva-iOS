@@ -7,28 +7,53 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVEpisode.h"
 
 @interface TVShow : NSObject
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger year;
-@property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) NSString *country;
-@property (nonatomic, strong) NSString *overview;
+@property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, strong) NSDate *firstAiredDateUTC;
+@property (nonatomic, strong) NSDate *firstAiredDateLocal;
+@property (nonatomic, copy) NSString *country;
+@property (nonatomic, copy) NSString *overview;
 @property (nonatomic, assign) double runtime;
-@property (nonatomic, strong) NSString *network;
-@property (nonatomic, strong) NSString *certification;
-@property (nonatomic, strong) NSString *imdb_id;
-@property (nonatomic, strong) NSString *tvdb_id;
-@property (nonatomic, strong) NSString *tvrage_id;
+@property (nonatomic, copy) NSString *network;
+@property (nonatomic, copy) NSString *certification;
+@property (nonatomic, copy) NSString *imdb_id;
+@property (nonatomic, copy) NSString *tvdb_id;
+@property (nonatomic, copy) NSString *tvrage_id;
 
-@property (nonatomic, strong) NSURL *bannerURL;
+@property (nonatomic, copy) NSURL *bannerURL;
 @property (nonatomic, strong) UIImage *bannerImage;
-@property (nonatomic, strong) NSURL *posterURL;
+@property (nonatomic, copy) NSURL *posterURL;
 @property (nonatomic, strong) UIImage *posterImage;
-@property (nonatomic, strong) NSURL *fanartURL;
+@property (nonatomic, copy) NSURL *fanartURL;
 @property (nonatomic, strong) UIImage *fanartImage;
 
 @property (nonatomic, strong) NSArray *genres;
+
+@property (nonatomic, strong) NSArray *episodes;
+
+- (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
+
+- (instancetype)initWithTitle:(NSString *)title
+                         year:(NSNumber *)year
+                    URLString:(NSString *)url
+            firstAiredDateUTC:(NSDate *)firstAiredDateUTC
+                      country:(NSString *)country
+                     overview:(NSString *)overview
+                      runtime:(NSNumber *)runtime
+                      network:(NSString *)network
+                certification:(NSString *)certification
+                      imdb_id:(NSString *)imdb_id
+                      tvdb_id:(NSString *)tvdb_id
+                    tvrage_id:(NSString *)tvrage_id
+                    bannerURL:(NSString *)bannerURL
+                    posterURL:(NSString *)posterURL
+                    fanartURL:(NSString *)fanartURL
+                       genres:(NSArray *)genres
+                     episodes:(NSArray *)episodes;
 
 @end

@@ -23,6 +23,8 @@
 		1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */; };
 		1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96DA19547C39004FD9BD /* TVEpisode.m */; };
 		1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96DE19547C5A004FD9BD /* TVShow.m */; };
+		1B0F96F01954C3B9004FD9BD /* TVShowStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96EF1954C3B9004FD9BD /* TVShowStore.m */; };
+		1B0F96F31954CF4A004FD9BD /* TVAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96F21954CF4A004FD9BD /* TVAPIClient.m */; };
 		1B7B31CB19465FE600848D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
 		1B7B31CD19465FE600848D85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CC19465FE600848D85 /* CoreGraphics.framework */; };
 		1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
@@ -75,6 +77,10 @@
 		1B0F96DA19547C39004FD9BD /* TVEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVEpisode.m; path = Model/TVEpisode.m; sourceTree = "<group>"; };
 		1B0F96DD19547C5A004FD9BD /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShow.h; path = Model/TVShow.h; sourceTree = "<group>"; };
 		1B0F96DE19547C5A004FD9BD /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShow.m; path = Model/TVShow.m; sourceTree = "<group>"; };
+		1B0F96EE1954C3B9004FD9BD /* TVShowStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShowStore.h; path = Model/TVShowStore.h; sourceTree = "<group>"; };
+		1B0F96EF1954C3B9004FD9BD /* TVShowStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShowStore.m; path = Model/TVShowStore.m; sourceTree = "<group>"; };
+		1B0F96F11954CF4A004FD9BD /* TVAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVAPIClient.h; sourceTree = "<group>"; };
+		1B0F96F21954CF4A004FD9BD /* TVAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVAPIClient.m; sourceTree = "<group>"; };
 		1B7B31C719465FE600848D85 /* Tiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7B31CA19465FE600848D85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1B7B31CC19465FE600848D85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -161,14 +167,6 @@
 			path = ZHHHandyMacros;
 			sourceTree = "<group>";
 		};
-		1B0F969E1953EE5D004FD9BD /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = SDK;
-			path = Tiva/SDK;
-			sourceTree = "<group>";
-		};
 		1B0F96B31953EF02004FD9BD /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,20 +182,23 @@
 		1B0F96BA1953EF1E004FD9BD /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				1B0F96F11954CF4A004FD9BD /* TVAPIClient.h */,
+				1B0F96F21954CF4A004FD9BD /* TVAPIClient.m */,
 				1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */,
 				1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */,
 			);
-			name = Others;
-			path = Tiva/Others;
+			path = Others;
 			sourceTree = "<group>";
 		};
 		1B0F96DC19547C3D004FD9BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1B0F96D919547C39004FD9BD /* TVEpisode.h */,
-				1B0F96DA19547C39004FD9BD /* TVEpisode.m */,
+				1B0F96EE1954C3B9004FD9BD /* TVShowStore.h */,
+				1B0F96EF1954C3B9004FD9BD /* TVShowStore.m */,
 				1B0F96DD19547C5A004FD9BD /* TVShow.h */,
 				1B0F96DE19547C5A004FD9BD /* TVShow.m */,
+				1B0F96D919547C39004FD9BD /* TVEpisode.h */,
+				1B0F96DA19547C39004FD9BD /* TVEpisode.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -205,10 +206,8 @@
 		1B7B31BE19465FE600848D85 = {
 			isa = PBXGroup;
 			children = (
-				1B0F969E1953EE5D004FD9BD /* SDK */,
 				1B0F96991953DE13004FD9BD /* OpenSource */,
 				1B0F96B31953EF02004FD9BD /* Category */,
-				1B0F96BA1953EF1E004FD9BD /* Others */,
 				1B7B31D019465FE600848D85 /* Tiva */,
 				1B7B31E919465FE700848D85 /* TivaTests */,
 				1B7B31C919465FE600848D85 /* Frameworks */,
@@ -255,6 +254,7 @@
 				1B0F96DC19547C3D004FD9BD /* Model */,
 				1B0F969819536E44004FD9BD /* View */,
 				1B9AE9951950CC4200F0691B /* ViewController */,
+				1B0F96BA1953EF1E004FD9BD /* Others */,
 				1B7B31DC19465FE700848D85 /* Images.xcassets */,
 				1B7B31D119465FE700848D85 /* Supporting Files */,
 			);
@@ -438,6 +438,7 @@
 				1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */,
 				1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */,
 				1B7B31D719465FE700848D85 /* main.m in Sources */,
+				1B0F96F01954C3B9004FD9BD /* TVShowStore.m in Sources */,
 				1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */,
 				1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */,
 				1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */,
@@ -445,6 +446,7 @@
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
 				1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */,
 				1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */,
+				1B0F96F31954CF4A004FD9BD /* TVAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,18 +564,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Tiva/SDK",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tiva/Tiva-Prefix.pch";
 				INFOPLIST_FILE = "Tiva/Tiva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Tiva/SDK/GoogleAnalytics",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -587,18 +583,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Tiva/SDK",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tiva/Tiva-Prefix.pch";
 				INFOPLIST_FILE = "Tiva/Tiva-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Tiva/SDK/GoogleAnalytics",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
