@@ -23,6 +23,8 @@
 		1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */; };
 		1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */; };
 		1B0F96C91953EF87004FD9BD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */; };
+		1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96DA19547C39004FD9BD /* TVEpisode.m */; };
+		1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96DE19547C5A004FD9BD /* TVShow.m */; };
 		1B7B31CB19465FE600848D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
 		1B7B31CD19465FE600848D85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CC19465FE600848D85 /* CoreGraphics.framework */; };
 		1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
@@ -76,6 +78,10 @@
 		1B0F96C61953EF87004FD9BD /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		1B0F96C71953EF87004FD9BD /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
 		1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		1B0F96D919547C39004FD9BD /* TVEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVEpisode.h; path = Model/TVEpisode.h; sourceTree = "<group>"; };
+		1B0F96DA19547C39004FD9BD /* TVEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVEpisode.m; path = Model/TVEpisode.m; sourceTree = "<group>"; };
+		1B0F96DD19547C5A004FD9BD /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShow.h; path = Model/TVShow.h; sourceTree = "<group>"; };
+		1B0F96DE19547C5A004FD9BD /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShow.m; path = Model/TVShow.m; sourceTree = "<group>"; };
 		1B7B31C719465FE600848D85 /* Tiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7B31CA19465FE600848D85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1B7B31CC19465FE600848D85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -204,6 +210,17 @@
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
+		1B0F96DC19547C3D004FD9BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F96D919547C39004FD9BD /* TVEpisode.h */,
+				1B0F96DA19547C39004FD9BD /* TVEpisode.m */,
+				1B0F96DD19547C5A004FD9BD /* TVShow.h */,
+				1B0F96DE19547C5A004FD9BD /* TVShow.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		1B7B31BE19465FE600848D85 = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +269,7 @@
 			children = (
 				1B7B31D919465FE700848D85 /* TVAppDelegate.h */,
 				1B7B31DA19465FE700848D85 /* TVAppDelegate.m */,
+				1B0F96DC19547C3D004FD9BD /* Model */,
 				1B0F969819536E44004FD9BD /* View */,
 				1B9AE9951950CC4200F0691B /* ViewController */,
 				1B7B31DC19465FE700848D85 /* Images.xcassets */,
@@ -398,6 +416,8 @@
 				1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */,
 				1B7B31D719465FE700848D85 /* main.m in Sources */,
 				1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */,
+				1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */,
+				1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */,
 				1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
 				1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */,
