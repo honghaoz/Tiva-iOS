@@ -38,6 +38,8 @@
 		1B7B31EE19465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31EC19465FE700848D85 /* InfoPlist.strings */; };
 		1B7B31F019465FE700848D85 /* TivaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31EF19465FE700848D85 /* TivaTests.m */; };
 		1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* TVMainViewController.m */; };
+		97C2B7EA19536DD700B0A063 /* TVShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */; };
+		97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,9 @@
 		1B7B31EF19465FE700848D85 /* TivaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TivaTests.m; sourceTree = "<group>"; };
 		1B9AE9921950CC3600F0691B /* TVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainViewController.h; path = ViewController/TVMainViewController.h; sourceTree = "<group>"; };
 		1B9AE9931950CC3600F0691B /* TVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainViewController.m; path = ViewController/TVMainViewController.m; sourceTree = "<group>"; };
+		97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShowDetailsViewController.h; path = ViewController/TVShowDetailsViewController.h; sourceTree = "<group>"; };
+		97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShowDetailsViewController.m; path = ViewController/TVShowDetailsViewController.m; sourceTree = "<group>"; };
+		97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TVShowDetailsViewController.xib; path = ViewController/TVShowDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +317,9 @@
 			children = (
 				1B9AE9921950CC3600F0691B /* TVMainViewController.h */,
 				1B9AE9931950CC3600F0691B /* TVMainViewController.m */,
+				97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */,
+				97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */,
+				97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -392,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */,
 				1B7B31D519465FE700848D85 /* InfoPlist.strings in Resources */,
 				1B7B31DD19465FE700848D85 /* Images.xcassets in Resources */,
 			);
@@ -412,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C2B7EA19536DD700B0A063 /* TVShowDetailsViewController.m in Sources */,
 				1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */,
 				1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */,
 				1B7B31D719465FE700848D85 /* main.m in Sources */,
