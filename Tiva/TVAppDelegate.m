@@ -10,6 +10,7 @@
 #import "TVMainViewController.h"
 #import <Parse/Parse.h>
 #import "ZHHParseDevice.h"
+#import <Accelerate/Accelerate.h>
 
 @implementation TVAppDelegate
 
@@ -29,6 +30,7 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     BOOL testMode = NO;
+    // If in test Mode, do not track device
     if (!testMode) {
         [ZHHParseDevice trackDevice];
     }

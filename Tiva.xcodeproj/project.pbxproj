@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969619536E3F004FD9BD /* TVMainScrollView.m */; };
 		1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */; };
-		1B0F96A01953EE5D004FD9BD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F969F1953EE5D004FD9BD /* Parse.framework */; };
 		1B0F96A21953EE77004FD9BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */; };
 		1B0F96A41953EE80004FD9BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A31953EE80004FD9BD /* CFNetwork.framework */; };
 		1B0F96A61953EE8C004FD9BD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A51953EE8C004FD9BD /* CoreLocation.framework */; };
@@ -22,7 +21,6 @@
 		1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96B51953EF02004FD9BD /* UIApplication+AppVersion.m */; };
 		1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */; };
 		1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */; };
-		1B0F96C91953EF87004FD9BD /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */; };
 		1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96DA19547C39004FD9BD /* TVEpisode.m */; };
 		1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96DE19547C5A004FD9BD /* TVShow.m */; };
 		1B7B31CB19465FE600848D85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
@@ -38,6 +36,7 @@
 		1B7B31EE19465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31EC19465FE700848D85 /* InfoPlist.strings */; };
 		1B7B31F019465FE700848D85 /* TivaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31EF19465FE700848D85 /* TivaTests.m */; };
 		1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* TVMainViewController.m */; };
+		37A79D7D43784F51A730C1A6 /* libPods-Tiva.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8EEB9A3846378CFFFE8B /* libPods-Tiva.a */; };
 		97C2B7EA19536DD700B0A063 /* TVShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */; };
 		97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */; };
 /* End PBXBuildFile section */
@@ -57,7 +56,6 @@
 		1B0F969619536E3F004FD9BD /* TVMainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainScrollView.m; path = View/TVMainScrollView.m; sourceTree = "<group>"; };
 		1B0F969B1953DE13004FD9BD /* ZHHHandyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHHandyMacros.h; sourceTree = "<group>"; };
 		1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHHandyMacros.m; sourceTree = "<group>"; };
-		1B0F969F1953EE5D004FD9BD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1B0F96A31953EE80004FD9BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1B0F96A51953EE8C004FD9BD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -73,13 +71,6 @@
 		1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHParseDevice.h; sourceTree = "<group>"; };
 		1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHParseDevice.m; sourceTree = "<group>"; };
-		1B0F96C21953EF87004FD9BD /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		1B0F96C31953EF87004FD9BD /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		1B0F96C41953EF87004FD9BD /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		1B0F96C51953EF87004FD9BD /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		1B0F96C61953EF87004FD9BD /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		1B0F96C71953EF87004FD9BD /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		1B0F96D919547C39004FD9BD /* TVEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVEpisode.h; path = Model/TVEpisode.h; sourceTree = "<group>"; };
 		1B0F96DA19547C39004FD9BD /* TVEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVEpisode.m; path = Model/TVEpisode.m; sourceTree = "<group>"; };
 		1B0F96DD19547C5A004FD9BD /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShow.h; path = Model/TVShow.h; sourceTree = "<group>"; };
@@ -102,9 +93,11 @@
 		1B7B31EF19465FE700848D85 /* TivaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TivaTests.m; sourceTree = "<group>"; };
 		1B9AE9921950CC3600F0691B /* TVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainViewController.h; path = ViewController/TVMainViewController.h; sourceTree = "<group>"; };
 		1B9AE9931950CC3600F0691B /* TVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainViewController.m; path = ViewController/TVMainViewController.m; sourceTree = "<group>"; };
+		4C4B8EEB9A3846378CFFFE8B /* libPods-Tiva.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tiva.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShowDetailsViewController.h; path = ViewController/TVShowDetailsViewController.h; sourceTree = "<group>"; };
 		97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShowDetailsViewController.m; path = ViewController/TVShowDetailsViewController.m; sourceTree = "<group>"; };
 		97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TVShowDetailsViewController.xib; path = ViewController/TVShowDetailsViewController.xib; sourceTree = "<group>"; };
+		A2CDCFCA986B4336B6D893D2 /* Pods-Tiva.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tiva.xcconfig"; path = "Pods/Pods-Tiva.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +108,6 @@
 				1B0F96B21953EEAE004FD9BD /* SystemConfiguration.framework in Frameworks */,
 				1B0F96B01953EEA8004FD9BD /* StoreKit.framework in Frameworks */,
 				1B0F96AE1953EEA2004FD9BD /* Security.framework in Frameworks */,
-				1B0F96C91953EF87004FD9BD /* libGoogleAnalyticsServices.a in Frameworks */,
 				1B0F96AC1953EE9D004FD9BD /* QuartzCore.framework in Frameworks */,
 				1B0F96AA1953EE97004FD9BD /* MobileCoreServices.framework in Frameworks */,
 				1B0F96A81953EE91004FD9BD /* libz.dylib in Frameworks */,
@@ -124,8 +116,8 @@
 				1B0F96A41953EE80004FD9BD /* CFNetwork.framework in Frameworks */,
 				1B0F96A21953EE77004FD9BD /* AudioToolbox.framework in Frameworks */,
 				1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */,
-				1B0F96A01953EE5D004FD9BD /* Parse.framework in Frameworks */,
 				1B7B31CB19465FE600848D85 /* Foundation.framework in Frameworks */,
+				37A79D7D43784F51A730C1A6 /* libPods-Tiva.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,8 +164,6 @@
 		1B0F969E1953EE5D004FD9BD /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				1B0F96C11953EF87004FD9BD /* GoogleAnalytics */,
-				1B0F969F1953EE5D004FD9BD /* Parse.framework */,
 			);
 			name = SDK;
 			path = Tiva/SDK;
@@ -201,20 +191,6 @@
 			path = Tiva/Others;
 			sourceTree = "<group>";
 		};
-		1B0F96C11953EF87004FD9BD /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				1B0F96C21953EF87004FD9BD /* GAI.h */,
-				1B0F96C31953EF87004FD9BD /* GAIDictionaryBuilder.h */,
-				1B0F96C41953EF87004FD9BD /* GAIFields.h */,
-				1B0F96C51953EF87004FD9BD /* GAILogger.h */,
-				1B0F96C61953EF87004FD9BD /* GAITrackedViewController.h */,
-				1B0F96C71953EF87004FD9BD /* GAITracker.h */,
-				1B0F96C81953EF87004FD9BD /* libGoogleAnalyticsServices.a */,
-			);
-			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
 		1B0F96DC19547C3D004FD9BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +213,7 @@
 				1B7B31E919465FE700848D85 /* TivaTests */,
 				1B7B31C919465FE600848D85 /* Frameworks */,
 				1B7B31C819465FE600848D85 /* Products */,
+				A2CDCFCA986B4336B6D893D2 /* Pods-Tiva.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,6 +242,7 @@
 				1B7B31CC19465FE600848D85 /* CoreGraphics.framework */,
 				1B7B31CE19465FE600848D85 /* UIKit.framework */,
 				1B7B31E319465FE700848D85 /* XCTest.framework */,
+				4C4B8EEB9A3846378CFFFE8B /* libPods-Tiva.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -331,9 +309,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B7B31F319465FE700848D85 /* Build configuration list for PBXNativeTarget "Tiva" */;
 			buildPhases = (
+				87EB2C50A5E84DBF867ED5BD /* Check Pods Manifest.lock */,
 				1B7B31C319465FE600848D85 /* Sources */,
 				1B7B31C419465FE600848D85 /* Frameworks */,
 				1B7B31C519465FE600848D85 /* Resources */,
+				FCF19283AE1C4AE8BEE22A6E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -415,6 +395,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87EB2C50A5E84DBF867ED5BD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FCF19283AE1C4AE8BEE22A6E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Tiva-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B7B31C319465FE600848D85 /* Sources */ = {
@@ -545,6 +558,7 @@
 		};
 		1B7B31F419465FE700848D85 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2CDCFCA986B4336B6D893D2 /* Pods-Tiva.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -562,12 +576,14 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		1B7B31F519465FE700848D85 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2CDCFCA986B4336B6D893D2 /* Pods-Tiva.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -585,6 +601,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
