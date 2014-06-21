@@ -7,7 +7,9 @@
 //
 
 #import "TVShow.h"
+#import "TVEpisode.h"
 #import <AFHTTPRequestOperation.h>
+#import <Parse/Parse.h>
 
 @implementation TVShow
 
@@ -17,6 +19,45 @@
         
     }
     return self;
+}
+
+- (instancetype)initWithParseShowObject:(PFObject *)object {
+    // First get the episodes for this show
+    __block NSMutableArray *episodes = [[NSMutableArray alloc] init];
+    PFRelation *childrenRelation = object[@"Children"];
+    PFQuery *queryForEpisodes = [childrenRelation query];
+    [queryForEpisodes setCachePolicy:kPFCachePolicyNetworkElseCache];
+    [queryForEpisodes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // objects are episodes
+            for (PFObject *eachEpisode in objects) {
+                TVEpisode *newEpisode = [[TVEpisode alloc] initWithParseEpisodeObject:eachEpisode parentShow:self];
+                [episodes addObject:newEpisode];
+            }
+            NSLog(@"Query Episodes Succeed: %d", [objects count]);
+        } else {
+            NSLog(@"Query Episodes Error: %@ %@", error, [error localizedDescription]);
+        }
+    }];
+    
+    // Initiate
+    return [self initWithTitle:object[@"Title"]
+                          year:object[@"Year"]
+                     URLString:object[@"URL"]
+             firstAiredDateUTC:object[@"First_Aired_UTC"]
+                       country:object[@"Country"]
+                      overview:object[@"Overview"]
+                       runtime:object[@"Runtime"]
+                       network:object[@"Network"]
+                 certification:object[@"Certification"]
+                       imdb_id:object[@"imdb_id"]
+                       tvdb_id:object[@"tvdb_id"]
+                     tvrage_id:object[@"tvrage_id"]
+                     bannerURL:object[@"Banner"]
+                     posterURL:object[@"Poster"]
+                     fanartURL:object[@"Fanart"]
+                        genres:object[@"Genres"]
+                      episodes:episodes];
 }
 
 - (instancetype)initWithTitle:(NSString *)title

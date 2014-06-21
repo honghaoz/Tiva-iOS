@@ -8,20 +8,22 @@
 
 #import <Foundation/Foundation.h>
 @class TVShow;
+@class PFObject;
 
 @interface TVEpisode : NSObject
 
-@property (nonatomic, weak) TVShow *show;
-
 @property (nonatomic, assign) NSInteger season;
 @property (nonatomic, assign) NSInteger number;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *overview;
-@property (nonatomic, strong) NSString *URL;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *overview;
+@property (nonatomic, copy) NSString *URL;
 @property (nonatomic, strong) NSDate *airedDateUTC;
 @property (nonatomic, strong) NSDate *airedDateLocal;
-@property (nonatomic, strong) NSURL *screenImageURL;
+@property (nonatomic, copy) NSURL *screenImageURL;
 @property (nonatomic, strong) UIImage *screenImage;
+@property (nonatomic, weak) TVShow *show;
 //@property (nonatomic, strong)
+
+- (instancetype)initWithParseEpisodeObject:(id)object parentShow:(TVShow *)show;
 
 @end

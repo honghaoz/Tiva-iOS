@@ -77,12 +77,10 @@
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    LogMethod;
     return [_items count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
-    LogMethod;
     UILabel *label = nil;
     
     //create new view if no view is available for recycling
@@ -107,7 +105,7 @@
     //TVShow *theShow = [TVShowStore sharedStore].shows[2];
     //[theShow loadImage:theShow.posterImage withURL:theShow.posterURL];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 400)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 680, 1000)];
 //    [imageView set]
     [imageView setImageWithURL:[NSURL URLWithString:@"http://slurm.trakt.us/images/posters/23330.5.jpg"]];
     

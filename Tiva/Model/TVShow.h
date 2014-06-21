@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TVEpisode.h"
 
+@class PFObject;
+
 @interface TVShow : NSObject
 
 @property (nonatomic, copy) NSString *title;
@@ -36,25 +38,7 @@
 
 @property (nonatomic, strong) NSArray *episodes;
 
-- (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
-
-- (instancetype)initWithTitle:(NSString *)title
-                         year:(NSNumber *)year
-                    URLString:(NSString *)url
-            firstAiredDateUTC:(NSDate *)firstAiredDateUTC
-                      country:(NSString *)country
-                     overview:(NSString *)overview
-                      runtime:(NSNumber *)runtime
-                      network:(NSString *)network
-                certification:(NSString *)certification
-                      imdb_id:(NSString *)imdb_id
-                      tvdb_id:(NSString *)tvdb_id
-                    tvrage_id:(NSString *)tvrage_id
-                    bannerURL:(NSString *)bannerURL
-                    posterURL:(NSString *)posterURL
-                    fanartURL:(NSString *)fanartURL
-                       genres:(NSArray *)genres
-                     episodes:(NSArray *)episodes;
+- (instancetype)initWithParseShowObject:(PFObject *)object;
 
 - (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
 

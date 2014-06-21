@@ -32,34 +32,19 @@
 - (void)retrieveShows {
     PFQuery *query = [PFQuery queryWithClassName:@"Show"];
     query.limit = 20;
+    [query setCachePolicy:kPFCachePolicyNetworkElseCache];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %d shows.", objects.count);
+            NSLog(@"Query Shows Succeed: %d", [objects count]);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                TVShow *newShow = [[TVShow alloc] initWithTitle:object[@"Title"]
-                                                           year:object[@"Year"]
-                                                      URLString:object[@"URL"]
-                                              firstAiredDateUTC:object[@"First_Aired_UTC"]
-                                                        country:object[@"Country"]
-                                                       overview:object[@"Overview"]
-                                                        runtime:object[@"Runtime"]
-                                                        network:object[@"Network"]
-                                                  certification:object[@"Certification"]
-                                                        imdb_id:object[@"imdb_id"]
-                                                        tvdb_id:object[@"tvdb_id"]
-                                                      tvrage_id:object[@"tvrage_id"]
-                                                      bannerURL:object[@"Banner"]
-                                                      posterURL:object[@"Poster"]
-                                                      fanartURL:object[@"Fanart"]
-                                                         genres:object[@"Genres"]
-                                                        episodes:nil];//object[@"Episodes"]];
+                TVShow *newShow = [[TVShow alloc] initWithParseShowObject:object];
                 [self.shows addObject:newShow];
             }
         } else {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error localizedDescription]);
+            NSLog(@"Query Shows Error: %@ %@", error, [error localizedDescription]);
         }
     }];
 }
