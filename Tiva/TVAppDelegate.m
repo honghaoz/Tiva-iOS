@@ -16,7 +16,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    LogMethod;
     // Set Parse Id
     [Parse setApplicationId:@"UjD956TYrxLbL58UwNqiSSaHcUBiSp4gs3S0oV5Q"
                   clientKey:@"L4EWXdVhrhsc6GLzkxYe3IYcWsbaG2RMwPhIiiXi"];

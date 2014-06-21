@@ -56,4 +56,6 @@
                        genres:(NSArray *)genres
                      episodes:(NSArray *)episodes;
 
+- (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
+
 @end

@@ -13,7 +13,6 @@
 @implementation TVShowStore
 
 + (TVShowStore *)sharedStore {
-    LogMethod;
     static TVShowStore *_sharedStore = nil;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
@@ -23,7 +22,6 @@
 }
 
 - (instancetype)init {
-    LogMethod;
     self = [super init];
     if (self) {
         _shows = [[NSMutableArray alloc] init];
@@ -32,7 +30,6 @@
 }
 
 - (void)retrieveShows {
-    LogMethod;
     PFQuery *query = [PFQuery queryWithClassName:@"Show"];
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
