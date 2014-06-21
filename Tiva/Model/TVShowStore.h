@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) NSMutableArray *shows;
 
-
 + (TVShowStore *)sharedStore;
 - (void)retrieveShows;
 

@@ -14,7 +14,7 @@
 
 @interface TVMainViewController () <iCarouselDataSource> {
     iCarousel *_mainCarouselView;
-    NSMutableArray *_items;
+    TVShowStore *_sharedShowStore;
 }
 
 @end
@@ -30,18 +30,7 @@
     return self;
 }
 
-- (void)setUp
-{
-    //set up data
-    _items = [NSMutableArray array];
-    for (int i = 0; i < 1000; i++)
-    {
-        [_items addObject:@(i)];
-    }
-}
-
 - (void)loadView {
-    [self setUp];
     LogMethod;
     self.view = [[UIView alloc] init];
     CGRect mainScreen = [UIScreen mainScreen].bounds;
@@ -64,7 +53,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[TVShowStore sharedStore] retrieveShows];
+    _sharedShowStore = [TVShowStore sharedStore];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:_sharedShowStore];
+    [_sharedShowStore retrieveShows];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,50 +64,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - NSNotificationCenter methods
+
+- (void)showStoreUpdates:(NSNotification *)notification {
+    NSLog(@"Received ShowStoreUpdated");
+//    NSInteger updatedIndex = [[notification userInfo][@"ShowIndex"] integerValue];
+    [_mainCarouselView reloadData];
+//    [_mainCarouselView reloadItemAtIndex:updatedIndex animated:YES];
+}
+
+
 #pragma mark - iCarousel methods
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return [_items count];
+    LogMethod;
+    return [_sharedShowStore.shows count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
-    UILabel *label = nil;
-    
-    //create new view if no view is available for recycling
-    if (view == nil)
-    {
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 200.0f)];
-//        ((UIImageView *)view).image = [UIImage imageNamed:@"page.png"];
-        view.contentMode = UIViewContentModeCenter;
-        label = [[UILabel alloc] initWithFrame:view.bounds];
-        label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [label.font fontWithSize:50];
-        label.tag = 1;
-        [view addSubview:label];
-    }
-    else
-    {
-        //get a reference to the label in the recycled view
-        label = (UILabel *)[view viewWithTag:1];
+//    LogMethod;
+    if (view == nil) {
+        UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mainCarouselView.bounds.size.height * 680 / 1000, _mainCarouselView.bounds.size.height)];
+        [view setImageWithURL:[_sharedShowStore.shows[index] posterURL]];
+        [view setContentMode:UIViewContentModeScaleAspectFill];
+        return view;
+    } else {
+        [(UIImageView *)view setImageWithURL:[_sharedShowStore.shows[index] posterURL]];
     }
     
-    //TVShow *theShow = [TVShowStore sharedStore].shows[2];
-    //[theShow loadImage:theShow.posterImage withURL:theShow.posterURL];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 680, 1000)];
-//    [imageView set]
-    [imageView setImageWithURL:[NSURL URLWithString:@"http://slurm.trakt.us/images/posters/23330.5.jpg"]];
-    
-    //set item label
-    //remember to always set any properties of your carousel item
-    //views outside of the `if (view == nil) {...}` check otherwise
-    //you'll get weird issues with carousel item content appearing
-    //in the wrong place in the carousel
-    label.text = [_items[index] stringValue];
-    
-    return imageView;
+    return view;
 }
 
 @end

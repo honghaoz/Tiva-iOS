@@ -31,7 +31,7 @@
 
 - (void)retrieveShows {
     PFQuery *query = [PFQuery queryWithClassName:@"Show"];
-    query.limit = 20;
+    query.limit = 1000;
     [query setCachePolicy:kPFCachePolicyNetworkElseCache];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -41,6 +41,9 @@
             for (PFObject *object in objects) {
                 TVShow *newShow = [[TVShow alloc] initWithParseShowObject:object];
                 [self.shows addObject:newShow];
+//                NSLog(@"Post ShowStoreUpdated");
+                NSLog(@"%@", newShow.title);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.shows indexOfObject:newShow]]}];
             }
         } else {
             // Log details of the failure

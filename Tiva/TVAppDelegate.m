@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "ZHHParseDevice.h"
 #import <Accelerate/Accelerate.h>
+#import "TVShowStore.h"
 
 @implementation TVAppDelegate
 
