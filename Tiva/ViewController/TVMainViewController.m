@@ -11,8 +11,12 @@
 #import "TVShow.h"
 #import "iCarousel.h"
 #import "UIImageView+AFNetworking.h"
+#import <NSString+VTContainsSubstring.h>
 
-@interface TVMainViewController () <iCarouselDataSource> {
+#define POSTER_ASPECT_RATIO 680 / 1000
+#define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
+
+@interface TVMainViewController () <iCarouselDataSource, iCarouselDelegate> {
     iCarousel *_mainCarouselView;
     TVShowStore *_sharedShowStore;
 }
@@ -40,13 +44,18 @@
     CGFloat mainCarouselViewX = 0;
     CGFloat mainCarouselViewY = 0;
     CGFloat mainCarouselViewWidth = mainScreen.size.height;
-    CGFloat mainCarouselViewHeight = mainScreen.size.width * 2/3;
+    CGFloat mainCarouselViewHeight = mainScreen.size.width * 1 / 2;
     CGRect mainCarouselViewRect = CGRectMake(mainCarouselViewX, mainCarouselViewY, mainCarouselViewWidth, mainCarouselViewHeight);
     _mainCarouselView = [[iCarousel alloc] initWithFrame:mainCarouselViewRect];
     [_mainCarouselView setType:iCarouselTypeLinear];
     [_mainCarouselView setDataSource:self];
-    
-    [_mainCarouselView setBackgroundColor:[UIColor whiteColor]];
+    [_mainCarouselView setDelegate:self];
+    [_mainCarouselView setBounces:NO];
+//    [_mainCarouselView setDecelerationRate:0.9];
+//    [_mainCarouselView setBounceDistance:0.7];
+    [_mainCarouselView setCenterItemWhenSelected:NO];
+    [_mainCarouselView setContentOffset:CGSizeMake(- (mainCarouselViewWidth - mainCarouselViewHeight * POSTER_ASPECT_RATIO) / 2, 0)];
+    [_mainCarouselView setBackgroundColor:[UIColor blackColor]];
     [self.view addSubview:_mainCarouselView];
 }
 
@@ -74,7 +83,7 @@
 }
 
 
-#pragma mark - iCarousel methods
+#pragma mark - iCarousel data source methods
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
@@ -83,17 +92,59 @@
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
-//    LogMethod;
-    if (view == nil) {
-        UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mainCarouselView.bounds.size.height * 680 / 1000, _mainCarouselView.bounds.size.height)];
-        [view setImageWithURL:[_sharedShowStore.shows[index] posterURL]];
-        [view setContentMode:UIViewContentModeScaleAspectFill];
-        return view;
-    } else {
-        [(UIImageView *)view setImageWithURL:[_sharedShowStore.shows[index] posterURL]];
-    }
+    UIImageView *theImageView = (UIImageView *)view;
     
-    return view;
+    if (theImageView == nil) {
+        theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mainCarouselView.bounds.size.height * POSTER_ASPECT_RATIO, _mainCarouselView.bounds.size.height)];
+        [theImageView setContentMode:UIViewContentModeScaleAspectFill];
+    }
+    [theImageView cancelImageRequestOperation];
+    NSString *posterURLString = [[_sharedShowStore.shows[index] posterURL] absoluteString];
+    if (![posterURLString vt_containsSubstring:EMPTY_POSTER_URL_STRING]) {
+        [theImageView setImageWithURL:[_sharedShowStore.shows[index] posterURL]];
+    } else {
+        [theImageView setImage:[self imageWithRect:theImageView.bounds.size color:[UIColor darkGrayColor]]];
+    }
+    return theImageView;
+}
+
+//- (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index reusingView:(UIView *)view {
+//    UIImageView *theImageView = (UIImageView *)view;
+//    if (theImageView == nil) {
+//        theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mainCarouselView.bounds.size.height * POSTER_ASPECT_RATIO, _mainCarouselView.bounds.size.height)];
+//        [theImageView setContentMode:UIViewContentModeScaleAspectFill];
+//    }
+//    [theImageView setImage:[self imageWithRect:theImageView.bounds.size color:[UIColor blueColor]]];
+//    return theImageView;
+//}
+
+#pragma mark - iCarousel delegate methods
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value {
+    if (option == iCarouselOptionVisibleItems) {
+        return 10;
+    }
+    return value;
+}
+
+#pragma mark - Helper methods
+
+- (UIImage *)imageWithRect:(CGSize)size color:(UIColor *)color {
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(context, red, green, blue, alpha);
+    
+    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
+    CGContextFillRect(context, bounds);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

@@ -31,7 +31,7 @@
 
 - (void)retrieveShows {
     PFQuery *query = [PFQuery queryWithClassName:@"Show"];
-    query.limit = 1000;
+    query.limit = 20;
     [query setCachePolicy:kPFCachePolicyNetworkElseCache];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {

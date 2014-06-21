@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4F6AB8AE9874D81B69EA61D"
+               BlueprintIdentifier = "74AD30444FBD4765B228F69B"
                BuildableName = "libPods-Tiva-AFNetworking.a"
                BlueprintName = "Pods-Tiva-AFNetworking"
                ReferencedContainer = "container:Pods.xcodeproj">

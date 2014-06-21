@@ -5,13 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>54C54297-A440-47C3-AEA4-3C1EA2AD1DDC</string>
+	<string>69899B69-FB94-4880-BED7-C1D5EAF684E3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Tiva</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>01E48BCF-5FEE-4C36-9C6A-DAD3B9421B03</key>
 		<string>https://bitbucket.org/cs446tiva/tiva-ios.git</string>
+		<key>70759069-87CF-440F-9344-99BD95A4D989</key>
+		<string>file:///Users/ZhangHonghao/Library/Caches/CocoaPods/GitHub/2135a454b1dba50d0ce7644f513e3fd3cfe38a97/</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Tiva.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>01E48BCF-5FEE-4C36-9C6A-DAD3B9421B03</key>
 		<string>..</string>
+		<key>70759069-87CF-440F-9344-99BD95A4D989</key>
+		<string>../Tiva/OpenSource/PJR-NSString-Category</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://bitbucket.org/cs446tiva/tiva-ios.git</string>
@@ -28,6 +32,14 @@
 	<string>01E48BCF-5FEE-4C36-9C6A-DAD3B9421B03</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>70759069-87CF-440F-9344-99BD95A4D989</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PJR-NSString-Category</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

@@ -1,0 +1,5 @@
+#include "Pods-Tiva-NSString+VTContainsSubstring.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/NSString+VTContainsSubstring" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/Bolts" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/NSString+VTContainsSubstring" "${PODS_ROOT}/Headers/NSString+VTSubstringOccurrences" "${PODS_ROOT}/Headers/Parse" "${PODS_ROOT}/Headers/iCarousel"
+OTHER_LDFLAGS = -ObjC ${PODS_TIVA_NSSTRING_VTCONTAINSSUBSTRING_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}

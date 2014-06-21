@@ -66,6 +66,18 @@
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 0
 #define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 7
 
+// NSString+VTContainsSubstring
+#define COCOAPODS_POD_AVAILABLE_NSString_VTContainsSubstring
+#define COCOAPODS_VERSION_MAJOR_NSString_VTContainsSubstring 0
+#define COCOAPODS_VERSION_MINOR_NSString_VTContainsSubstring 3
+#define COCOAPODS_VERSION_PATCH_NSString_VTContainsSubstring 0
+
+// NSString+VTSubstringOccurrences
+#define COCOAPODS_POD_AVAILABLE_NSString_VTSubstringOccurrences
+#define COCOAPODS_VERSION_MAJOR_NSString_VTSubstringOccurrences 0
+#define COCOAPODS_VERSION_MINOR_NSString_VTSubstringOccurrences 1
+#define COCOAPODS_VERSION_PATCH_NSString_VTSubstringOccurrences 0
+
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse
 #define COCOAPODS_VERSION_MAJOR_Parse 1

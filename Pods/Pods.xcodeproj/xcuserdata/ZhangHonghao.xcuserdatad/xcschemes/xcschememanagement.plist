@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Tiva-NSString+VTContainsSubstring.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Tiva-NSString+VTSubstringOccurrences.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Tiva-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>025E2195ABFE45019396548E</key>
+		<key>08962B66D1734869B42225A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6DCA9B055419494F9C395682</key>
+		<key>18341C0EF7174BA3BCACA933</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88C12136669648F48328B4C0</key>
+		<key>1CD6B7E990F343D8A1200DAD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9ED292197D2A4414B80B359A</key>
+		<key>42952477EF25420E8461BB9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7872DCEC5CD456091C01600</key>
+		<key>74AD30444FBD4765B228F69B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DC0CE605E3EB48A5BDD8EBFD</key>
+		<key>8DE711CB0C4044BBBE247785</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4F6AB8AE9874D81B69EA61D</key>
+		<key>C76F1053BC38498681F30FE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D03134299BB74C43B45B4A41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E74BD16C89D04DEA92F59B58</key>
 		<dict>
 			<key>primary</key>
 			<true/>
