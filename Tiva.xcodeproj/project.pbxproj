@@ -43,6 +43,8 @@
 		37A79D7D43784F51A730C1A6 /* libPods-Tiva.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8EEB9A3846378CFFFE8B /* libPods-Tiva.a */; };
 		97C2B7EA19536DD700B0A063 /* TVShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */; };
 		97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */; };
+		97C2B7ED1957772800B0A063 /* BreakingBadPoster.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */; };
+		97C2B7EF1957776D00B0A063 /* 1372240878_breaking_bad.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShowDetailsViewController.h; path = ViewController/TVShowDetailsViewController.h; sourceTree = "<group>"; };
 		97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShowDetailsViewController.m; path = ViewController/TVShowDetailsViewController.m; sourceTree = "<group>"; };
 		97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TVShowDetailsViewController.xib; path = ViewController/TVShowDetailsViewController.xib; sourceTree = "<group>"; };
+		97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BreakingBadPoster.jpeg; sourceTree = "<group>"; };
+		97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1372240878_breaking_bad.jpeg; sourceTree = "<group>"; };
 		A2CDCFCA986B4336B6D893D2 /* Pods-Tiva.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tiva.xcconfig"; path = "Pods/Pods-Tiva.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +192,8 @@
 		1B0F96BA1953EF1E004FD9BD /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */,
+				97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */,
 				1B0F96F11954CF4A004FD9BD /* TVAPIClient.h */,
 				1B0F96F21954CF4A004FD9BD /* TVAPIClient.m */,
 				1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */,
@@ -398,6 +404,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */,
+				97C2B7ED1957772800B0A063 /* BreakingBadPoster.jpeg in Resources */,
+				97C2B7EF1957776D00B0A063 /* 1372240878_breaking_bad.jpeg in Resources */,
 				1B7B31D519465FE700848D85 /* InfoPlist.strings in Resources */,
 				1B0F96F91955DD8D004FD9BD /* README.md in Resources */,
 				1B7B31DD19465FE700848D85 /* Images.xcassets in Resources */,
