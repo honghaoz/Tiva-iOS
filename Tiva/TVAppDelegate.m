@@ -12,6 +12,7 @@
 #import "ZHHParseDevice.h"
 #import <Accelerate/Accelerate.h>
 #import "TVShowStore.h"
+#import <AFNetworkActivityIndicatorManager.h>
 
 @implementation TVAppDelegate
 
@@ -45,6 +46,7 @@
 //                                        // ratings is 4.5
 //                                    }
 //                                }];
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     return YES;
 }

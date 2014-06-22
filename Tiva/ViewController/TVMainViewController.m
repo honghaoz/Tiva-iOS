@@ -7,11 +7,16 @@
 //
 
 #import "TVMainViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import <NSString+VTContainsSubstring.h>
+#import <SAMCategories.h>
+
 #import "TVShowStore.h"
 #import "TVShow.h"
 #import "iCarousel.h"
-#import "UIImageView+AFNetworking.h"
-#import <NSString+VTContainsSubstring.h>
+#import "TVAPIClient.h"
+#import "TVTraktUser.h"
+#import "TVShowDetailsViewController.h"
 
 #define POSTER_ASPECT_RATIO (680 / 1000.0)
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
@@ -24,6 +29,8 @@
     iCarousel *_carouselView;
     
     UIColor *_fontColor;
+    
+    UIButton *_menuButton;
     
     UILabel *_todayLabel;
     UITableView *_todayTableView;
@@ -51,11 +58,23 @@
     // init
     _fontColor = [UIColor colorWithWhite:1 alpha:0.9];
     
+    // Menu button
+    CGFloat menuButtonX = 20;
+    CGFloat menuButtonY = 20;
+    CGFloat menuButtonWdith = 50;
+    CGFloat menuButtonHeight = 40;
+    CGRect menuButtonRect = CGRectMake(menuButtonX, menuButtonY, menuButtonWdith, menuButtonHeight);
+    _menuButton = [[UIButton alloc] initWithFrame:menuButtonRect];
+    [_menuButton setBackgroundColor:[UIColor whiteColor]];
+    [_menuButton setTitle:@"Menu" forState:UIControlStateNormal];
+    [_menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_menuButton addTarget:self action:@selector(menuButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Carousel View
     CGFloat mainCarouselViewX = 0;
     CGFloat mainCarouselViewY = 0;
     CGFloat mainCarouselViewWidth = mainScreen.size.width;
-    CGFloat mainCarouselViewHeight = mainScreen.size.height * 0.53;
+    CGFloat mainCarouselViewHeight = mainScreen.size.height * 0.45;
     CGRect mainCarouselViewRect = CGRectMake(mainCarouselViewX, mainCarouselViewY, mainCarouselViewWidth, mainCarouselViewHeight);
     _carouselView = [[iCarousel alloc] initWithFrame:mainCarouselViewRect];
     [_carouselView setType:iCarouselTypeLinear];
@@ -67,7 +86,6 @@
     [_carouselView setCenterItemWhenSelected:NO];
     [_carouselView setContentOffset:CGSizeMake(- (mainCarouselViewWidth - mainCarouselViewHeight * POSTER_ASPECT_RATIO) / 2, 0)];
     [_carouselView setBackgroundColor:[UIColor blackColor]];
-    
     
     // Today Label View
     CGFloat todayLabelX = mainCarouselViewX;
@@ -93,7 +111,9 @@
     _todayTableView.delegate = self;
     [_todayTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
+    
     [self.view addSubview:_carouselView];
+    [self.view addSubview:_menuButton];
     [self.view addSubview:_todayLabel];
     [self.view addSubview:_todayTableView];
     
@@ -105,6 +125,13 @@
     _sharedShowStore = [TVShowStore sharedStore];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:_sharedShowStore];
     [_sharedShowStore retrieveShows];
+    
+    [[TVTraktUser sharedUser] setUsername:@"honghaoz" andPassword:@"Zhh358279765099"];
+    [[TVAPIClient sharedClient] testUsername:[TVTraktUser sharedUser].username passwordSha1:[TVTraktUser sharedUser].passwordSha1 success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"success: %@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"failure: %@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,10 +140,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark 
+
+- (void)menuButtonTapped:(id)sender {
+    TVShowDetailsViewController *v = [[TVShowDetailsViewController alloc] init];
+    [v setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [v setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:v animated:YES completion:nil];
+}
+
 #pragma mark - NSNotificationCenter methods
 
 - (void)showStoreUpdates:(NSNotification *)notification {
-    NSLog(@"Received ShowStoreUpdated");
+//    NSLog(@"Received ShowStoreUpdated");
 //    NSInteger updatedIndex = [[notification userInfo][@"ShowIndex"] integerValue];
     [_carouselView reloadData];
 //    [_mainCarouselView reloadItemAtIndex:updatedIndex animated:YES];
@@ -141,22 +177,17 @@
     [theImageView cancelImageRequestOperation];
     NSString *posterURLString = [[_sharedShowStore.shows[index] posterURL] absoluteString];
     if (![posterURLString vt_containsSubstring:EMPTY_POSTER_URL_STRING]) {
-        [theImageView setImageWithURL:[_sharedShowStore.shows[index] posterURL]];
+        if ([[UIScreen mainScreen] sam_isRetina]) {
+            posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-300.jpg"];
+        } else {
+            posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-138.jpg"];
+        }
+        [theImageView setImageWithURL:[NSURL URLWithString:posterURLString]];
     } else {
         [theImageView setImage:[self imageWithRect:theImageView.bounds.size color:[UIColor darkGrayColor]]];
     }
     return theImageView;
 }
-
-//- (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index reusingView:(UIView *)view {
-//    UIImageView *theImageView = (UIImageView *)view;
-//    if (theImageView == nil) {
-//        theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _mainCarouselView.bounds.size.height * POSTER_ASPECT_RATIO, _mainCarouselView.bounds.size.height)];
-//        [theImageView setContentMode:UIViewContentModeScaleAspectFill];
-//    }
-//    [theImageView setImage:[self imageWithRect:theImageView.bounds.size color:[UIColor blueColor]]];
-//    return theImageView;
-//}
 
 #pragma mark - iCarousel delegate methods
 
@@ -170,7 +201,6 @@
 #pragma mark - Today table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%d", [_sharedShowStore.shows count]);
     return [_sharedShowStore.shows count];
 }
 

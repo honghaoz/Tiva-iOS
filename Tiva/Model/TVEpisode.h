@@ -16,7 +16,7 @@
 @property (nonatomic, assign) NSInteger number;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *overview;
-@property (nonatomic, copy) NSString *URL;
+@property (nonatomic, copy) NSURL *URL;
 @property (nonatomic, strong) NSDate *airedDateUTC;
 @property (nonatomic, strong) NSDate *airedDateLocal;
 @property (nonatomic, copy) NSURL *screenImageURL;

@@ -11,6 +11,11 @@ pod 'iCarousel', '~> 1.7'
 # pod 'NSString+Helpers', '~> 0.1'
 pod 'NSString+VTContainsSubstring', '~> 0.3'
 pod 'NSString+VTSubstringOccurrences', '~> 0.1'
+pod 'NSString-Hashes', '~> 1.2'
+pod 'SSToolkit', '~> 2.0'
+pod 'SAMHUDView', :git => 'https://github.com/soffes/SAMHUDView'
+pod 'SAMLoadingView', :git => 'https://github.com/soffes/SAMLoadingView'
+pod 'SAMWebView', :git => 'https://github.com/soffes/SAMWebView'
 
 end
 
