@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *overview;
 @property (nonatomic, copy) NSURL *URL;
 @property (nonatomic, strong) NSDate *airedDateUTC;
-@property (nonatomic, strong) NSDate *airedDateLocal;
+//@property (nonatomic, strong) NSDate *airedDateLocal;
 @property (nonatomic, copy) NSURL *screenImageURL;
 @property (nonatomic, strong) UIImage *screenImage;
 @property (nonatomic, weak) TVShow *show;

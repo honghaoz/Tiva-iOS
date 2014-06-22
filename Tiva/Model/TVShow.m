@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 org-honghao. All rights reserved.
 //
 
-#import "TVShow.h"
-#import "TVEpisode.h"
 #import <AFHTTPRequestOperation.h>
 #import <Parse/Parse.h>
+
+#import "TVShow.h"
+#import "TVEpisode.h"
+#import "TVShowStore.h"
 
 @implementation TVShow
 
@@ -33,6 +35,7 @@
             for (PFObject *eachEpisode in objects) {
                 TVEpisode *newEpisode = [[TVEpisode alloc] initWithParseEpisodeObject:eachEpisode parentShow:self];
                 [episodes addObject:newEpisode];
+                [[TVShowStore sharedStore].episodes addObject:newEpisode];
             }
 //            NSLog(@"Query Episodes Succeed: %d", [objects count]);
         } else {

@@ -17,7 +17,7 @@
 @property (nonatomic, assign) NSInteger year;
 @property (nonatomic, copy) NSURL *URL;
 @property (nonatomic, strong) NSDate *firstAiredDateUTC;
-@property (nonatomic, strong) NSDate *firstAiredDateLocal;
+//@property (nonatomic, strong) NSDate *firstAiredDateLocal;
 @property (nonatomic, copy) NSString *country;
 @property (nonatomic, copy) NSString *overview;
 @property (nonatomic, assign) double runtime;

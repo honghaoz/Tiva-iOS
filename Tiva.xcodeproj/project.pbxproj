@@ -38,6 +38,9 @@
 		1B7B31E619465FE700848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
 		1B7B31EE19465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31EC19465FE700848D85 /* InfoPlist.strings */; };
 		1B7B31F019465FE700848D85 /* TivaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31EF19465FE700848D85 /* TivaTests.m */; };
+		1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A7C19577EF50071843D /* TVCalendarViewController.m */; };
+		1B932A80195780C20071843D /* TVCalendarShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A7F195780C20071843D /* TVCalendarShowView.m */; };
+		1B932A83195792F90071843D /* NSMutableArray+InsertInOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */; };
 		1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* TVMainViewController.m */; };
 		1BC839441956753400679347 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
 		1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEDB70C19566A12005FFE29 /* TVTraktUser.m */; };
@@ -103,6 +106,12 @@
 		1B7B31EB19465FE700848D85 /* TivaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TivaTests-Info.plist"; sourceTree = "<group>"; };
 		1B7B31ED19465FE700848D85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B7B31EF19465FE700848D85 /* TivaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TivaTests.m; sourceTree = "<group>"; };
+		1B932A7B19577EF50071843D /* TVCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVCalendarViewController.h; path = ViewController/TVCalendarViewController.h; sourceTree = "<group>"; };
+		1B932A7C19577EF50071843D /* TVCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVCalendarViewController.m; path = ViewController/TVCalendarViewController.m; sourceTree = "<group>"; };
+		1B932A7E195780C20071843D /* TVCalendarShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVCalendarShowView.h; path = View/TVCalendarShowView.h; sourceTree = "<group>"; };
+		1B932A7F195780C20071843D /* TVCalendarShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVCalendarShowView.m; path = View/TVCalendarShowView.m; sourceTree = "<group>"; };
+		1B932A81195792F90071843D /* NSMutableArray+InsertInOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+InsertInOrder.h"; sourceTree = "<group>"; };
+		1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+InsertInOrder.m"; sourceTree = "<group>"; };
 		1B9AE9921950CC3600F0691B /* TVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainViewController.h; path = ViewController/TVMainViewController.h; sourceTree = "<group>"; };
 		1B9AE9931950CC3600F0691B /* TVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainViewController.m; path = ViewController/TVMainViewController.m; sourceTree = "<group>"; };
 		1BEDB70B19566A12005FFE29 /* TVTraktUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVTraktUser.h; path = Model/TVTraktUser.h; sourceTree = "<group>"; };
@@ -153,6 +162,8 @@
 			children = (
 				1B0F969519536E3F004FD9BD /* TVMainScrollView.h */,
 				1B0F969619536E3F004FD9BD /* TVMainScrollView.m */,
+				1B932A7E195780C20071843D /* TVCalendarShowView.h */,
+				1B932A7F195780C20071843D /* TVCalendarShowView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -183,6 +194,8 @@
 				1B0F96B51953EF02004FD9BD /* UIApplication+AppVersion.m */,
 				1B0F96B61953EF02004FD9BD /* UIDevice-Hardware.h */,
 				1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */,
+				1B932A81195792F90071843D /* NSMutableArray+InsertInOrder.h */,
+				1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */,
 			);
 			name = Category;
 			path = Tiva/Category;
@@ -317,6 +330,8 @@
 			children = (
 				1B9AE9921950CC3600F0691B /* TVMainViewController.h */,
 				1B9AE9931950CC3600F0691B /* TVMainViewController.m */,
+				1B932A7B19577EF50071843D /* TVCalendarViewController.h */,
+				1B932A7C19577EF50071843D /* TVCalendarViewController.m */,
 				97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */,
 				97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */,
 				97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */,
@@ -458,13 +473,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C2B7EA19536DD700B0A063 /* TVShowDetailsViewController.m in Sources */,
+				1B932A80195780C20071843D /* TVCalendarShowView.m in Sources */,
 				1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */,
 				1B0F96B81953EF02004FD9BD /* UIApplication+AppVersion.m in Sources */,
 				1B7B31D719465FE700848D85 /* main.m in Sources */,
 				1B0F96F01954C3B9004FD9BD /* TVShowStore.m in Sources */,
+				1B932A83195792F90071843D /* NSMutableArray+InsertInOrder.m in Sources */,
 				1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */,
 				1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */,
 				1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */,
+				1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */,
 				1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */,
 				1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,

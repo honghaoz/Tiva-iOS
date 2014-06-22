@@ -8,6 +8,7 @@
 
 #import "TVEpisode.h"
 #import "TVShow.h"
+#import "TVShowStore.h"
 
 @implementation TVEpisode
 

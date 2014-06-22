@@ -111,7 +111,6 @@
     _todayTableView.delegate = self;
     [_todayTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    
     [self.view addSubview:_carouselView];
     [self.view addSubview:_menuButton];
     [self.view addSubview:_todayLabel];
@@ -143,10 +142,11 @@
 #pragma mark 
 
 - (void)menuButtonTapped:(id)sender {
-    TVShowDetailsViewController *v = [[TVShowDetailsViewController alloc] init];
-    [v setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [v setModalPresentationStyle:UIModalPresentationFullScreen];
-    [self presentViewController:v animated:YES completion:nil];
+//    TVShowDetailsViewController *v = [[TVShowDetailsViewController alloc] init];
+//    [v setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//    [v setModalPresentationStyle:UIModalPresentationFullScreen];
+//    [self presentViewController:v animated:YES completion:nil];
+    [_sharedShowStore processEpisodesDictionary];
 }
 
 #pragma mark - NSNotificationCenter methods
