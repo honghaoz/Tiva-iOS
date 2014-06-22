@@ -1,0 +1,1 @@
+PODS_TIVA_SAMGRADIENTVIEW_OTHER_LDFLAGS = -framework CoreGraphics -framework UIKit

@@ -34,9 +34,9 @@
                 TVEpisode *newEpisode = [[TVEpisode alloc] initWithParseEpisodeObject:eachEpisode parentShow:self];
                 [episodes addObject:newEpisode];
             }
-            NSLog(@"Query Episodes Succeed: %d", [objects count]);
+//            NSLog(@"Query Episodes Succeed: %d", [objects count]);
         } else {
-            NSLog(@"Query Episodes Error: %@ %@", error, [error localizedDescription]);
+//            NSLog(@"Query Episodes Error: %@ %@", error, [error localizedDescription]);
         }
     }];
     

@@ -1,0 +1,1 @@
+PODS_TIVA_SAMADDRESSBAR_OTHER_LDFLAGS = -framework CoreGraphics -framework QuartzCore -framework UIKit

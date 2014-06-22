@@ -13,4 +13,9 @@
 
 + (TVAPIClient *)sharedClient;
 
+- (void)testUsername:(NSString *)username
+        passwordSha1:(NSString *)password
+             success:(void(^)(NSURLSessionDataTask *task, id responseObject))success
+             failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
