@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface TVShowDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *showPoster;
+@property (weak, nonatomic) IBOutlet UILabel *showTitle;
+@property (weak, nonatomic) IBOutlet UITextView *synopsisText;
+@property (weak, nonatomic) IBOutlet UITextView *otherInfoText;
+@property (weak, nonatomic) IBOutlet UITableView *commentsTable;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *bottomMenu;
 
 @end

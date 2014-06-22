@@ -13,6 +13,11 @@
 @end
 
 @implementation TVShowDetailsViewController
+@synthesize showPoster;
+@synthesize showTitle;
+@synthesize synopsisText;
+@synthesize otherInfoText;
+@synthesize commentsTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [showTitle setText:@"Breaking Bad"]; // Change this to be dynamic
+    UIImage *poster = [UIImage imageNamed: @"1372240878_breaking_bad.jpeg"];
+    [showPoster setImage:poster];
     // Do any additional setup after loading the view from its nib.
 }
 
