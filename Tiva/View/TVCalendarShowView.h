@@ -10,4 +10,11 @@
 
 @interface TVCalendarShowView : UIView
 
+@property (nonatomic, strong) NSMutableArray *titles;
+@property (nonatomic, assign) CGFloat *columnWidth;
+
+- (instancetype)initWithFrame:(CGRect)frame
+                       titles:(NSMutableArray *)titles
+                  columnWidth:(CGFloat )width;
+
 @end

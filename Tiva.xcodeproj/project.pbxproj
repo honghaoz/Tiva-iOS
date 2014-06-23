@@ -208,8 +208,6 @@
 		1B0F96BA1953EF1E004FD9BD /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */,
-				97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */,
 				1B0F96F11954CF4A004FD9BD /* TVAPIClient.h */,
 				1B0F96F21954CF4A004FD9BD /* TVAPIClient.m */,
 				1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */,
@@ -296,6 +294,7 @@
 				1B0F969819536E44004FD9BD /* View */,
 				1B9AE9951950CC4200F0691B /* ViewController */,
 				1B0F96BA1953EF1E004FD9BD /* Others */,
+				1B932A8419579BAC0071843D /* Resources */,
 				1B7B31DC19465FE700848D85 /* Images.xcassets */,
 				1B7B31D119465FE700848D85 /* Supporting Files */,
 			);
@@ -329,6 +328,16 @@
 				1B7B31EC19465FE700848D85 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1B932A8419579BAC0071843D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */,
+				97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */,
+			);
+			name = Resources;
+			path = Others;
 			sourceTree = "<group>";
 		};
 		1B9AE9951950CC4200F0691B /* ViewController */ = {

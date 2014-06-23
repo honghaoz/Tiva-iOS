@@ -49,4 +49,6 @@
  */
 + (NSDateFormatter *)localDateFormatter;
 
+- (NSDate *)dateWithOutTime:(NSDate *)date;
+
 @end

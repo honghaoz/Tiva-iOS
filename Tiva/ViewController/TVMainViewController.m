@@ -17,6 +17,8 @@
 #import "TVAPIClient.h"
 #import "TVTraktUser.h"
 #import "TVShowDetailsViewController.h"
+#import "TVCalendarViewController.h"
+#import "TVCalendarShowView.h"
 
 #define POSTER_ASPECT_RATIO (680 / 1000.0)
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
@@ -33,6 +35,7 @@
     UIButton *_menuButton;
     
     UILabel *_todayLabel;
+    UIButton *_calendarButton;
     UITableView *_todayTableView;
 }
 
@@ -63,8 +66,8 @@
     CGFloat menuButtonY = 20;
     CGFloat menuButtonWdith = 50;
     CGFloat menuButtonHeight = 40;
-    CGRect menuButtonRect = CGRectMake(menuButtonX, menuButtonY, menuButtonWdith, menuButtonHeight);
-    _menuButton = [[UIButton alloc] initWithFrame:menuButtonRect];
+    CGRect menuButtonFrame = CGRectMake(menuButtonX, menuButtonY, menuButtonWdith, menuButtonHeight);
+    _menuButton = [[UIButton alloc] initWithFrame:menuButtonFrame];
     [_menuButton setBackgroundColor:[UIColor whiteColor]];
     [_menuButton setTitle:@"Menu" forState:UIControlStateNormal];
     [_menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -75,8 +78,8 @@
     CGFloat mainCarouselViewY = 0;
     CGFloat mainCarouselViewWidth = mainScreen.size.width;
     CGFloat mainCarouselViewHeight = mainScreen.size.height * 0.45;
-    CGRect mainCarouselViewRect = CGRectMake(mainCarouselViewX, mainCarouselViewY, mainCarouselViewWidth, mainCarouselViewHeight);
-    _carouselView = [[iCarousel alloc] initWithFrame:mainCarouselViewRect];
+    CGRect mainCarouselViewFrame = CGRectMake(mainCarouselViewX, mainCarouselViewY, mainCarouselViewWidth, mainCarouselViewHeight);
+    _carouselView = [[iCarousel alloc] initWithFrame:mainCarouselViewFrame];
     [_carouselView setType:iCarouselTypeLinear];
     [_carouselView setDataSource:self];
     [_carouselView setDelegate:self];
@@ -87,33 +90,56 @@
     [_carouselView setContentOffset:CGSizeMake(- (mainCarouselViewWidth - mainCarouselViewHeight * POSTER_ASPECT_RATIO) / 2, 0)];
     [_carouselView setBackgroundColor:[UIColor blackColor]];
     
-    // Today Label View
+    // Today label view
     CGFloat todayLabelX = mainCarouselViewX;
     CGFloat todayLabelY = mainCarouselViewY + mainCarouselViewHeight;
     CGFloat todayLabelWidth = mainScreen.size.width * 1/3;
     CGFloat todayLabelHeight = 40;
-    CGRect todayLabelRect = CGRectMake(todayLabelX, todayLabelY, todayLabelWidth, todayLabelHeight);
-    _todayLabel = [[UILabel alloc] initWithFrame:todayLabelRect];
+    CGRect todayLabelFrame = CGRectMake(todayLabelX, todayLabelY, todayLabelWidth, todayLabelHeight);
+    _todayLabel = [[UILabel alloc] initWithFrame:todayLabelFrame];
     [_todayLabel setText:@"Today"];
     [_todayLabel setTextAlignment:NSTextAlignmentCenter];
     [_todayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
     [_todayLabel setBackgroundColor:[UIColor lightGrayColor]];
     [_todayLabel setTextColor:_fontColor];
     
+    // Calendar button
+    CGFloat calendarButtonWidth = 100;
+    CGFloat calendarButtonHeight = todayLabelHeight;
+    CGFloat calendarButtonX = todayLabelWidth - calendarButtonWidth;
+    CGFloat calendarButtonY = todayLabelY;
+    CGRect calendarButtonFrame = CGRectMake(calendarButtonX, calendarButtonY, calendarButtonWidth, calendarButtonHeight);
+    _calendarButton = [[UIButton alloc] initWithFrame:calendarButtonFrame];
+    [_calendarButton setBackgroundColor:[UIColor whiteColor]];
+    [_calendarButton setTitle:@"Calendar" forState:UIControlStateNormal];
+    [_calendarButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_calendarButton addTarget:self action:@selector(calendarButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Today table view
     CGFloat todayTableViewX = todayLabelX;
     CGFloat todayTableViewY = todayLabelY + todayLabelHeight;
     CGFloat todayTableViewWidth = todayLabelWidth;
     CGFloat todayTableviewHeight = mainScreen.size.height - mainCarouselViewHeight - todayLabelHeight;
-    CGRect todayTableViewRect = CGRectMake(todayTableViewX, todayTableViewY, todayTableViewWidth, todayTableviewHeight);
-    _todayTableView = [[UITableView alloc] initWithFrame:todayTableViewRect];
+    CGRect todayTableViewFrame = CGRectMake(todayTableViewX, todayTableViewY, todayTableViewWidth, todayTableviewHeight);
+    _todayTableView = [[UITableView alloc] initWithFrame:todayTableViewFrame];
     _todayTableView.dataSource = self;
     _todayTableView.delegate = self;
     [_todayTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
+//    UIScrollView *test = [[UIScrollView alloc] initWithFrame:CGRectMake(500, 500, 300, 200)];
+//    test.backgroundColor = [UIColor redColor];
+//    [test setContentSize:CGSizeMake(301, 200)];
+//    
+//    UIView *a = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    a.backgroundColor = [UIColor blackColor];
+//    [test addSubview:a];
+//    
+//    [self.view addSubview:test];
+    
     [self.view addSubview:_carouselView];
     [self.view addSubview:_menuButton];
     [self.view addSubview:_todayLabel];
+    [self.view addSubview:_calendarButton];
     [self.view addSubview:_todayTableView];
     
 }
@@ -142,11 +168,16 @@
 #pragma mark 
 
 - (void)menuButtonTapped:(id)sender {
-//    TVShowDetailsViewController *v = [[TVShowDetailsViewController alloc] init];
-//    [v setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-//    [v setModalPresentationStyle:UIModalPresentationFullScreen];
-//    [self presentViewController:v animated:YES completion:nil];
+    
+}
+
+- (void)calendarButtonTapped:(id)sender {
     [_sharedShowStore processEpisodesDictionary];
+    TVCalendarViewController *calendarVC = [[TVCalendarViewController alloc] init];
+    UINavigationController *newNavigationVC = [[UINavigationController alloc] initWithRootViewController:calendarVC];
+    [newNavigationVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [newNavigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:newNavigationVC animated:YES completion:nil];
 }
 
 #pragma mark - NSNotificationCenter methods
