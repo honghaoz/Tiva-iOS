@@ -41,6 +41,8 @@
 		1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A7C19577EF50071843D /* TVCalendarViewController.m */; };
 		1B932A80195780C20071843D /* TVCalendarShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A7F195780C20071843D /* TVCalendarShowView.m */; };
 		1B932A83195792F90071843D /* NSMutableArray+InsertInOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */; };
+		1B932A871958C0830071843D /* TVRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A861958C0830071843D /* TVRoundedButton.m */; };
+		1B932A8A1958CB210071843D /* TVHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A891958CB210071843D /* TVHelperMethods.m */; };
 		1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* TVMainViewController.m */; };
 		1BC839441956753400679347 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
 		1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEDB70C19566A12005FFE29 /* TVTraktUser.m */; };
@@ -114,6 +116,10 @@
 		1B932A7F195780C20071843D /* TVCalendarShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVCalendarShowView.m; path = View/TVCalendarShowView.m; sourceTree = "<group>"; };
 		1B932A81195792F90071843D /* NSMutableArray+InsertInOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+InsertInOrder.h"; sourceTree = "<group>"; };
 		1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+InsertInOrder.m"; sourceTree = "<group>"; };
+		1B932A851958C0830071843D /* TVRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVRoundedButton.h; path = View/TVRoundedButton.h; sourceTree = "<group>"; };
+		1B932A861958C0830071843D /* TVRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVRoundedButton.m; path = View/TVRoundedButton.m; sourceTree = "<group>"; };
+		1B932A881958CB210071843D /* TVHelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHelperMethods.h; sourceTree = "<group>"; };
+		1B932A891958CB210071843D /* TVHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHelperMethods.m; sourceTree = "<group>"; };
 		1B9AE9921950CC3600F0691B /* TVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainViewController.h; path = ViewController/TVMainViewController.h; sourceTree = "<group>"; };
 		1B9AE9931950CC3600F0691B /* TVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainViewController.m; path = ViewController/TVMainViewController.m; sourceTree = "<group>"; };
 		1BEDB70B19566A12005FFE29 /* TVTraktUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVTraktUser.h; path = Model/TVTraktUser.h; sourceTree = "<group>"; };
@@ -132,12 +138,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0F96AC1953EE9D004FD9BD /* QuartzCore.framework in Frameworks */,
 				1BC839441956753400679347 /* Foundation.framework in Frameworks */,
 				1B0F96A41953EE80004FD9BD /* CFNetwork.framework in Frameworks */,
 				1B0F96B21953EEAE004FD9BD /* SystemConfiguration.framework in Frameworks */,
 				1B0F96B01953EEA8004FD9BD /* StoreKit.framework in Frameworks */,
 				1B0F96AE1953EEA2004FD9BD /* Security.framework in Frameworks */,
-				1B0F96AC1953EE9D004FD9BD /* QuartzCore.framework in Frameworks */,
 				1B0F96AA1953EE97004FD9BD /* MobileCoreServices.framework in Frameworks */,
 				1B0F96A81953EE91004FD9BD /* libz.dylib in Frameworks */,
 				1B0F96A61953EE8C004FD9BD /* CoreLocation.framework in Frameworks */,
@@ -168,6 +174,8 @@
 				1B0F969619536E3F004FD9BD /* TVMainScrollView.m */,
 				1B932A7E195780C20071843D /* TVCalendarShowView.h */,
 				1B932A7F195780C20071843D /* TVCalendarShowView.m */,
+				1B932A851958C0830071843D /* TVRoundedButton.h */,
+				1B932A861958C0830071843D /* TVRoundedButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,6 +220,8 @@
 				1B0F96F21954CF4A004FD9BD /* TVAPIClient.m */,
 				1B0F96BD1953EF1E004FD9BD /* ZHHParseDevice.h */,
 				1B0F96BE1953EF1E004FD9BD /* ZHHParseDevice.m */,
+				1B932A881958CB210071843D /* TVHelperMethods.h */,
+				1B932A891958CB210071843D /* TVHelperMethods.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -497,11 +507,13 @@
 				1B0F96F01954C3B9004FD9BD /* TVShowStore.m in Sources */,
 				1B932A83195792F90071843D /* NSMutableArray+InsertInOrder.m in Sources */,
 				1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */,
+				1B932A871958C0830071843D /* TVRoundedButton.m in Sources */,
 				1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */,
 				1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */,
 				1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */,
 				1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */,
 				1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */,
+				1B932A8A1958CB210071843D /* TVHelperMethods.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
 				1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */,
 				1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */,

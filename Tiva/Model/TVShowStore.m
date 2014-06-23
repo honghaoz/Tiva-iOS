@@ -71,6 +71,8 @@
 
 - (void)processEpisodesDictionary {
     if (_episodes) {
+        [_episodesDictionary removeAllObjects];
+        [_episodesDictionaryKeys removeAllObjects];
         NSMutableSet *keySet = [[NSMutableSet alloc] init];
         NSComparator dateComparator = ^(NSDate *d1, NSDate *d2) {
             return [d1 compare:d2];

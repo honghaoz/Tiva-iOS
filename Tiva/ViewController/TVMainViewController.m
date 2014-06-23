@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import <NSString+VTContainsSubstring.h>
 #import <SAMCategories.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "TVShowStore.h"
 #import "TVShow.h"
@@ -19,24 +20,29 @@
 #import "TVShowDetailsViewController.h"
 #import "TVCalendarViewController.h"
 #import "TVCalendarShowView.h"
+#import "TVRoundedButton.h"
+#import "TVHelperMethods.h"
 
 #define POSTER_ASPECT_RATIO (680 / 1000.0)
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
 #define BANNER_ASPECT_RATIO (758 / 140.0)
 #define EMPTY_BANNER_URL_STRING @"http://slurm.trakt.us/images/banner"
 
-
 @interface TVMainViewController () <iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate> {
+    CGRect _mainScreen;
     TVShowStore *_sharedShowStore;
+    
+    UIView *_carouselParentView;
     iCarousel *_carouselView;
     
-    UIColor *_fontColor;
+    TVRoundedButton *_menuButton;
     
-    UIButton *_menuButton;
-    
+    UIView *_todayParentView;
     UILabel *_todayLabel;
-    UIButton *_calendarButton;
+    TVRoundedButton *_calendarButton;
     UITableView *_todayTableView;
+    
+    UIView *_recommendationParentView;
 }
 
 @end
@@ -55,92 +61,109 @@
 - (void)loadView {
     LogMethod;
     self.view = [[UIView alloc] init];
-    CGRect mainScreen = [UIScreen mainScreen].bounds;
-    Swap(&mainScreen.size.height, &mainScreen.size.width);
+    _mainScreen = [UIScreen mainScreen].bounds;
+    Swap(&_mainScreen.size.height, &_mainScreen.size.width);
     self.view.backgroundColor = [UIColor blackColor];
-    // init
-    _fontColor = [UIColor colorWithWhite:1 alpha:0.9];
     
     // Menu button
     CGFloat menuButtonX = 20;
-    CGFloat menuButtonY = 20;
-    CGFloat menuButtonWdith = 50;
+    CGFloat menuButtonY = 20 + 10 ;
+    CGFloat menuButtonWdith = 60;
     CGFloat menuButtonHeight = 40;
     CGRect menuButtonFrame = CGRectMake(menuButtonX, menuButtonY, menuButtonWdith, menuButtonHeight);
-    _menuButton = [[UIButton alloc] initWithFrame:menuButtonFrame];
-    [_menuButton setBackgroundColor:[UIColor whiteColor]];
+    _menuButton = [[TVRoundedButton alloc] initWithFrame:menuButtonFrame];
+    [_menuButton setBackgroundColor:[UIColor blackColor]];
     [_menuButton setTitle:@"Menu" forState:UIControlStateNormal];
-    [_menuButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_menuButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]];
+//    [_menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_menuButton addTarget:self action:@selector(menuButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
+    // Carousel parent view
+    CGFloat carouselParentViewX = GAP_WIDTH;
+    CGFloat carouselParentViewY = 20.0;
+    CGFloat carouselParentViewWidth = _mainScreen.size.width - 2 * GAP_WIDTH;
+    CGFloat carouselParentViewHeight = _mainScreen.size.height * 0.45;
+    CGRect carouselParentViewFrame = CGRectMake(carouselParentViewX, carouselParentViewY, carouselParentViewWidth, carouselParentViewHeight);
+    _carouselParentView = [[UIView alloc] initWithFrame:carouselParentViewFrame];
+    [TVHelperMethods setMaskTo:_carouselParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
+//    _carouselParentView.layer.cornerRadius = 5.0;
+//    _carouselParentView.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    _carouselParentView.layer.borderWidth = 1;
+    
     // Carousel View
-    CGFloat mainCarouselViewX = 0;
-    CGFloat mainCarouselViewY = 0;
-    CGFloat mainCarouselViewWidth = mainScreen.size.width;
-    CGFloat mainCarouselViewHeight = mainScreen.size.height * 0.45;
-    CGRect mainCarouselViewFrame = CGRectMake(mainCarouselViewX, mainCarouselViewY, mainCarouselViewWidth, mainCarouselViewHeight);
-    _carouselView = [[iCarousel alloc] initWithFrame:mainCarouselViewFrame];
+    CGFloat carouselViewX = 0;
+    CGFloat carouselViewY = 0;
+    CGFloat carouselViewWidth = carouselParentViewWidth;
+    CGFloat carouselViewHeight = carouselParentViewHeight;
+    CGRect carouselViewFrame = CGRectMake(carouselViewX, carouselViewY, carouselViewWidth, carouselViewHeight);
+    _carouselView = [[iCarousel alloc] initWithFrame:carouselViewFrame];
     [_carouselView setType:iCarouselTypeLinear];
     [_carouselView setDataSource:self];
     [_carouselView setDelegate:self];
     [_carouselView setBounces:NO];
-//    [_mainCarouselView setDecelerationRate:0.9];
-//    [_mainCarouselView setBounceDistance:0.7];
+//    [_carouselParentView setDecelerationRate:0.9];
+//    [_carouselParentView setBounceDistance:0.7];
     [_carouselView setCenterItemWhenSelected:NO];
-    [_carouselView setContentOffset:CGSizeMake(- (mainCarouselViewWidth - mainCarouselViewHeight * POSTER_ASPECT_RATIO) / 2, 0)];
-    [_carouselView setBackgroundColor:[UIColor blackColor]];
+    [_carouselView setContentOffset:CGSizeMake(- (carouselParentViewWidth - carouselParentViewHeight * POSTER_ASPECT_RATIO) / 2, 0)];
+    [_carouselView setBackgroundColor:[UIColor clearColor]];
+//    _carouselView.layer.cornerRadius = 5;
+    [_carouselParentView addSubview:_carouselView];
+    
+    // Today parent View
+    CGFloat todayViewX = carouselParentViewX;
+    CGFloat todayViewY = carouselParentViewY + carouselParentViewHeight + GAP_WIDTH;
+    CGFloat todayViewWidth = (_mainScreen.size.width - GAP_WIDTH * 2) * 1/3;
+    CGFloat todayViewHeight = _mainScreen.size.height - (carouselParentViewY +  carouselParentViewHeight) - 2 * GAP_WIDTH;
+    CGRect todayViewFrame = CGRectMake(todayViewX, todayViewY, todayViewWidth, todayViewHeight);
+    _todayParentView = [[UIView alloc] initWithFrame:todayViewFrame];
+    [TVHelperMethods setMaskTo:_todayParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
+//    _todayParentView.layer.cornerRadius = 5.0;
+//    _todayParentView.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    _todayParentView.layer.borderWidth = 1;
     
     // Today label view
-    CGFloat todayLabelX = mainCarouselViewX;
-    CGFloat todayLabelY = mainCarouselViewY + mainCarouselViewHeight;
-    CGFloat todayLabelWidth = mainScreen.size.width * 1/3;
-    CGFloat todayLabelHeight = 40;
+    CGFloat todayLabelX = 0;
+    CGFloat todayLabelY = 0;
+    CGFloat todayLabelWidth = todayViewWidth;
+    CGFloat todayLabelHeight = 44;
     CGRect todayLabelFrame = CGRectMake(todayLabelX, todayLabelY, todayLabelWidth, todayLabelHeight);
     _todayLabel = [[UILabel alloc] initWithFrame:todayLabelFrame];
     [_todayLabel setText:@"Today"];
     [_todayLabel setTextAlignment:NSTextAlignmentCenter];
-    [_todayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
-    [_todayLabel setBackgroundColor:[UIColor lightGrayColor]];
-    [_todayLabel setTextColor:_fontColor];
+    [_todayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
+    [_todayLabel setBackgroundColor:LABEL_COLOR];
+    [_todayLabel setTextColor:FONT_COLOR];
+    [_todayParentView addSubview:_todayLabel];
     
     // Calendar button
-    CGFloat calendarButtonWidth = 100;
-    CGFloat calendarButtonHeight = todayLabelHeight;
-    CGFloat calendarButtonX = todayLabelWidth - calendarButtonWidth;
-    CGFloat calendarButtonY = todayLabelY;
+    CGFloat calendarButtonWidth = 85;
+    CGFloat calendarButtonHeight = 30;
+    CGFloat calendarButtonY = (todayLabelHeight - calendarButtonHeight) / 2;
+    CGFloat calendarButtonX = todayViewWidth - calendarButtonWidth - calendarButtonY;
     CGRect calendarButtonFrame = CGRectMake(calendarButtonX, calendarButtonY, calendarButtonWidth, calendarButtonHeight);
-    _calendarButton = [[UIButton alloc] initWithFrame:calendarButtonFrame];
-    [_calendarButton setBackgroundColor:[UIColor whiteColor]];
+    _calendarButton = [[TVRoundedButton alloc] initWithFrame:calendarButtonFrame];
+    [_calendarButton setBackgroundColor:[UIColor clearColor]];
     [_calendarButton setTitle:@"Calendar" forState:UIControlStateNormal];
-    [_calendarButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [_calendarButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+//    [_calendarButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_calendarButton addTarget:self action:@selector(calendarButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_todayParentView addSubview:_calendarButton];
     
     // Today table view
     CGFloat todayTableViewX = todayLabelX;
-    CGFloat todayTableViewY = todayLabelY + todayLabelHeight;
-    CGFloat todayTableViewWidth = todayLabelWidth;
-    CGFloat todayTableviewHeight = mainScreen.size.height - mainCarouselViewHeight - todayLabelHeight;
-    CGRect todayTableViewFrame = CGRectMake(todayTableViewX, todayTableViewY, todayTableViewWidth, todayTableviewHeight);
+    CGFloat todayTableViewY = todayLabelHeight;
+    CGFloat todayTableViewWidth = todayViewWidth;
+    CGFloat todayTableViewHeight = todayViewHeight - todayLabelHeight;
+    CGRect todayTableViewFrame = CGRectMake(todayTableViewX, todayTableViewY, todayTableViewWidth, todayTableViewHeight);
     _todayTableView = [[UITableView alloc] initWithFrame:todayTableViewFrame];
     _todayTableView.dataSource = self;
     _todayTableView.delegate = self;
     [_todayTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_todayParentView addSubview:_todayTableView];
     
-//    UIScrollView *test = [[UIScrollView alloc] initWithFrame:CGRectMake(500, 500, 300, 200)];
-//    test.backgroundColor = [UIColor redColor];
-//    [test setContentSize:CGSizeMake(301, 200)];
-//    
-//    UIView *a = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-//    a.backgroundColor = [UIColor blackColor];
-//    [test addSubview:a];
-//    
-//    [self.view addSubview:test];
-    
-    [self.view addSubview:_carouselView];
+    [self.view addSubview:_carouselParentView];
     [self.view addSubview:_menuButton];
-    [self.view addSubview:_todayLabel];
-    [self.view addSubview:_calendarButton];
-    [self.view addSubview:_todayTableView];
+    [self.view addSubview:_todayParentView];
     
 }
 
@@ -157,6 +180,11 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"failure: %@", error);
     }];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,16 +196,20 @@
 #pragma mark 
 
 - (void)menuButtonTapped:(id)sender {
-    
+    LogMethod;
 }
 
 - (void)calendarButtonTapped:(id)sender {
+    LogMethod;
     [_sharedShowStore processEpisodesDictionary];
     TVCalendarViewController *calendarVC = [[TVCalendarViewController alloc] init];
-    UINavigationController *newNavigationVC = [[UINavigationController alloc] initWithRootViewController:calendarVC];
-    [newNavigationVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [newNavigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
-    [self presentViewController:newNavigationVC animated:YES completion:nil];
+//    UINavigationController *newNavigationVC = [[UINavigationController alloc] initWithRootViewController:calendarVC];
+//    [newNavigationVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//    [newNavigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    [calendarVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [calendarVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
+    [self presentViewController:calendarVC animated:YES completion:nil];
 }
 
 #pragma mark - NSNotificationCenter methods

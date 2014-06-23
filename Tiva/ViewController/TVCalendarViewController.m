@@ -9,6 +9,9 @@
 #import "TVCalendarViewController.h"
 #import "TVShowStore.h"
 #import "TVCalendarShowView.h"
+#import "TVMainViewController.h"
+#import "TVHelperMethods.h"
+#import "TVRoundedButton.h"
 
 @interface TVCalendarViewController ()
 
@@ -41,10 +44,71 @@
     UIBarButtonItem *doneBarbuttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     [self.navigationItem setRightBarButtonItem:doneBarbuttonItem];
     
-    TVCalendarShowView *newCalendarView = [[TVCalendarShowView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width) titles:[self titlesForDay:[NSDate date] numberOfDaysBefore:6 numberOfDaysAfter:6] columnWidth:230];
-//    [self.view addSubview:newCalendarView];
-    self.view = newCalendarView;
+//    NSLog(@"%@", NSStringFromCGRect(self.view.bounds));
+    
+    CGFloat parentViewX = GAP_WIDTH;
+    CGFloat parentViewY = 20;
+    CGFloat parentViewWidth = self.view.bounds.size.height - GAP_WIDTH * 2;
+    CGFloat parentViewHeight = self.view.bounds.size.width - 20 - GAP_WIDTH;
+    CGRect parentViewFrame = CGRectMake(parentViewX, parentViewY, parentViewWidth, parentViewHeight);
+    UIView *parentView = [[UIView alloc] initWithFrame:parentViewFrame];
+    [TVHelperMethods setMaskTo:parentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
+    
+    CGFloat calendarTitleX = 0;
+    CGFloat calendarTitleY = 0;
+    CGFloat calendarTitleWidth = parentViewWidth;
+    CGFloat calendarTitleHeight = 44;
+    CGRect calendarTitleFrame = CGRectMake(calendarTitleX, calendarTitleY, calendarTitleWidth, calendarTitleHeight);
+    UIView *calendarTitleView = [[UIView alloc] initWithFrame:calendarTitleFrame];
+    [calendarTitleView setBackgroundColor:LABEL_COLOR];
+    [parentView addSubview:calendarTitleView];
+    
+    // Caledar label view
+    CGFloat calendarLabelWidth = 120;
+    CGFloat calendarLabelHeight = 44;
+    CGFloat calendarLabelX = (calendarTitleWidth - calendarLabelWidth) / 2;
+    CGFloat calendarLabelY = (calendarTitleHeight - calendarLabelHeight) / 2;
+    CGRect calendarLabelFrame = CGRectMake(calendarLabelX, calendarLabelY, calendarLabelWidth, calendarLabelHeight);
+    UILabel *calendarLabel = [[UILabel alloc] initWithFrame:calendarLabelFrame];
+    [calendarLabel setText:@"Calendar"];
+    [calendarLabel setTextAlignment:NSTextAlignmentCenter];
+    [calendarLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
+    [calendarLabel setBackgroundColor:LABEL_COLOR];
+    [calendarLabel setTextColor:FONT_COLOR];
+    [calendarTitleView addSubview:calendarLabel];
+    
+    // Calendar button
+    CGFloat doneButtonWidth = 85;
+    CGFloat doneButtonHeight = 30;
+    CGFloat doneButtonY = (calendarTitleHeight - doneButtonHeight) / 2;
+    CGFloat doneButtonX = calendarTitleWidth - doneButtonWidth - doneButtonY;
+    CGRect doneButtonFrame = CGRectMake(doneButtonX, doneButtonY, doneButtonWidth, doneButtonHeight);
+    TVRoundedButton *doneButton = [[TVRoundedButton alloc] initWithFrame:doneButtonFrame];
+    [doneButton setBackgroundColor:[UIColor clearColor]];
+    [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+    //    [_doneButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    //    [_doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
+    [calendarTitleView addSubview:doneButton];
+    
+    CGFloat calendarViewX = calendarTitleX;
+    CGFloat calendarViewY = calendarTitleY + calendarTitleHeight;
+    CGFloat calendarViewWidth = calendarTitleWidth;
+    CGFloat calendarViewHeight = parentViewHeight - (calendarTitleY + calendarTitleHeight);
+    CGRect calendarViewFrame = CGRectMake(calendarViewX, calendarViewY, calendarViewWidth, calendarViewHeight);
+    
+    TVCalendarShowView *calendarView = [[TVCalendarShowView alloc] initWithFrame:calendarViewFrame titles:[self titlesForDay:[NSDate date] numberOfDaysBefore:6 numberOfDaysAfter:6] columnWidth:230];
+    [parentView addSubview:calendarView];
+    
+    [self.view addSubview:parentView];
+    [self.view setBackgroundColor:[UIColor blackColor]];
+//    self.view = newCalendarView;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning

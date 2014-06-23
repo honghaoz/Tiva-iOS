@@ -52,7 +52,7 @@
 
         // Set title scroll view
         CGFloat titleScrollViewX = 0;
-        CGFloat titleScrollViewY = NAVIGATION_BAR_HEIGHT + STATUS_BAR_HEIGHT;
+        CGFloat titleScrollViewY = 0;// NAVIGATION_BAR_HEIGHT + STATUS_BAR_HEIGHT;
         CGFloat titleScrollViewWidth = mainViewSize.width;
         CGFloat titleScrollViewHeight = _titleHeight;
 
