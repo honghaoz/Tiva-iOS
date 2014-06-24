@@ -16,5 +16,6 @@
 - (instancetype)initWithFrame:(CGRect)frame
                        titles:(NSMutableArray *)titles
                   columnWidth:(CGFloat )width;
+- (void)moveToToday;
 
 @end

@@ -25,6 +25,7 @@
     UIScrollView *_titleScrollView;
     UIScrollView *_mainScrollView;
     CGFloat _titleHeight;
+    CGFloat _titleWidth;
     CGFloat _episodeHeight;
     
     TVShowStore *_mainStore;
@@ -47,6 +48,7 @@
     if (self) {
         CGSize mainViewSize = frame.size;
         _titleHeight = 40;
+        _titleWidth = width;
         _episodeHeight = 100;
         _mainStore = [TVShowStore sharedStore];
 
@@ -60,6 +62,8 @@
         _titleScrollView = [[UIScrollView alloc] initWithFrame:titleScrollFrame];
         [_titleScrollView setShowsHorizontalScrollIndicator:NO];
         [_titleScrollView setShowsVerticalScrollIndicator:NO];
+        [_titleScrollView setBackgroundColor:[UIColor whiteColor]];
+        [_titleScrollView setDirectionalLockEnabled:YES];
         [_titleScrollView setDelegate:self];
 
         NSInteger titlesCount = [titles count];
@@ -71,7 +75,11 @@
             [eachLabel setText:eachTitle];
             [eachLabel setTextAlignment:NSTextAlignmentCenter];
             [eachLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
-            [eachLabel setBackgroundColor:TITLE_NORMAL_COLOR];
+            if (i == titlesCount / 2) {
+                [eachLabel setBackgroundColor:TITLE_HEIGHTLIGHT_COLOR];
+            } else {
+                [eachLabel setBackgroundColor:TITLE_NORMAL_COLOR];
+            }
             [eachLabel setTextColor:[UIColor whiteColor]];
             [_titleScrollView addSubview:eachLabel];
         }
@@ -84,6 +92,8 @@
         CGRect mainScrollFrame = CGRectMake(mainScrollViewX, mainScrollViewY, mainScrollViewWidth, mainScrollViewHeight);
         _mainScrollView = [[UIScrollView alloc] initWithFrame:mainScrollFrame];
         [_mainScrollView setBackgroundColor:[UIColor whiteColor]];
+        [_mainScrollView setMultipleTouchEnabled:NO];
+        [_mainScrollView setDirectionalLockEnabled:YES];
         [_mainScrollView setDelegate:self];
         
         NSInteger maxNumberOfEpisodes = 0;
@@ -204,6 +214,12 @@
         [keys addObject:[_mainStore dateWithOutTime:theDay]];
     }
     return keys;
+}
+
+- (void)moveToToday {
+    CGPoint pointToMove = CGPointMake(_titleWidth * 6 - (self.bounds.size.width - _titleWidth) / 2, 0);
+    [_mainScrollView setContentOffset:pointToMove animated:YES];
+    [_titleScrollView setContentOffset:pointToMove animated:YES];
 }
 
 @end

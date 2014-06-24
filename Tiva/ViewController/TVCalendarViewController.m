@@ -17,7 +17,9 @@
 
 @end
 
-@implementation TVCalendarViewController
+@implementation TVCalendarViewController {
+    
+}
 
 - (id)init {
     self = [super init];
@@ -40,9 +42,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationItem setTitle:@"Calendar"];
-    UIBarButtonItem *doneBarbuttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-    [self.navigationItem setRightBarButtonItem:doneBarbuttonItem];
+//    [self.navigationItem setTitle:@"Calendar"];
+//    UIBarButtonItem *doneBarbuttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+//    [self.navigationItem setRightBarButtonItem:doneBarbuttonItem];
     
 //    NSLog(@"%@", NSStringFromCGRect(self.view.bounds));
     
@@ -97,7 +99,7 @@
     CGFloat calendarViewHeight = parentViewHeight - (calendarTitleY + calendarTitleHeight);
     CGRect calendarViewFrame = CGRectMake(calendarViewX, calendarViewY, calendarViewWidth, calendarViewHeight);
     
-    TVCalendarShowView *calendarView = [[TVCalendarShowView alloc] initWithFrame:calendarViewFrame titles:[self titlesForDay:[NSDate date] numberOfDaysBefore:6 numberOfDaysAfter:6] columnWidth:230];
+    TVCalendarShowView *calendarView = [[TVCalendarShowView alloc] initWithFrame:calendarViewFrame titles:[self titlesForDay:[NSDate date] numberOfDaysBefore:6 numberOfDaysAfter:6] columnWidth:240];
     [parentView addSubview:calendarView];
     
     [self.view addSubview:parentView];
@@ -105,6 +107,7 @@
 //    self.view = newCalendarView;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNeedsStatusBarAppearanceUpdate];
+    [calendarView moveToToday];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{

@@ -22,6 +22,7 @@
 #import "TVCalendarShowView.h"
 #import "TVRoundedButton.h"
 #import "TVHelperMethods.h"
+#import "TVLoginViewController.h"
 
 #define POSTER_ASPECT_RATIO (680 / 1000.0)
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
@@ -43,6 +44,12 @@
     UITableView *_todayTableView;
     
     UIView *_recommendationParentView;
+    UILabel *_recommendationTitle;
+    UITableView *_recommendationTableView;
+    
+    UIView *_commentsParentView;
+    UILabel *_commentsTitle;
+    UITableView *_commentsTableView;
 }
 
 @end
@@ -71,7 +78,7 @@
     CGFloat menuButtonWdith = 60;
     CGFloat menuButtonHeight = 40;
     CGRect menuButtonFrame = CGRectMake(menuButtonX, menuButtonY, menuButtonWdith, menuButtonHeight);
-    _menuButton = [[TVRoundedButton alloc] initWithFrame:menuButtonFrame];
+    _menuButton = [[TVRoundedButton alloc] initWithFrame:menuButtonFrame borderColor:[UIColor whiteColor] backgroundColor:[UIColor blackColor]];
     [_menuButton setBackgroundColor:[UIColor blackColor]];
     [_menuButton setTitle:@"Menu" forState:UIControlStateNormal];
     [_menuButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]];
@@ -82,13 +89,10 @@
     CGFloat carouselParentViewX = GAP_WIDTH;
     CGFloat carouselParentViewY = 20.0;
     CGFloat carouselParentViewWidth = _mainScreen.size.width - 2 * GAP_WIDTH;
-    CGFloat carouselParentViewHeight = _mainScreen.size.height * 0.45;
+    CGFloat carouselParentViewHeight = _mainScreen.size.height * 0.5;
     CGRect carouselParentViewFrame = CGRectMake(carouselParentViewX, carouselParentViewY, carouselParentViewWidth, carouselParentViewHeight);
     _carouselParentView = [[UIView alloc] initWithFrame:carouselParentViewFrame];
     [TVHelperMethods setMaskTo:_carouselParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
-//    _carouselParentView.layer.cornerRadius = 5.0;
-//    _carouselParentView.layer.borderColor = [[UIColor whiteColor] CGColor];
-//    _carouselParentView.layer.borderWidth = 1;
     
     // Carousel View
     CGFloat carouselViewX = 0;
@@ -112,7 +116,7 @@
     // Today parent View
     CGFloat todayViewX = carouselParentViewX;
     CGFloat todayViewY = carouselParentViewY + carouselParentViewHeight + GAP_WIDTH;
-    CGFloat todayViewWidth = (_mainScreen.size.width - GAP_WIDTH * 2) * 1/3;
+    CGFloat todayViewWidth = (_mainScreen.size.width - GAP_WIDTH * 4) * 1/3;
     CGFloat todayViewHeight = _mainScreen.size.height - (carouselParentViewY +  carouselParentViewHeight) - 2 * GAP_WIDTH;
     CGRect todayViewFrame = CGRectMake(todayViewX, todayViewY, todayViewWidth, todayViewHeight);
     _todayParentView = [[UIView alloc] initWithFrame:todayViewFrame];
@@ -141,7 +145,7 @@
     CGFloat calendarButtonY = (todayLabelHeight - calendarButtonHeight) / 2;
     CGFloat calendarButtonX = todayViewWidth - calendarButtonWidth - calendarButtonY;
     CGRect calendarButtonFrame = CGRectMake(calendarButtonX, calendarButtonY, calendarButtonWidth, calendarButtonHeight);
-    _calendarButton = [[TVRoundedButton alloc] initWithFrame:calendarButtonFrame];
+    _calendarButton = [[TVRoundedButton alloc] initWithFrame:calendarButtonFrame borderColor:[UIColor whiteColor] backgroundColor:LABEL_COLOR];
     [_calendarButton setBackgroundColor:[UIColor clearColor]];
     [_calendarButton setTitle:@"Calendar" forState:UIControlStateNormal];
 //    [_calendarButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
@@ -161,10 +165,86 @@
     [_todayTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_todayParentView addSubview:_todayTableView];
     
+    // Recommendation view
+    CGFloat recommendationParentViewX = todayViewX + todayViewWidth + GAP_WIDTH;
+    CGFloat recommendationParentViewY = todayViewY;
+    CGFloat recommendationParentViewWidth = todayViewWidth;
+    CGFloat recommendationParentViewHeight = todayViewHeight;
+    CGRect recommendationParentViewFrame = CGRectMake(recommendationParentViewX, recommendationParentViewY, recommendationParentViewWidth, recommendationParentViewHeight);
+    _recommendationParentView = [[UIView alloc] initWithFrame:recommendationParentViewFrame];
+    [TVHelperMethods setMaskTo:_recommendationParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
+    
+    // Recommendation label view
+    CGFloat recommendationTitleX = 0;
+    CGFloat recommendationTitleY = 0;
+    CGFloat recommendationTitleWidth = recommendationParentViewWidth;
+    CGFloat recommendationTitleHeight = 44;
+    CGRect recommendationTitleFrame = CGRectMake(recommendationTitleX, recommendationTitleY, recommendationTitleWidth, recommendationTitleHeight);
+    
+    _recommendationTitle = [[UILabel alloc] initWithFrame:recommendationTitleFrame];
+    [_recommendationTitle setText:@"Friends' Recommendation"];
+    [_recommendationTitle setTextAlignment:NSTextAlignmentCenter];
+    [_recommendationTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
+    [_recommendationTitle setBackgroundColor:LABEL_COLOR];
+    [_recommendationTitle setTextColor:FONT_COLOR];
+    [_recommendationParentView addSubview:_recommendationTitle];
+    
+    // Recommendation table view
+    CGFloat recommendationTableViewX = recommendationTitleX;
+    CGFloat recommendationTableViewY = recommendationTitleHeight;
+    CGFloat recommendationTableViewWidth = recommendationParentViewWidth;
+    CGFloat recommendationTableViewHeight = recommendationParentViewHeight - recommendationTitleHeight;
+    CGRect recommendationTableViewFrame = CGRectMake(recommendationTableViewX, recommendationTableViewY, recommendationTableViewWidth, recommendationTableViewHeight);
+
+    _recommendationTableView = [[UITableView alloc] initWithFrame:recommendationTableViewFrame];
+    _recommendationTableView.dataSource = self;
+    _recommendationTableView.delegate = self;
+    [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_recommendationParentView addSubview:_recommendationTableView];
+    
+    // Comments view
+    CGFloat commentsParentViewX = recommendationParentViewX + recommendationParentViewWidth + GAP_WIDTH;
+    CGFloat commentsParentViewY = recommendationParentViewY;
+    CGFloat commentsParentViewWidth = recommendationParentViewWidth;
+    CGFloat commentsParentViewHeight = recommendationParentViewHeight;
+    CGRect commentsParentViewFrame = CGRectMake(commentsParentViewX, commentsParentViewY, commentsParentViewWidth, commentsParentViewHeight);
+    _commentsParentView = [[UIView alloc] initWithFrame:commentsParentViewFrame];
+    [TVHelperMethods setMaskTo:_commentsParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
+    
+    // Comments label view
+    CGFloat commentsTitleX = 0;
+    CGFloat commentsTitleY = 0;
+    CGFloat commentsTitleWidth = commentsParentViewWidth;
+    CGFloat commentsTitleHeight = 44;
+    CGRect commentsTitleFrame = CGRectMake(commentsTitleX, commentsTitleY, commentsTitleWidth, commentsTitleHeight);
+    
+    _commentsTitle = [[UILabel alloc] initWithFrame:commentsTitleFrame];
+    [_commentsTitle setText:@"Latest Comments"];
+    [_commentsTitle setTextAlignment:NSTextAlignmentCenter];
+    [_commentsTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
+    [_commentsTitle setBackgroundColor:LABEL_COLOR];
+    [_commentsTitle setTextColor:FONT_COLOR];
+    [_commentsParentView addSubview:_commentsTitle];
+
+    
+    // Recommendation table view
+    CGFloat commentsTableViewX = 0;
+    CGFloat commentsTableViewY = commentsTitleHeight;
+    CGFloat commentsTableViewWidth = commentsParentViewWidth;
+    CGFloat commentsTableViewHeight = commentsParentViewHeight - commentsTitleHeight;
+    CGRect commentsTableViewFrame = CGRectMake(commentsTableViewX, commentsTableViewY, commentsTableViewWidth, commentsTableViewHeight);
+    
+    _commentsTableView = [[UITableView alloc] initWithFrame:commentsTableViewFrame];
+    _commentsTableView.dataSource = self;
+    _commentsTableView.delegate = self;
+    [_commentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_commentsParentView addSubview:_commentsTableView];
+    
     [self.view addSubview:_carouselParentView];
     [self.view addSubview:_menuButton];
     [self.view addSubview:_todayParentView];
-    
+    [self.view addSubview:_recommendationParentView];
+    [self.view addSubview:_commentsParentView];
 }
 
 - (void)viewDidLoad
@@ -197,6 +277,17 @@
 
 - (void)menuButtonTapped:(id)sender {
     LogMethod;
+    
+    TVLoginViewController *loginVC = [[TVLoginViewController alloc] init];
+    [loginVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    [loginVC setModalPresentationStyle:UIModalPresentationFormSheet];
+    
+//    UIPopoverController *popVC = [[UIPopoverController alloc] initWithContentViewController:loginVC];
+//    [popVC presentPopoverFromRect:_menuButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//
+    [self presentViewController:loginVC animated:YES completion:^(){
+        [loginVC updateSubViews];
+    }];
 }
 
 - (void)calendarButtonTapped:(id)sender {
@@ -206,7 +297,7 @@
 //    UINavigationController *newNavigationVC = [[UINavigationController alloc] initWithRootViewController:calendarVC];
 //    [newNavigationVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 //    [newNavigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
-    [calendarVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [calendarVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [calendarVC setModalPresentationStyle:UIModalPresentationFullScreen];
     [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
     [self presentViewController:calendarVC animated:YES completion:nil];
@@ -220,8 +311,8 @@
     [_carouselView reloadData];
 //    [_mainCarouselView reloadItemAtIndex:updatedIndex animated:YES];
     [_todayTableView reloadData];
+    [_recommendationTableView reloadData];
 }
-
 
 #pragma mark - iCarousel data source methods
 
@@ -303,6 +394,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
 }
+//
+//#pragma mark - UIControl methods
+//
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    LogMethod;
+//}
 
 #pragma mark - Helper methods
 

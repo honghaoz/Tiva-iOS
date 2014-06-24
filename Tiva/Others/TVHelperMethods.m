@@ -17,7 +17,7 @@
     //    shape.strokeColor = [[UIColor grayColor] CGColor];
     view.layer.mask = shape;
     
-    view.layer.cornerRadius = 5.0;
+    view.layer.cornerRadius = radius;
     view.layer.borderColor = [[UIColor whiteColor] CGColor];
     view.layer.borderWidth = 1;
 }

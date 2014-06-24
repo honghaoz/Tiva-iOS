@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969619536E3F004FD9BD /* TVMainScrollView.m */; };
+		1B0F969719536E3F004FD9BD /* ZHHMainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969619536E3F004FD9BD /* ZHHMainScrollView.m */; };
 		1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */; };
 		1B0F96A21953EE77004FD9BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */; };
 		1B0F96A41953EE80004FD9BD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0F96A31953EE80004FD9BD /* CFNetwork.framework */; };
@@ -38,6 +38,7 @@
 		1B7B31E619465FE700848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
 		1B7B31EE19465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31EC19465FE700848D85 /* InfoPlist.strings */; };
 		1B7B31F019465FE700848D85 /* TivaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B31EF19465FE700848D85 /* TivaTests.m */; };
+		1B7EC5E5195910A400489712 /* TVLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EC5E4195910A400489712 /* TVLoginViewController.m */; };
 		1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A7C19577EF50071843D /* TVCalendarViewController.m */; };
 		1B932A80195780C20071843D /* TVCalendarShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A7F195780C20071843D /* TVCalendarShowView.m */; };
 		1B932A83195792F90071843D /* NSMutableArray+InsertInOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */; };
@@ -64,8 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B0F969519536E3F004FD9BD /* TVMainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainScrollView.h; path = View/TVMainScrollView.h; sourceTree = "<group>"; };
-		1B0F969619536E3F004FD9BD /* TVMainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainScrollView.m; path = View/TVMainScrollView.m; sourceTree = "<group>"; };
+		1B0F969519536E3F004FD9BD /* ZHHMainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHHMainScrollView.h; path = View/ZHHMainScrollView.h; sourceTree = "<group>"; };
+		1B0F969619536E3F004FD9BD /* ZHHMainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZHHMainScrollView.m; path = View/ZHHMainScrollView.m; sourceTree = "<group>"; };
 		1B0F969B1953DE13004FD9BD /* ZHHHandyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHHandyMacros.h; sourceTree = "<group>"; };
 		1B0F969C1953DE13004FD9BD /* ZHHHandyMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHHandyMacros.m; sourceTree = "<group>"; };
 		1B0F96A11953EE77004FD9BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -110,6 +111,8 @@
 		1B7B31EB19465FE700848D85 /* TivaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TivaTests-Info.plist"; sourceTree = "<group>"; };
 		1B7B31ED19465FE700848D85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B7B31EF19465FE700848D85 /* TivaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TivaTests.m; sourceTree = "<group>"; };
+		1B7EC5E3195910A400489712 /* TVLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVLoginViewController.h; path = ViewController/TVLoginViewController.h; sourceTree = "<group>"; };
+		1B7EC5E4195910A400489712 /* TVLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVLoginViewController.m; path = ViewController/TVLoginViewController.m; sourceTree = "<group>"; };
 		1B932A7B19577EF50071843D /* TVCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVCalendarViewController.h; path = ViewController/TVCalendarViewController.h; sourceTree = "<group>"; };
 		1B932A7C19577EF50071843D /* TVCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVCalendarViewController.m; path = ViewController/TVCalendarViewController.m; sourceTree = "<group>"; };
 		1B932A7E195780C20071843D /* TVCalendarShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVCalendarShowView.h; path = View/TVCalendarShowView.h; sourceTree = "<group>"; };
@@ -170,8 +173,8 @@
 		1B0F969819536E44004FD9BD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1B0F969519536E3F004FD9BD /* TVMainScrollView.h */,
-				1B0F969619536E3F004FD9BD /* TVMainScrollView.m */,
+				1B0F969519536E3F004FD9BD /* ZHHMainScrollView.h */,
+				1B0F969619536E3F004FD9BD /* ZHHMainScrollView.m */,
 				1B932A7E195780C20071843D /* TVCalendarShowView.h */,
 				1B932A7F195780C20071843D /* TVCalendarShowView.m */,
 				1B932A851958C0830071843D /* TVRoundedButton.h */,
@@ -355,6 +358,8 @@
 			children = (
 				1B9AE9921950CC3600F0691B /* TVMainViewController.h */,
 				1B9AE9931950CC3600F0691B /* TVMainViewController.m */,
+				1B7EC5E3195910A400489712 /* TVLoginViewController.h */,
+				1B7EC5E4195910A400489712 /* TVLoginViewController.m */,
 				1B932A7B19577EF50071843D /* TVCalendarViewController.h */,
 				1B932A7C19577EF50071843D /* TVCalendarViewController.m */,
 				97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */,
@@ -511,7 +516,7 @@
 				1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */,
 				1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */,
 				1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */,
-				1B0F969719536E3F004FD9BD /* TVMainScrollView.m in Sources */,
+				1B0F969719536E3F004FD9BD /* ZHHMainScrollView.m in Sources */,
 				1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */,
 				1B932A8A1958CB210071843D /* TVHelperMethods.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
@@ -519,6 +524,7 @@
 				1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */,
 				1B0F96F81955DD8D004FD9BD /* NSString+PJR.m in Sources */,
 				1B0F96F31954CF4A004FD9BD /* TVAPIClient.m in Sources */,
+				1B7EC5E5195910A400489712 /* TVLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
