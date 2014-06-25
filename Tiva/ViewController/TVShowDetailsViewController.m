@@ -8,6 +8,7 @@
 
 #import "TVShowDetailsViewController.h"
 #import "TVShow.h"
+#import "TVShowStore.h"
 
 @interface TVShowDetailsViewController ()
 
@@ -22,6 +23,9 @@
 @synthesize synopsisText;
 @synthesize otherInfoText;
 @synthesize commentsTable;
+@synthesize airDateLable;
+@synthesize runtimeLable;
+@synthesize networkLable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,7 +55,13 @@
     [overview setText:_theShow.overview];
     [self.view addSubview:overview];
     
-    //UILabel *network
+    [networkLable setText:_theShow.network];
+    NSDateFormatter *formater = [TVShowStore localDateFormatter];
+    [formater setDateFormat:@"MMM yyyy"];
+    [airDateLable setText:[formater stringFromDate:_theShow.firstAiredDateUTC]];
+    
+    [runtimeLable setText:[NSString stringWithFormat:@"%0.0f mins",_theShow.runtime]];
+    
     //UIImage *poster = theImageView.image;
     //[showPoster setImage:poster];
     // Do any additional setup after loading the view from its nib.

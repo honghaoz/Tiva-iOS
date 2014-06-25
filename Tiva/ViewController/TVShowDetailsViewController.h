@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *commentsTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *bottomMenu;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (weak, nonatomic) IBOutlet UILabel *airDateLable;
+@property (weak, nonatomic) IBOutlet UILabel *networkLable;
+@property (weak, nonatomic) IBOutlet UILabel *runtimeLable;
 
 - (void)setShow:(TVShow *)theShow;
 - (void)setShowImage:(UIImageView *)showImage;
