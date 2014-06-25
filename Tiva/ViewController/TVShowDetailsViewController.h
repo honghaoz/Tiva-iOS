@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TVShow;
 
 @interface TVShowDetailsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *showPoster;
@@ -15,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *otherInfoText;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *bottomMenu;
+
+- (void)setShow:(TVShow *)theShow;
+- (void)setShowImage:(UIImageView *)showImage;
 
 @end

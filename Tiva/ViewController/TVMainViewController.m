@@ -56,6 +56,16 @@
 
 @implementation TVMainViewController
 
+//-(UIImage *)convertViewToImage
+//{
+//    UIGraphicsBeginImageContext(self.view.bounds.size);
+//    [self drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:YES];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    return image;
+//}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -70,7 +80,8 @@
     self.view = [[UIView alloc] init];
     _mainScreen = [UIScreen mainScreen].bounds;
     Swap(&_mainScreen.size.height, &_mainScreen.size.width);
-    self.view.backgroundColor = [UIColor blackColor];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"suits.jpg"]];
+    self.view.backgroundColor = background;
     
     // Menu button
     CGFloat menuButtonX = 20;
@@ -352,6 +363,39 @@
     return value;
 }
 
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    
+    NSLog(@"Cell has been selected.");
+    
+//    TVLoginViewController *loginVC = [[TVLoginViewController alloc] init];
+//    [loginVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+//    [loginVC setModalPresentationStyle:UIModalPresentationFormSheet];
+//    
+//    //    UIPopoverController *popVC = [[UIPopoverController alloc] initWithContentViewController:loginVC];
+//    //    [popVC presentPopoverFromRect:_menuButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    //
+//    [self presentViewController:loginVC animated:YES completion:^(){
+//        [loginVC updateSubViews];
+//    }];
+    NSString *posterURLString = [[_sharedShowStore.shows[index] posterURL] absoluteString];
+    
+    posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-138.jpg"];
+    
+    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _carouselView.bounds.size.height * POSTER_ASPECT_RATIO, _carouselView.bounds.size.height)];
+    //[theImageView setContentMode:UIViewContentModeScaleAspectFill];
+    
+    NSLog(@"URL %@ ", posterURLString);
+    [theImageView setImageWithURL:[NSURL URLWithString:posterURLString]];
+    
+    TVShowDetailsViewController *detailScreen = [[TVShowDetailsViewController alloc] init];
+    
+    [detailScreen setShowImage:theImageView];
+    [detailScreen setShow:(TVShow *)_sharedShowStore.shows[index]];
+    detailScreen.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+     [detailScreen setModalPresentationStyle:UIModalPresentationFormSheet];
+    [self presentViewController:detailScreen animated:YES completion:nil];
+    
+}
 #pragma mark - Today table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

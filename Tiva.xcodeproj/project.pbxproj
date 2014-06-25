@@ -52,6 +52,7 @@
 		97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */; };
 		97C2B7ED1957772800B0A063 /* BreakingBadPoster.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */; };
 		97C2B7EF1957776D00B0A063 /* 1372240878_breaking_bad.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */; };
+		97C2B7F3195A609600B0A063 /* suits.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7F2195A609600B0A063 /* suits.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TVShowDetailsViewController.xib; path = ViewController/TVShowDetailsViewController.xib; sourceTree = "<group>"; };
 		97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BreakingBadPoster.jpeg; sourceTree = "<group>"; };
 		97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1372240878_breaking_bad.jpeg; sourceTree = "<group>"; };
+		97C2B7F2195A609600B0A063 /* suits.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = suits.jpg; path = ../../../../Downloads/suits.jpg; sourceTree = "<group>"; };
 		A2CDCFCA986B4336B6D893D2 /* Pods-Tiva.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tiva.xcconfig"; path = "Pods/Pods-Tiva.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -346,6 +348,7 @@
 		1B932A8419579BAC0071843D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97C2B7F2195A609600B0A063 /* suits.jpg */,
 				97C2B7EE1957776D00B0A063 /* 1372240878_breaking_bad.jpeg */,
 				97C2B7EC1957772800B0A063 /* BreakingBadPoster.jpeg */,
 			);
@@ -453,6 +456,7 @@
 				1B7B31D519465FE700848D85 /* InfoPlist.strings in Resources */,
 				1B0F96F91955DD8D004FD9BD /* README.md in Resources */,
 				1B7B31DD19465FE700848D85 /* Images.xcassets in Resources */,
+				97C2B7F3195A609600B0A063 /* suits.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
