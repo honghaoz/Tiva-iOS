@@ -83,7 +83,7 @@
     [_tivaLabel setText:@"Tiva"];
     [_tivaLabel setTextAlignment:NSTextAlignmentCenter];
     [_tivaLabel setTextColor:FONT_COLOR];
-    [_tivaLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:100]];
+    [_tivaLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:110]];
     
     // Sign in button
     CGFloat signInButtonWidth = 100;

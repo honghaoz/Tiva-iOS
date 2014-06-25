@@ -9,6 +9,7 @@
 #import "TVEpisodeTableViewCell.h"
 #import "TVMainViewController.h"
 #import "TVShowStore.h"
+#import "TVHelperMethods.h"
 
 #define CELL_GAP_WIDTH 5.0
 
@@ -29,6 +30,8 @@
         [self.contentView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
         UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(CELL_GAP_WIDTH, CELL_GAP_WIDTH / 2, _cellWidth - 2 * CELL_GAP_WIDTH, _cellHeight - CELL_GAP_WIDTH)];
         [containerView setBackgroundColor:[UIColor whiteColor]];
+        [TVHelperMethods setMaskTo:containerView byRoundingCorners:UIRectCornerAllCorners withRadius:2.0];
+        
         [self.contentView addSubview:containerView];
 
         CGFloat showTitleLabelWidth = containerView.bounds.size.width - 20;
