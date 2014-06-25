@@ -37,10 +37,13 @@
 {
     [super viewDidLoad];
     [showTitle setText:_theShow.title]; // Change this to be dynamic
+    //UIScrollView *scrollView = [[UIScrollView alloc]init];
     
+    //[self.view addSubview:scrollView];
     //UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     
      //NSLog(@"Image %d ",  _showImage.bounds.size.width);
+    
     [self.view addSubview:_showImage];
     
     UITextView *overview = [[UITextView alloc]initWithFrame:CGRectMake(_showImage.bounds.size.width + 15, 150,200,200)];
@@ -68,6 +71,10 @@
 - (void)setShowImage:(UIImageView *)showImage {
      // NSLog(@"URL %@ ", posterURLString);
     _showImage = showImage;
+}
+
+- (IBAction)doneButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

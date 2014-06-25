@@ -215,6 +215,7 @@
     [sharedUser setUsername:_user.text andPassword:_password.text];
     NSLog(@"%@",sharedUser.username);
     NSLog(@"%@",sharedUser.password);
+    [sharedUser login];
     [self dismissViewControllerAnimated:YES completion:NO];
 }
 

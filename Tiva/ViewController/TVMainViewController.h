@@ -15,6 +15,4 @@
 
 @interface TVMainViewController : UIViewController
 
--(UIImage *)convertViewToImage;
-
 @end

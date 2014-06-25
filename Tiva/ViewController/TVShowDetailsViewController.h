@@ -16,8 +16,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *otherInfoText;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTable;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *bottomMenu;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 - (void)setShow:(TVShow *)theShow;
 - (void)setShowImage:(UIImageView *)showImage;
+- (IBAction)doneButtonPressed:(id)sender;
 
 @end

@@ -23,6 +23,7 @@
 #import "TVRoundedButton.h"
 #import "TVHelperMethods.h"
 #import "TVLoginViewController.h"
+#import "TVEpisodeTableViewCell.h"
 
 #define POSTER_ASPECT_RATIO (680 / 1000.0)
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
@@ -32,6 +33,7 @@
 @interface TVMainViewController () <iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate> {
     CGRect _mainScreen;
     TVShowStore *_sharedShowStore;
+    TVTraktUser *_sharedUser;
     
     UIView *_carouselParentView;
     iCarousel *_carouselView;
@@ -56,16 +58,6 @@
 
 @implementation TVMainViewController
 
-//-(UIImage *)convertViewToImage
-//{
-//    UIGraphicsBeginImageContext(self.view.bounds.size);
-//    [self drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:YES];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    return image;
-//}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -80,8 +72,11 @@
     self.view = [[UIView alloc] init];
     _mainScreen = [UIScreen mainScreen].bounds;
     Swap(&_mainScreen.size.height, &_mainScreen.size.width);
-    UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"suits.jpg"]];
-    self.view.backgroundColor = background;
+
+    //UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"suits.jpg"]];
+    //self.view.backgroundColor = background;
+    self.view.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.7];
+
     
     // Menu button
     CGFloat menuButtonX = 20;
@@ -217,7 +212,7 @@
     CGFloat commentsParentViewX = recommendationParentViewX + recommendationParentViewWidth + GAP_WIDTH;
     CGFloat commentsParentViewY = recommendationParentViewY;
     CGFloat commentsParentViewWidth = recommendationParentViewWidth;
-    CGFloat commentsParentViewHeight = recommendationParentViewHeight;
+    CGFloat commentsParentViewHeight = recommendationParentViewHeight * 1/2;
     CGRect commentsParentViewFrame = CGRectMake(commentsParentViewX, commentsParentViewY, commentsParentViewWidth, commentsParentViewHeight);
     _commentsParentView = [[UIView alloc] initWithFrame:commentsParentViewFrame];
     [TVHelperMethods setMaskTo:_commentsParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
@@ -242,7 +237,7 @@
     CGFloat commentsTableViewX = 0;
     CGFloat commentsTableViewY = commentsTitleHeight;
     CGFloat commentsTableViewWidth = commentsParentViewWidth;
-    CGFloat commentsTableViewHeight = commentsParentViewHeight - commentsTitleHeight;
+    CGFloat commentsTableViewHeight = (commentsParentViewHeight - commentsTitleHeight);
     CGRect commentsTableViewFrame = CGRectMake(commentsTableViewX, commentsTableViewY, commentsTableViewWidth, commentsTableViewHeight);
     
     _commentsTableView = [[UITableView alloc] initWithFrame:commentsTableViewFrame];
@@ -262,15 +257,20 @@
 {
     [super viewDidLoad];
     _sharedShowStore = [TVShowStore sharedStore];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:_sharedShowStore];
+    _sharedUser = [TVTraktUser sharedUser];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:nil];
+    _sharedUser.username = @"alice";
+    _sharedUser.password = @"a";
+    [_sharedUser login];
+    [_sharedUser retrieveUserData];
     [_sharedShowStore retrieveShows];
     
-    [[TVTraktUser sharedUser] setUsername:@"honghaoz" andPassword:@"Zhh358279765099"];
-    [[TVAPIClient sharedClient] testUsername:[TVTraktUser sharedUser].username passwordSha1:[TVTraktUser sharedUser].passwordSha1 success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"success: %@", responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"failure: %@", error);
-    }];
+//    [[TVTraktUser sharedUser] setUsername:@"honghaoz" andPassword:@"Zhh358279765099"];
+//    [[TVAPIClient sharedClient] testUsername:[TVTraktUser sharedUser].username passwordSha1:[TVTraktUser sharedUser].passwordSha1 success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"success: %@", responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"failure: %@", error);
+//    }];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -288,7 +288,8 @@
 
 - (void)menuButtonTapped:(id)sender {
     LogMethod;
-    
+    [_sharedUser login];
+    [_sharedUser retrieveUserData];
     TVLoginViewController *loginVC = [[TVLoginViewController alloc] init];
     [loginVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [loginVC setModalPresentationStyle:UIModalPresentationFormSheet];
@@ -329,7 +330,9 @@
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return [_sharedShowStore.shows count];
+    //return [_sharedShowStore.shows count];
+    NSLog(@"%d", [_sharedUser.favouriteShows count]);
+    return [_sharedUser.favouriteShows count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
@@ -340,7 +343,8 @@
         [theImageView setContentMode:UIViewContentModeScaleAspectFill];
     }
     [theImageView cancelImageRequestOperation];
-    NSString *posterURLString = [[_sharedShowStore.shows[index] posterURL] absoluteString];
+//    NSString *posterURLString = [[_sharedShowStore.shows[index] posterURL] absoluteString];
+    NSString *posterURLString = [[_sharedUser.favouriteShows[index] posterURL] absoluteString];
     if (![posterURLString vt_containsSubstring:EMPTY_POSTER_URL_STRING]) {
         if ([[UIScreen mainScreen] sam_isRetina]) {
             posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-300.jpg"];
@@ -377,7 +381,7 @@
 //    [self presentViewController:loginVC animated:YES completion:^(){
 //        [loginVC updateSubViews];
 //    }];
-    NSString *posterURLString = [[_sharedShowStore.shows[index] posterURL] absoluteString];
+    NSString *posterURLString = [[_sharedUser.favouriteShows[index] posterURL] absoluteString];
     
     posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-138.jpg"];
     
@@ -390,7 +394,7 @@
     TVShowDetailsViewController *detailScreen = [[TVShowDetailsViewController alloc] init];
     
     [detailScreen setShowImage:theImageView];
-    [detailScreen setShow:(TVShow *)_sharedShowStore.shows[index]];
+    [detailScreen setShow:(TVShow *)_sharedUser.favouriteShows[index]];
     detailScreen.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
      [detailScreen setModalPresentationStyle:UIModalPresentationFormSheet];
     [self presentViewController:detailScreen animated:YES completion:nil];
@@ -407,36 +411,53 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIImageView *bannerImageView = nil;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TodayShow"];
-        CGRect bannerRect = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.width / BANNER_ASPECT_RATIO);
-        bannerImageView = [[UIImageView alloc] initWithFrame:bannerRect];
-        [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
-        [cell.contentView addSubview:bannerImageView];
-    }
-    for (UIView *subView in cell.contentView.subviews) {
-        if ([subView isKindOfClass:[UIImageView class]]) {
-            bannerImageView =  (UIImageView *)subView;
+    if (tableView == _todayTableView) {
+        TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
+        if (cell == nil) {
+            cell = [[TVEpisodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TodayShow" cellWidth:tableView.bounds.size.width cellHeight:50];
         }
-    }
-    [bannerImageView cancelImageRequestOperation];
-    [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
-    NSString *bannerURLString = [[_sharedShowStore.shows[indexPath.row] bannerURL] absoluteString];
-    if (![bannerURLString vt_containsSubstring:EMPTY_BANNER_URL_STRING]) {
-//        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
-    } else {
-        [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
-    }
-    
+        TVShow *theShow = _sharedShowStore.shows[indexPath.row];
+        [cell setShowTitle:theShow.title airedTime:theShow.firstAiredDateUTC];
+        return cell;
+    } else if (tableView == _recommendationTableView) {
+        UIImageView *bannerImageView = nil;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TodayShow"];
+            CGRect bannerRect = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.width / BANNER_ASPECT_RATIO);
+            bannerImageView = [[UIImageView alloc] initWithFrame:bannerRect];
+            [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
+            [cell.contentView addSubview:bannerImageView];
+        }
+        for (UIView *subView in cell.contentView.subviews) {
+            if ([subView isKindOfClass:[UIImageView class]]) {
+                bannerImageView =  (UIImageView *)subView;
+            }
+        }
+        [bannerImageView cancelImageRequestOperation];
+        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
+        NSString *bannerURLString = [[_sharedShowStore.shows[indexPath.row] bannerURL] absoluteString];
+        if (![bannerURLString vt_containsSubstring:EMPTY_BANNER_URL_STRING]) {
+            //        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
+        } else {
+            [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
+        }
     return cell;
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - Today table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
+    if (tableView == _todayTableView) {
+        return 50;
+    } else if (tableView == _recommendationTableView) {
+        return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
+    } else {
+        return 44;
+    }
 }
 //
 //#pragma mark - UIControl methods
