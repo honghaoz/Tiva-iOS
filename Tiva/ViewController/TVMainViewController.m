@@ -205,7 +205,7 @@
     _recommendationTableView = [[UITableView alloc] initWithFrame:recommendationTableViewFrame];
     _recommendationTableView.dataSource = self;
     _recommendationTableView.delegate = self;
-    [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_recommendationParentView addSubview:_recommendationTableView];
     
     // Comments view
@@ -403,6 +403,9 @@
 #pragma mark - Today table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView == _recommendationTableView){
+        return 5;
+    }
     return [_sharedShowStore.shows count];
 }
 
@@ -411,6 +414,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array1 = [[NSArray alloc] initWithObjects: @"Game of Thrones", @"Breaking Bad", @"Big Bang Theory",  @"The Wire", @"The Daily Show",nil];
+    NSArray *array2 = [[NSArray alloc] initWithObjects:  @"Alfred", @"Jane",  @"Carmen", @"Joe",@"Bill",nil];
     if (tableView == _todayTableView) {
         TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
         if (cell == nil) {
@@ -420,28 +425,35 @@
         [cell setShowTitle:theShow.title airedTime:theShow.firstAiredDateUTC];
         return cell;
     } else if (tableView == _recommendationTableView) {
-        UIImageView *bannerImageView = nil;
+
+
+       // UIImageView *bannerImageView = nil;
+        NSLog(@"We in rec yo");
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TodayShow"];
-            CGRect bannerRect = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.width / BANNER_ASPECT_RATIO);
-            bannerImageView = [[UIImageView alloc] initWithFrame:bannerRect];
-            [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
-            [cell.contentView addSubview:bannerImageView];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TodayShow"];
+        
+//            CGRect bannerRect = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.width / BANNER_ASPECT_RATIO);
+//            bannerImageView = [[UIImageView alloc] initWithFrame:bannerRect];
+//            [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
+//            [cell.contentView addSubview:bannerImageView];
         }
-        for (UIView *subView in cell.contentView.subviews) {
-            if ([subView isKindOfClass:[UIImageView class]]) {
-                bannerImageView =  (UIImageView *)subView;
-            }
-        }
-        [bannerImageView cancelImageRequestOperation];
-        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
-        NSString *bannerURLString = [[_sharedShowStore.shows[indexPath.row] bannerURL] absoluteString];
-        if (![bannerURLString vt_containsSubstring:EMPTY_BANNER_URL_STRING]) {
-            //        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
-        } else {
-            [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
-        }
+        cell.textLabel.text = [array1 objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [array2 objectAtIndex:indexPath.row];
+        //cell.textLabel.text = @"abc";
+//        for (UIView *subView in cell.contentView.subviews) {
+//            if ([subView isKindOfClass:[UIImageView class]]) {
+//                bannerImageView =  (UIImageView *)subView;
+//            }
+//        }
+//        [bannerImageView cancelImageRequestOperation];
+//        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
+//        NSString *bannerURLString = [[_sharedShowStore.shows[indexPath.row] bannerURL] absoluteString];
+//        if (![bannerURLString vt_containsSubstring:EMPTY_BANNER_URL_STRING]) {
+//            //        [bannerImageView setImage:[self imageWithRect:bannerImageView.bounds.size color:[UIColor lightGrayColor]]];
+//        } else {
+//            [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
+//        }
     return cell;
     } else {
         return nil;
