@@ -146,7 +146,7 @@
     CGFloat userFieldWidth = 150;
     CGFloat userFieldHeight = 35;
     CGFloat userFieldX = (_signInView.bounds.size.width - userFieldWidth) / 2;
-    CGFloat userFieldY =  _tivaLabel.frame.origin.y + _tivaLabel.bounds.size.height + 80; //_signInView.bounds.size.height / 2 - 80;
+    CGFloat userFieldY =  _tivaLabel.frame.origin.y + _tivaLabel.bounds.size.height + 50; //_signInView.bounds.size.height / 2 - 80;
     CGRect userFieldFrame = CGRectMake(userFieldX, userFieldY, userFieldWidth, userFieldHeight);
     _user = [[UITextField alloc] initWithFrame:userFieldFrame];
     [_user setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
@@ -185,6 +185,7 @@
     CGFloat backButtonY = passwordFieldY + passwordFieldHeight + 20;
     CGRect backButtonFrame = CGRectMake(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
     _backButton = [[TVRoundedButton alloc] initWithFrame:backButtonFrame borderColor:FONT_COLOR backgroundColor:LABEL_COLOR radius:backButtonWidth / 2];
+    [_backButton setTitle:@"<" forState:UIControlStateNormal];
     [_backButton addTarget:self action:@selector(backButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_signInView addSubview:_backButton];
     

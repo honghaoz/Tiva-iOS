@@ -258,7 +258,9 @@
     [super viewDidLoad];
     _sharedShowStore = [TVShowStore sharedStore];
     _sharedUser = [TVTraktUser sharedUser];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:_sharedShowStore];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCarouselShowsUpdates:) name:@"FavouriteShowUpdated" object:_sharedUser];
     _sharedUser.username = @"alice";
     _sharedUser.password = @"a";
     [_sharedUser login];
@@ -272,6 +274,9 @@
 //        NSLog(@"failure: %@", error);
 //    }];
     [self setNeedsStatusBarAppearanceUpdate];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self menuButtonTapped:nil];
+    });
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -320,10 +325,13 @@
 - (void)showStoreUpdates:(NSNotification *)notification {
 //    NSLog(@"Received ShowStoreUpdated");
 //    NSInteger updatedIndex = [[notification userInfo][@"ShowIndex"] integerValue];
-    [_carouselView reloadData];
 //    [_mainCarouselView reloadItemAtIndex:updatedIndex animated:YES];
     [_todayTableView reloadData];
     [_recommendationTableView reloadData];
+}
+
+- (void)iCarouselShowsUpdates:(NSNotification *)notification {
+    [_carouselView reloadData];
 }
 
 #pragma mark - iCarousel data source methods
@@ -383,7 +391,7 @@
 //    }];
     NSString *posterURLString = [[_sharedUser.favouriteShows[index] posterURL] absoluteString];
     
-    posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-138.jpg"];
+    posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-300.jpg"];
     
     UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _carouselView.bounds.size.height * POSTER_ASPECT_RATIO, _carouselView.bounds.size.height)];
     //[theImageView setContentMode:UIViewContentModeScaleAspectFill];
@@ -403,7 +411,16 @@
 #pragma mark - Today table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_sharedShowStore.shows count];
+    if (tableView == _todayTableView) {
+        return [_sharedShowStore.shows count];
+    } else if (tableView == _recommendationTableView) {
+        return [_sharedShowStore.shows count];
+    } else if (tableView == _commentsTableView) {
+        return 0;
+    }
+    else {
+        return 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -442,13 +459,13 @@
         } else {
             [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
         }
-    return cell;
+        return cell;
     } else {
         return nil;
     }
 }
 
-#pragma mark - Today table view delegate
+#pragma mark - table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _todayTableView) {
@@ -457,6 +474,25 @@
         return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
     } else {
         return 44;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == _todayTableView) {
+        TVShow *theShow = _sharedShowStore.shows[indexPath.row];
+        NSString *posterURLString = [theShow.posterURL absoluteString];
+        
+        posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-300.jpg"];
+        
+        UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _carouselView.bounds.size.height * POSTER_ASPECT_RATIO, _carouselView.bounds.size.height)];
+        [theImageView setImageWithURL:[NSURL URLWithString:posterURLString]];
+        
+        TVShowDetailsViewController *detailScreen = [[TVShowDetailsViewController alloc] init];
+        [detailScreen setShowImage:theImageView];
+        [detailScreen setShow:theShow];
+        detailScreen.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [detailScreen setModalPresentationStyle:UIModalPresentationFormSheet];
+        [self presentViewController:detailScreen animated:YES completion:nil];
     }
 }
 //

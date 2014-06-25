@@ -80,7 +80,7 @@
                     [self.favouriteShows addObject:newShow];
                     NSLog(@"%@ %d", newShow.title, [self.favouriteShows count]);
                     //                NSLog(@"Post ShowStoreUpdated");
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.favouriteShows indexOfObject:newShow]]}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"FavouriteShowUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.favouriteShows indexOfObject:newShow]]}];
                 }
             } else {
                 // Log details of the failure

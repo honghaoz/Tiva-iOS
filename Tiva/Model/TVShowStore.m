@@ -60,7 +60,7 @@
                 TVShow *newShow = [[TVShow alloc] initWithParseShowObject:object];
                 [self.shows addObject:newShow];
 //                NSLog(@"Post ShowStoreUpdated");
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.shows indexOfObject:newShow]]}];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.shows indexOfObject:newShow]]}];
             }
         } else {
             // Log details of the failure
