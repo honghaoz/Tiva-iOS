@@ -11,5 +11,5 @@
 @interface TVRoundedButton : UIButton
 
 - (instancetype)initWithFrame:(CGRect)frame borderColor:(UIColor *)borderColor backgroundColor:(UIColor *)backgroundColor;
-
+- (instancetype)initWithFrame:(CGRect)frame borderColor:(UIColor *)borderColor backgroundColor:(UIColor *)backgroundColor radius:(CGFloat)radius;
 @end

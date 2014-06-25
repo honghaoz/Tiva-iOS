@@ -52,9 +52,10 @@
         CGFloat maxHeight = 0;
         CGFloat totalWidth = 0;
         CGFloat lastWidthOffset = 0;
+        
         for (int i = 0; i < viewsCount; i++) {
             UIView *eachView = views[i];
-            eachView.userInteractionEnabled = NO;
+            eachView.userInteractionEnabled = YES;
             // Init _coveredViews
             [_coveredViews addObject:eachView];
             // Init _contentOffsetCouldMove
@@ -85,6 +86,18 @@
         // Wait for implementation
     }
     return self;
+}
+//
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+
+-(id)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    id hitView = [super hitTest:point withEvent:event];
+    if (hitView == self) return nil;
+    else return hitView;
+}
+
+- (void)buttonTapped:(id)sender {
+    NSLog(@"adasd");
 }
 
 /*

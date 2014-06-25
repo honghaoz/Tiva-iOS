@@ -10,6 +10,7 @@
 #import "TVMainViewController.h"
 #import "ZHHMainScrollView.h"
 #import "TVRoundedButton.h"
+#import "TVTraktUser.h"
 
 @interface TVLoginViewController ()
 
@@ -20,11 +21,15 @@
     UIView *_signUpView;
     UIView *_signInView;
     UILabel *_tivaLabel;
+    
     TVRoundedButton *_signUpButton;
     TVRoundedButton *_signInButton;
+    UIButton *_skip;
     
+    TVRoundedButton *_backButton;
     UITextField *_user;
     UITextField *_password;
+    TVRoundedButton *_loginInButton;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,56 +61,70 @@
 - (void)updateSubViews {
     // Do any additional setup after loading the view.
     LogMethod;
-    self.view = [[UIImageView alloc] init];
-    NSLog(@"%@", NSStringFromCGRect(self.view.bounds));
-    //    [self.view.layer insertSublayer:[TVLoginViewController greyGradient] atIndex:0];
-    [self.view setBackgroundColor:LABEL_COLOR];
+    
+    // Sign up view
     CGFloat signUpViewX = 0;
     CGFloat signUpViewY = 0;
     CGFloat signUpViewWidth = self.view.bounds.size.width;
     CGFloat signUpViewHeight = self.view.bounds.size.height;
     CGRect signUpViewFrame = CGRectMake(signUpViewX, signUpViewY, signUpViewWidth, signUpViewHeight);
     _signUpView = [[UIView alloc] initWithFrame:signUpViewFrame];
-    [_signUpView setBackgroundColor:[UIColor redColor]];
+    [_signUpView setBackgroundColor:LABEL_COLOR];
     _signUpView.clipsToBounds = YES;
     
+    // Tiva Label
     CGFloat tivaLabelWidth = 200;
     CGFloat tivaLabelHeight = 100;
     CGFloat tivaLabelX = (signUpViewWidth - tivaLabelWidth) / 2;
-    CGFloat tivaLabelY = 50;
+    CGFloat tivaLabelY = (signUpViewHeight - tivaLabelHeight) / 2 - 160;
     CGRect tivaLabelFrame = CGRectMake(tivaLabelX, tivaLabelY, tivaLabelWidth, tivaLabelHeight);
-    
     _tivaLabel = [[UILabel alloc] initWithFrame:tivaLabelFrame];
     [_tivaLabel setBackgroundColor:[UIColor clearColor]];
     [_tivaLabel setText:@"Tiva"];
     [_tivaLabel setTextAlignment:NSTextAlignmentCenter];
     [_tivaLabel setTextColor:FONT_COLOR];
     [_tivaLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:100]];
-    [_signUpView addSubview:_tivaLabel];
     
+    // Sign in button
     CGFloat signInButtonWidth = 100;
     CGFloat signInButtonHeight = 40;
     CGFloat signInButtonX = (signUpViewWidth - signInButtonWidth) / 2;;
-    CGFloat signInButtonY = tivaLabelY + tivaLabelHeight + 100;
+    CGFloat signInButtonY = tivaLabelY + tivaLabelHeight + 80;
     CGRect signInFrame = CGRectMake(signInButtonX, signInButtonY, signInButtonWidth, signInButtonHeight);
     _signInButton = [[TVRoundedButton alloc] initWithFrame:signInFrame borderColor:FONT_COLOR backgroundColor:LABEL_COLOR];
-    [_signInButton setTitle:@"Login" forState:UIControlStateNormal];
-    [_signInButton addTarget:self action:@selector(loginButtonTaped:) forControlEvents:UIControlEventTouchUpInside];
-//    [_signInButton setUserInteractionEnabled:YES];
+    [_signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
+    [_signInButton addTarget:self action:@selector(signInButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_signUpView addSubview:_signInButton];
     
-    NSLog(@"11 - %@", NSStringFromCGRect(_signUpView.bounds));
-    NSLog(@"22 - %@", NSStringFromCGRect(_signInButton.frame));
+    // Sign up button
+    CGFloat signUpButtonWidth = signInButtonWidth;
+    CGFloat signUpButtonHeight = signInButtonHeight;
+    CGFloat signUpButtonX = signInButtonX;
+    CGFloat signUpButtonY = signInButtonY + signInButtonHeight + 20;
+    CGRect signUpFrame = CGRectMake(signUpButtonX, signUpButtonY, signUpButtonWidth, signUpButtonHeight);
+    _signUpButton = [[TVRoundedButton alloc] initWithFrame:signUpFrame borderColor:FONT_COLOR backgroundColor:LABEL_COLOR];
+    [_signUpButton setTitle:@"Sign up" forState:UIControlStateNormal];
+    [_signUpButton addTarget:self action:@selector(signUpButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_signUpView addSubview:_signUpButton];
+    NSLog(@"%@", NSStringFromCGRect(_signUpButton.frame));
     
-//    CGFloat signUpWidth = 0;
-//    CGFloat signUpHeight = 0;
-//    CGFloat signUpX = 0;
-//    CGFloat signUpY = 0;
-//    CGRect signUpFrame = CGRectMake(signUpX, signUpY, signUpWidth, signUpHeight);
-//    
-//    _signUp = [[TVRoundedButton alloc] initWithFrame:signUpFrame borderColor:FONT_COLOR backgroundColor:[UIColor clearColor]];
+    // Skip button
+    CGFloat skipX = signUpButtonX;
+    CGFloat skipY = signUpButtonY + signUpButtonHeight + 20;
+    CGFloat skipWidth = signUpButtonWidth;
+    CGFloat skipHeight = signUpButtonHeight;
+    CGRect skipFrame = CGRectMake(skipX, skipY, skipWidth, skipHeight);
+    _skip = [[UIButton alloc] initWithFrame:skipFrame];
+    [_skip setTitle:@"Skip" forState:UIControlStateNormal];
+    [_skip setTitleColor:FONT_COLOR forState:UIControlStateNormal];
+    [_skip setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.7] forState:UIControlStateHighlighted];
+    [_skip setBackgroundColor:[UIColor clearColor]];
+    [_skip.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [_skip addTarget:self action:@selector(skipButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_signUpView addSubview:_skip];
+    NSLog(@"%@", NSStringFromCGRect(_skip.frame));
     
-    
+    // Sign in view
     CGFloat signInViewX = signUpViewWidth;
     CGFloat signInViewY = 0;
     CGFloat signInViewWidth = self.view.bounds.size.width;
@@ -115,26 +134,101 @@
     [_signInView setBackgroundColor:LABEL_COLOR];
     
     _mainScrollView = [[ZHHMainScrollView alloc] initWithFrame:self.view.bounds contentViewWithViews:@[_signUpView, _signInView] direction:ScrollHorizontal];
-//    [self.view addSubview:_mainScrollView];
-    self.view = _mainScrollView;
-    [_mainScrollView addSubview:_signInButton];
+    [self.view addSubview:_mainScrollView];
+    [self.view addSubview:_tivaLabel];
 }
 
 #pragma mark - Navigation methods
 
-- (void)loginButtonTaped:(id)sender {
+- (void)signInButtonTapped:(id)sender {
     LogMethod;
+    
+    CGFloat userFieldWidth = 150;
+    CGFloat userFieldHeight = 35;
+    CGFloat userFieldX = (_signInView.bounds.size.width - userFieldWidth) / 2;
+    CGFloat userFieldY =  _tivaLabel.frame.origin.y + _tivaLabel.bounds.size.height + 80; //_signInView.bounds.size.height / 2 - 80;
+    CGRect userFieldFrame = CGRectMake(userFieldX, userFieldY, userFieldWidth, userFieldHeight);
+    _user = [[UITextField alloc] initWithFrame:userFieldFrame];
+    [_user setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [_user setTextColor:[UIColor whiteColor]];
+    [_user setTextAlignment:NSTextAlignmentLeft];
+    
+    [_user setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"Username" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.3], NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:18]}]];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(userFieldX, userFieldY + userFieldHeight, userFieldWidth, 1)];
+    [lineView setBackgroundColor:[UIColor whiteColor]];
+    [_signInView addSubview:_user];
+    [_signInView addSubview:lineView];
+    
+    CGFloat passwordFieldWidth = 150;
+    CGFloat passwordFieldHeight = 35;
+    CGFloat passwordFieldX = (_signInView.bounds.size.width - passwordFieldWidth) / 2;
+    CGFloat passwordFieldY = userFieldY + userFieldHeight + 10;
+    CGRect passwordFieldFrame = CGRectMake(passwordFieldX, passwordFieldY, passwordFieldWidth, passwordFieldHeight);
+    _password = [[UITextField alloc] initWithFrame:passwordFieldFrame];
+    [_password setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [_password setTextColor:[UIColor whiteColor]];
+    [_password setTextAlignment:NSTextAlignmentLeft];
+    
+    [_password setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.3], NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:18]}]];
+    [_password setSecureTextEntry:YES];
+    UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(passwordFieldX, passwordFieldY + passwordFieldHeight, passwordFieldWidth, 1)];
+    [lineView1 setBackgroundColor:[UIColor whiteColor]];
+    
+    [_signInView addSubview:_password];
+    [_signInView addSubview:lineView1];
+    
+    // Back button
+    CGFloat backButtonWidth = 40;
+    CGFloat backButtonHeight = backButtonWidth;
+    CGFloat backButtonX = (_signInView.bounds.size.width - backButtonWidth) / 2 - 60;
+    CGFloat backButtonY = passwordFieldY + passwordFieldHeight + 20;
+    CGRect backButtonFrame = CGRectMake(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
+    _backButton = [[TVRoundedButton alloc] initWithFrame:backButtonFrame borderColor:FONT_COLOR backgroundColor:LABEL_COLOR radius:backButtonWidth / 2];
+    [_backButton addTarget:self action:@selector(backButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_signInView addSubview:_backButton];
+    
+    // Sign in button
+    CGFloat loginButtonWidth = 100;
+    CGFloat loginButtonHeight = 40;
+    CGFloat loginButtonX = (_signInView.bounds.size.width - loginButtonWidth) / 2 + 30;
+    CGFloat loginButtonY = passwordFieldY + passwordFieldHeight + 20;
+    CGRect loginFrame = CGRectMake(loginButtonX, loginButtonY, loginButtonWidth, loginButtonHeight);
+    _loginInButton = [[TVRoundedButton alloc] initWithFrame:loginFrame borderColor:FONT_COLOR backgroundColor:LABEL_COLOR];
+    [_loginInButton setTitle:@"Login" forState:UIControlStateNormal];
+    [_loginInButton addTarget:self action:@selector(loginButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_signInView addSubview:_loginInButton];
+    
     [_mainScrollView moveToViewIndex:1 animated:YES];
+}
+
+- (void)signUpButtonTapped:(id)sender {
+    
+}
+
+- (void)skipButtonTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:NO];
+}
+
+- (void)loginButtonTapped:(id)sender {
+    TVTraktUser *sharedUser = [TVTraktUser sharedUser];
+    [sharedUser setUsername:_user.text andPassword:_password.text];
+    NSLog(@"%@",sharedUser.username);
+    NSLog(@"%@",sharedUser.password);
+    [self dismissViewControllerAnimated:YES completion:NO];
+}
+
+- (void)backButtonTapped:(id)sender {
+    [_mainScrollView moveToViewIndex:0 animated:YES];
 }
 
 #pragma mark - Helper methods
 
 //Metallic grey gradient background
 + (CAGradientLayer*) greyGradient {
-    
     UIColor *colorOne = [UIColor colorWithWhite:0.9 alpha:1.0];
     UIColor *colorTwo = [UIColor colorWithHue:0.625 saturation:0.0 brightness:0.85 alpha:1.0];
-    UIColor *colorThree     = [UIColor colorWithHue:0.625 saturation:0.0 brightness:0.7 alpha:1.0];
+    UIColor *colorThree = [UIColor colorWithHue:0.625 saturation:0.0 brightness:0.7 alpha:1.0];
     UIColor *colorFour = [UIColor colorWithHue:0.625 saturation:0.0 brightness:0.4 alpha:1.0];
     
     NSArray *colors =  [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, colorThree.CGColor, colorFour.CGColor, nil];

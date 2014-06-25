@@ -25,6 +25,10 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame borderColor:(UIColor *)borderColor backgroundColor:(UIColor *)backgroundColor {
+    return [self initWithFrame:frame borderColor:borderColor backgroundColor:backgroundColor radius:5.0];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame borderColor:(UIColor *)borderColor backgroundColor:(UIColor *)backgroundColor radius:(CGFloat)radius {
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -52,7 +56,7 @@
 //        self.adjustsImageWhenHighlighted = NO;
         
         // Make Sure any subview will not show out of rounder rect
-        UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:self.bounds  byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(5, 5)];
+        UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:self.bounds  byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(radius, radius)];
         CAShapeLayer* shape = [[CAShapeLayer alloc] init];
         [shape setPath:rounded.CGPath];
         self.layer.mask = shape;
@@ -60,7 +64,7 @@
         // Show a rounded border
         self.layer.borderWidth = 1;
         self.layer.borderColor = [borderColor CGColor];
-        self.layer.cornerRadius = 5.0;
+        self.layer.cornerRadius = radius;
     }
     return self;
 }
