@@ -10,6 +10,7 @@
 #import "TVShow.h"
 #import "TVShowStore.h"
 #import "TVHelperMethods.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface TVShowDetailsViewController ()
 
@@ -27,6 +28,9 @@
 @synthesize airDateLable;
 @synthesize runtimeLable;
 @synthesize networkLable;
+@synthesize AddListButton;
+@synthesize RemoveListButton;
+@synthesize RecButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,6 +91,48 @@
 - (IBAction)doneButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+// Pick Friends button handler
+- (IBAction)pickFriendsClick:(UIButton *)sender {
+    FBFriendPickerViewController *friendPickerController = [[FBFriendPickerViewController alloc] init];
+    friendPickerController.title = @"Pick Friends";
+    [friendPickerController loadData];
+    
+    // Use the modal wrapper method to display the picker.
+    [friendPickerController presentModallyFromViewController:self animated:YES handler:
+     ^(FBViewController *innerSender, BOOL donePressed) {
+         if (!donePressed) {
+             return;
+         }
+         
+         NSString *message;
+         
+         if (friendPickerController.selection.count == 0) {
+             message = @"<No Friends Selected>";
+         } else {
+             
+             NSMutableString *text = [[NSMutableString alloc] init];
+             
+             // we pick up the users from the selection, and create a string that we use to update the text view
+             // at the bottom of the display; note that self.selection is a property inherited from our base class
+             for (id<FBGraphUser> user in friendPickerController.selection) {
+                 if ([text length]) {
+                     [text appendString:@", "];
+                 }
+                 [text appendString:user.name];
+             }
+             message = text;
+         }
+         
+         [[[UIAlertView alloc] initWithTitle:@"You Picked:"
+                                     message:message
+                                    delegate:nil
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil]
+          show];
+     }];
+}
+
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //{

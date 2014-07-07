@@ -20,9 +20,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *airDateLable;
 @property (weak, nonatomic) IBOutlet UILabel *networkLable;
 @property (weak, nonatomic) IBOutlet UILabel *runtimeLable;
+@property (weak, nonatomic) IBOutlet UIButton *AddListButton;
+@property (weak, nonatomic) IBOutlet UIButton *RemoveListButton;
+@property (weak, nonatomic) IBOutlet UIButton *RecButton;
 
 - (void)setShow:(TVShow *)theShow;
 - (void)setShowImage:(UIImageView *)showImage;
 - (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)pickFriendsClick:(UIButton *)sender;
 
 @end

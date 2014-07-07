@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface TVLoginViewController : UIViewController
+@interface TVLoginViewController : UIViewController <FBLoginViewDelegate>
 
 - (void)updateSubViews;
 
