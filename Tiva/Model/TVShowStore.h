@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 @class TVShow;
-@class TVTraktUser;
+@class TVUser;
 
 @interface TVShowStore : NSObject
 
 @property (nonatomic, strong) NSMutableArray *shows;
 @property (nonatomic, strong) NSMutableArray *episodes;
-@property (nonatomic, strong) TVTraktUser *traktUser;
+//@property (nonatomic, strong) TVUser *user;
 
 @property (nonatomic, strong) NSMutableArray *episodesDictionaryKeys;
 @property (nonatomic, strong) NSMutableDictionary *episodesDictionary;
@@ -35,20 +35,5 @@
  */
 - (void)processEpisodesDictionary;
 
-/**
- *  Get NSDateFormatter for eastern time zone
- *
- *  @return NSDateFormatter object
- */
-+ (NSDateFormatter *)estDateFormatter;
-
-/**
- *  Get NSDateFormatter for local time zone
- *
- *  @return NSDateFormatter object
- */
-+ (NSDateFormatter *)localDateFormatter;
-
-- (NSDate *)dateWithOutTime:(NSDate *)date;
 
 @end

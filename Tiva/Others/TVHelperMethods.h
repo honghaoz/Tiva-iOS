@@ -12,4 +12,20 @@
 
 +(void) setMaskTo:(UIView*)view byRoundingCorners:(UIRectCorner)corners withRadius:(CGFloat)radius;
 
+/**
+ *  Get NSDateFormatter for eastern time zone
+ *
+ *  @return NSDateFormatter object
+ */
++ (NSDateFormatter *)estDateFormatter;
+
+/**
+ *  Get NSDateFormatter for local time zone
+ *
+ *  @return NSDateFormatter object
+ */
++ (NSDateFormatter *)localDateFormatter;
+
++ (NSDate *)dateWithOutTime:(NSDate *)date;
+
 @end

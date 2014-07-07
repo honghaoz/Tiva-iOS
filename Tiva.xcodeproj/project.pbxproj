@@ -47,7 +47,7 @@
 		1B932A8A1958CB210071843D /* TVHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B932A891958CB210071843D /* TVHelperMethods.m */; };
 		1B9AE9941950CC3600F0691B /* TVMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AE9931950CC3600F0691B /* TVMainViewController.m */; };
 		1BC839441956753400679347 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CA19465FE600848D85 /* Foundation.framework */; };
-		1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEDB70C19566A12005FFE29 /* TVTraktUser.m */; };
+		1BEDB70D19566A12005FFE29 /* TVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEDB70C19566A12005FFE29 /* TVUser.m */; };
 		37A79D7D43784F51A730C1A6 /* libPods-Tiva.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4B8EEB9A3846378CFFFE8B /* libPods-Tiva.a */; };
 		97C2B7EA19536DD700B0A063 /* TVShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */; };
 		97C2B7EB19536DD700B0A063 /* TVShowDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C2B7E919536DD700B0A063 /* TVShowDetailsViewController.xib */; };
@@ -128,8 +128,8 @@
 		1B932A891958CB210071843D /* TVHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHelperMethods.m; sourceTree = "<group>"; };
 		1B9AE9921950CC3600F0691B /* TVMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVMainViewController.h; path = ViewController/TVMainViewController.h; sourceTree = "<group>"; };
 		1B9AE9931950CC3600F0691B /* TVMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVMainViewController.m; path = ViewController/TVMainViewController.m; sourceTree = "<group>"; };
-		1BEDB70B19566A12005FFE29 /* TVTraktUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVTraktUser.h; path = Model/TVTraktUser.h; sourceTree = "<group>"; };
-		1BEDB70C19566A12005FFE29 /* TVTraktUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVTraktUser.m; path = Model/TVTraktUser.m; sourceTree = "<group>"; };
+		1BEDB70B19566A12005FFE29 /* TVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVUser.h; path = Model/TVUser.h; sourceTree = "<group>"; };
+		1BEDB70C19566A12005FFE29 /* TVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVUser.m; path = Model/TVUser.m; sourceTree = "<group>"; };
 		4C4B8EEB9A3846378CFFFE8B /* libPods-Tiva.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tiva.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C2B7E719536DD700B0A063 /* TVShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVShowDetailsViewController.h; path = ViewController/TVShowDetailsViewController.h; sourceTree = "<group>"; };
 		97C2B7E819536DD700B0A063 /* TVShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVShowDetailsViewController.m; path = ViewController/TVShowDetailsViewController.m; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 				1B0F96DE19547C5A004FD9BD /* TVShow.m */,
 				1B0F96D919547C39004FD9BD /* TVEpisode.h */,
 				1B0F96DA19547C39004FD9BD /* TVEpisode.m */,
-				1BEDB70B19566A12005FFE29 /* TVTraktUser.h */,
-				1BEDB70C19566A12005FFE29 /* TVTraktUser.m */,
+				1BEDB70B19566A12005FFE29 /* TVUser.h */,
+				1BEDB70C19566A12005FFE29 /* TVUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -523,7 +523,7 @@
 				1B0F96DB19547C39004FD9BD /* TVEpisode.m in Sources */,
 				1B932A7D19577EF50071843D /* TVCalendarViewController.m in Sources */,
 				1B0F969719536E3F004FD9BD /* ZHHMainScrollView.m in Sources */,
-				1BEDB70D19566A12005FFE29 /* TVTraktUser.m in Sources */,
+				1BEDB70D19566A12005FFE29 /* TVUser.m in Sources */,
 				1B932A8A1958CB210071843D /* TVHelperMethods.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
 				1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */,
@@ -588,7 +588,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.honghao.Tiva";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -606,6 +606,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "CC4374EA-EACC-45CC-9CB5-9770625FF40D";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -637,6 +638,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "CC4374EA-EACC-45CC-9CB5-9770625FF40D";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -655,6 +657,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CC4374EA-EACC-45CC-9CB5-9770625FF40D";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -674,6 +677,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CC4374EA-EACC-45CC-9CB5-9770625FF40D";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;

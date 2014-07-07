@@ -10,6 +10,7 @@
 #import "TVShowStore.h"
 #import "TVShow.h"
 #import "TVEpisode.h"
+#import "TVHelperMethods.h"
 
 #define NAVIGATION_BAR_HEIGHT 44
 #define STATUS_BAR_HEIGHT 20
@@ -109,6 +110,9 @@
                 if (episodesCount > maxNumberOfEpisodes) {
                     maxNumberOfEpisodes = episodesCount;
                 }
+//                if (episodesCount > 15) {
+//                    episodesCount = 15;
+//                }
                 for (int j = 0; j < episodesCount; j++) {
                     TVEpisode *eachEpisode = (TVEpisode *)episodes[j];
                     UIView *episodeView = [[UIView alloc] initWithFrame:CGRectMake(i * width, j * _episodeHeight, width, _episodeHeight)];
@@ -130,7 +134,7 @@
                     CGFloat timeLabelHeight = 20;
                     CGRect timeLabelFrame = CGRectMake(timeLabelX, timeLabelY, timeLabelWidth, timeLabelHeight);
                     UILabel *timeLabel = [[UILabel alloc] initWithFrame:timeLabelFrame];
-                    NSDateFormatter *formater = [TVShowStore localDateFormatter];
+                    NSDateFormatter *formater = [TVHelperMethods localDateFormatter];
                     [formater setDateFormat:@"hh:mm aa"];
                     
                     [timeLabel setText:[formater stringFromDate:eachEpisode.airedDateUTC]];
@@ -206,12 +210,12 @@
     
     for (int i = daysBefore; i > 0; i--) {
         NSDate *theDay = [[NSDate date] dateByAddingTimeInterval:-(60 * 60 * 24) * i];
-        [keys addObject:[_mainStore dateWithOutTime:theDay]];
+        [keys addObject:[TVHelperMethods dateWithOutTime:theDay]];
     }
-    [keys addObject:[_mainStore dateWithOutTime:[NSDate date]]];
+    [keys addObject:[TVHelperMethods dateWithOutTime:[NSDate date]]];
     for (int i = 1; i <= daysAfter; i++) {
         NSDate *theDay = [[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24) * i];
-        [keys addObject:[_mainStore dateWithOutTime:theDay]];
+        [keys addObject:[TVHelperMethods dateWithOutTime:theDay]];
     }
     return keys;
 }

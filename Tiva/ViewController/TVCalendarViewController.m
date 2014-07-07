@@ -130,7 +130,7 @@
 
 - (NSMutableArray *)titlesForDay:(NSDate *)date numberOfDaysBefore:(NSInteger)daysBefore numberOfDaysAfter:(NSInteger)daysAfter {
     NSMutableArray *titles = [[NSMutableArray alloc] init];
-    NSDateFormatter *formatter = [TVShowStore localDateFormatter];
+    NSDateFormatter *formatter = [TVHelperMethods localDateFormatter];
     [formatter setDateFormat:@"EEEE, MMM dd"];
     
     for (int i = daysBefore; i > 0; i--) {

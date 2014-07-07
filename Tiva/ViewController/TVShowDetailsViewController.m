@@ -9,6 +9,7 @@
 #import "TVShowDetailsViewController.h"
 #import "TVShow.h"
 #import "TVShowStore.h"
+#import "TVHelperMethods.h"
 
 @interface TVShowDetailsViewController ()
 
@@ -56,7 +57,7 @@
     [self.view addSubview:overview];
     
     [networkLable setText:_theShow.network];
-    NSDateFormatter *formater = [TVShowStore localDateFormatter];
+    NSDateFormatter *formater = [TVHelperMethods localDateFormatter];
     [formater setDateFormat:@"MMM yyyy"];
     [airDateLable setText:[formater stringFromDate:_theShow.firstAiredDateUTC]];
     

@@ -16,7 +16,7 @@
 #import "TVShow.h"
 #import "iCarousel.h"
 #import "TVAPIClient.h"
-#import "TVTraktUser.h"
+#import "TVUser.h"
 #import "TVShowDetailsViewController.h"
 #import "TVCalendarViewController.h"
 #import "TVCalendarShowView.h"
@@ -33,7 +33,7 @@
 @interface TVMainViewController () <iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate> {
     CGRect _mainScreen;
     TVShowStore *_sharedShowStore;
-    TVTraktUser *_sharedUser;
+    TVUser *_sharedUser;
     
     UIView *_carouselParentView;
     iCarousel *_carouselView;
@@ -258,7 +258,7 @@
 {
     [super viewDidLoad];
     _sharedShowStore = [TVShowStore sharedStore];
-    _sharedUser = [TVTraktUser sharedUser];
+    _sharedUser = [TVUser sharedUser];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:_sharedShowStore];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCarouselShowsUpdates:) name:@"FavouriteShowUpdated" object:_sharedUser];

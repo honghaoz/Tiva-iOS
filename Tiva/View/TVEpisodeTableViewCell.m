@@ -85,7 +85,7 @@
 
 - (void)setShowTitle:(NSString *)showTitle airedTime:(NSDate *)airedTime {
     [_showTitleLabel setText:showTitle];
-    NSDateFormatter *formater = [TVShowStore localDateFormatter];
+    NSDateFormatter *formater = [TVHelperMethods localDateFormatter];
     [formater setDateFormat:@"cccc hh:mm aa"];
     
     [_showAiredTimeLabel setText:[formater stringFromDate:airedTime]];

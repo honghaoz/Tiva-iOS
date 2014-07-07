@@ -10,7 +10,7 @@
 #import "TVMainViewController.h"
 #import "ZHHMainScrollView.h"
 #import "TVRoundedButton.h"
-#import "TVTraktUser.h"
+#import "TVUser.h"
 
 @interface TVLoginViewController ()
 
@@ -212,7 +212,7 @@
 }
 
 - (void)loginButtonTapped:(id)sender {
-    TVTraktUser *sharedUser = [TVTraktUser sharedUser];
+    TVUser *sharedUser = [TVUser sharedUser];
     [sharedUser setUsername:_user.text andPassword:_password.text];
     NSLog(@"%@",sharedUser.username);
     NSLog(@"%@",sharedUser.password);

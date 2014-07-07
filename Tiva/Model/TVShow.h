@@ -40,6 +40,6 @@
 
 - (instancetype)initWithParseShowObject:(PFObject *)object;
 
-- (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
+//- (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
 
 @end

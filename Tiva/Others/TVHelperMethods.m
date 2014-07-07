@@ -22,4 +22,36 @@
     view.layer.borderWidth = 1;
 }
 
++ (NSDateFormatter *)estDateFormatter {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    // set the locale to fix the formate to read and write;
+    //    NSLocale *enUSPOSIXLocale= [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    //    [dateFormatter setLocale:enUSPOSIXLocale];
+    // set timezone to EST
+    // Note: timeZoneWithAbbreviation is different with timeZoneWithName
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"EST"]];
+    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"EST"]];
+    
+    return dateFormatter;
+}
+
++ (NSDateFormatter *)localDateFormatter {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    NSLocale *enUSPOSIXLocale= [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    //    [dateFormatter setLocale:enUSPOSIXLocale];
+    
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"EST"]];
+    
+    return dateFormatter;
+}
+
++ (NSDate *)dateWithOutTime:(NSDate *)date {
+    NSDateFormatter *formater = [self localDateFormatter];
+    [formater setDateFormat:@"dd-MM-yyyy"];
+    NSDate *onlyDay = [formater dateFromString:[formater stringFromDate:date]];
+    return onlyDay;
+}
+
 @end

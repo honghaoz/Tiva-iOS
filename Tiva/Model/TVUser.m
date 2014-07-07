@@ -1,20 +1,20 @@
 //
-//  TVTraktUser.m
+//  TVUser.m
 //  Tiva
 //
 //  Created by Zhang Honghao on 6/21/14.
 //  Copyright (c) 2014 org-honghao. All rights reserved.
 //
 
-#import "TVTraktUser.h"
+#import "TVUser.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import <Parse/Parse.h>
 #import "TVShow.h"
 
-@implementation TVTraktUser
+@implementation TVUser
 
-+ (TVTraktUser *)sharedUser {
-    static TVTraktUser *sharedUser = nil;
++ (TVUser *)sharedUser {
+    static TVUser *sharedUser = nil;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedUser = [[self alloc] init];
@@ -49,25 +49,25 @@
                                         if (user) {
                                             // Do stuff after successful login.
                                             NSLog(@"login succeed");
-                                            _currentUser = user;
+                                            _currentPFUser = user;
                                         } else {
                                             // The login failed. Check error to see why.
                                             NSLog(@"login failed");
-                                            _currentUser = nil;
+                                            _currentPFUser = nil;
                                         }
     }];
 }
 
 - (void)retrieveUserData {
     LogMethod;
-    _currentUser = [PFUser currentUser];
-    if (!_currentUser) {
+    _currentPFUser = [PFUser currentUser];
+    if (!_currentPFUser) {
         [self login];
     } else {
         NSLog(@"user!!!!");
 //        _currentUser
 //        NSLog(@"111 %@", _currentUser[@"email"]);
-        PFRelation *favouriteShows = _currentUser[@"FavouriteShows"];
+        PFRelation *favouriteShows = _currentPFUser[@"FavouriteShows"];
         PFQuery *queryForFavourite = [favouriteShows query];
         [queryForFavourite setCachePolicy:kPFCachePolicyNetworkElseCache];
         [queryForFavourite findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
