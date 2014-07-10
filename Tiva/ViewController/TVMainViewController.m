@@ -11,6 +11,8 @@
 #import <NSString+VTContainsSubstring.h>
 #import <SAMCategories.h>
 #import <QuartzCore/QuartzCore.h>
+#import <UIImage+BlurredFrame.h>
+#import "UIView+BackgroundBlurEffect.h"
 
 #import "TVShowStore.h"
 #import "TVShow.h"
@@ -29,11 +31,14 @@
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
 #define BANNER_ASPECT_RATIO (758 / 140.0)
 #define EMPTY_BANNER_URL_STRING @"http://slurm.trakt.us/images/banner"
+#define EMPTY_FANART_URL_STRING @"http://slurm.trakt.us/images/fanart-dark"
 
 @interface TVMainViewController () <iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate> {
     CGRect _mainScreen;
     TVShowStore *_sharedShowStore;
     TVUser *_sharedUser;
+    
+    UIImageView *_backgroundImageView;
     
     UIView *_carouselParentView;
     iCarousel *_carouselView;
@@ -72,11 +77,8 @@
     self.view = [[UIView alloc] init];
     _mainScreen = [UIScreen mainScreen].bounds;
     Swap(&_mainScreen.size.height, &_mainScreen.size.width);
-
-    //UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"suits.jpg"]];
-    //self.view.backgroundColor = background;
-    self.view.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.7];
-
+//    self.view.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.7];
+    [self updateBackground];
     
     // Menu button
     CGFloat menuButtonX = 20;
@@ -127,6 +129,7 @@
     CGRect todayViewFrame = CGRectMake(todayViewX, todayViewY, todayViewWidth, todayViewHeight);
     _todayParentView = [[UIView alloc] initWithFrame:todayViewFrame];
     [TVHelperMethods setMaskTo:_todayParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
+//    [_todayParentView setBackgroundColor:[UIColor clearColor]];
 //    _todayParentView.layer.cornerRadius = 5.0;
 //    _todayParentView.layer.borderColor = [[UIColor whiteColor] CGColor];
 //    _todayParentView.layer.borderWidth = 1;
@@ -141,7 +144,15 @@
     [_todayLabel setText:@"Today"];
     [_todayLabel setTextAlignment:NSTextAlignmentCenter];
     [_todayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
-    [_todayLabel setBackgroundColor:LABEL_COLOR];
+//    [_todayLabel setBackgroundColor:LABEL_COLOR];
+    [_todayLabel setBackgroundColor:[UIColor clearColor]];
+//    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, _todayLabel.bounds.size.width, _todayLabel.bounds.size.height)];
+//    [toolbar setBarTintColor: [UIColor colorWithRed:0. green:0.7 blue:0. alpha:0.05]];
+//    [self.layer insertSublayer:[toolbar layer] atIndex:0];
+//    [_todayLabel insertSubview:toolbar atIndex:0];
+
+    
+//    [_todayLabel setBlurTintColor:[UIColor colorWithRed:0. green:0.7 blue:0. alpha:0.05]];
     [_todayLabel setTextColor:FONT_COLOR];
     [_todayParentView addSubview:_todayLabel];
     
@@ -169,7 +180,7 @@
     _todayTableView.dataSource = self;
     _todayTableView.delegate = self;
     [_todayTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [_todayTableView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    [_todayTableView setBackgroundColor:[UIColor clearColor]];//[UIColor colorWithWhite:0.7 alpha:1]];
     [_todayParentView addSubview:_todayTableView];
     
     // Recommendation view
@@ -252,6 +263,24 @@
     [self.view addSubview:_todayParentView];
     [self.view addSubview:_recommendationParentView];
     [self.view addSubview:_commentsParentView];
+}
+
+- (void)updateBackground {
+    UIImage *img = [UIImage imageNamed:@"1372240878_breaking_bad.jpeg"];
+//    if ([_sharedShowStore.shows count] > 0) {
+//        TVShow *randomShow = [_sharedShowStore.shows objectAtIndex: arc4random() % [_sharedShowStore.shows count]];
+//        img = [UIImage imag]
+//    }
+    CGRect frame = CGRectMake(0, 0, img.size.width, img.size.height);
+    
+    img = [img applyDarkEffectAtFrame:frame];
+    img = [TVHelperMethods imageWithImage:img scaledToSize:_mainScreen.size];
+    
+//    _backgroundImageView = [[UIImageView alloc] initWithImage:img];
+//    self.view = _backgroundImageView;
+//
+    UIColor *background = [[UIColor alloc] initWithPatternImage:img];
+    self.view.backgroundColor = background;
 }
 
 - (void)viewDidLoad

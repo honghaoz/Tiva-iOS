@@ -27,7 +27,7 @@
         _cellHeight = height;
         [self.contentView setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, _cellWidth, _cellHeight)];
         // Initialization code
-        [self.contentView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+        [self.contentView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:0.2]];
         UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(CELL_GAP_WIDTH, CELL_GAP_WIDTH / 2, _cellWidth - 2 * CELL_GAP_WIDTH, _cellHeight - CELL_GAP_WIDTH)];
         [containerView setBackgroundColor:[UIColor whiteColor]];
         [TVHelperMethods setMaskTo:containerView byRoundingCorners:UIRectCornerAllCorners withRadius:2.0];

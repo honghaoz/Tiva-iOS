@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// BackgroundBlurEffectUIView
+#define COCOAPODS_POD_AVAILABLE_BackgroundBlurEffectUIView
+#define COCOAPODS_VERSION_MAJOR_BackgroundBlurEffectUIView 0
+#define COCOAPODS_VERSION_MINOR_BackgroundBlurEffectUIView 0
+#define COCOAPODS_VERSION_PATCH_BackgroundBlurEffectUIView 1
+
 // Bolts
 #define COCOAPODS_POD_AVAILABLE_Bolts
 #define COCOAPODS_VERSION_MAJOR_Bolts 1
@@ -58,7 +64,7 @@
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 15
-#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
+#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
 
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
@@ -167,6 +173,12 @@
 #define COCOAPODS_VERSION_MAJOR_SSToolkit 2
 #define COCOAPODS_VERSION_MINOR_SSToolkit 0
 #define COCOAPODS_VERSION_PATCH_SSToolkit 0
+
+// UIImage+BlurredFrame
+#define COCOAPODS_POD_AVAILABLE_UIImage_BlurredFrame
+#define COCOAPODS_VERSION_MAJOR_UIImage_BlurredFrame 0
+#define COCOAPODS_VERSION_MINOR_UIImage_BlurredFrame 0
+#define COCOAPODS_VERSION_PATCH_UIImage_BlurredFrame 4
 
 // iCarousel
 #define COCOAPODS_POD_AVAILABLE_iCarousel

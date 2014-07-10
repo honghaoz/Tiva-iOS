@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42A086B99620489E862C8DC8"
+               BlueprintIdentifier = "C295419BA7254A8AB4D46921"
                BuildableName = "libPods-Tiva-SSToolkit.a"
                BlueprintName = "Pods-Tiva-SSToolkit"
                ReferencedContainer = "container:Pods.xcodeproj">

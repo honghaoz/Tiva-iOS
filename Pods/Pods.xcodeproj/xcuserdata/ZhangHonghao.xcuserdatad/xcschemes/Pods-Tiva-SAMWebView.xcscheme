@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "29E52632FDDD40DAA993B841"
+               BlueprintIdentifier = "4FD40F1832994256B608D271"
                BuildableName = "libPods-Tiva-SAMWebView.a"
                BlueprintName = "Pods-Tiva-SAMWebView"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BBD6BACF3F334C66979D0FD3"
+               BlueprintIdentifier = "A6EB7652998D4DF4A2F7E0B5"
                BuildableName = "libPods-Tiva-Parse.a"
                BlueprintName = "Pods-Tiva-Parse"
                ReferencedContainer = "container:Pods.xcodeproj">

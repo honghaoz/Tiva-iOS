@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "76FA9A9360AA460588131AFF"
+               BlueprintIdentifier = "3F70742F6E1C45BC8263D8DF"
                BuildableName = "libPods-Tiva-NSString+VTSubstringOccurrences.a"
                BlueprintName = "Pods-Tiva-NSString+VTSubstringOccurrences"
                ReferencedContainer = "container:Pods.xcodeproj">

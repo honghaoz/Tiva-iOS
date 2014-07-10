@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FD94EAE26BBA4FC0A6A5CE08"
+               BlueprintIdentifier = "5ACE57EF19E249859E2B803E"
                BuildableName = "libPods-Tiva-SAMAddressBar.a"
                BlueprintName = "Pods-Tiva-SAMAddressBar"
                ReferencedContainer = "container:Pods.xcodeproj">

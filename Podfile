@@ -16,6 +16,8 @@ pod 'SSToolkit', '~> 2.0'
 pod 'SAMHUDView', :git => 'https://github.com/soffes/SAMHUDView'
 pod 'SAMLoadingView', :git => 'https://github.com/soffes/SAMLoadingView'
 pod 'SAMWebView', :git => 'https://github.com/soffes/SAMWebView'
+pod 'UIImage+BlurredFrame', '~> 0.0'
+pod 'BackgroundBlurEffectUIView', '~> 0.0'
 
 end
 

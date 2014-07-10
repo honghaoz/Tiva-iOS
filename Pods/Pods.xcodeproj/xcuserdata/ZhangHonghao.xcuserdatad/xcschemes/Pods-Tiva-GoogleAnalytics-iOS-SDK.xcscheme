@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8B2D1398906F4795A792BFCA"
+               BlueprintIdentifier = "BD9B207648D647B6A843670B"
                BuildableName = "libPods-Tiva-GoogleAnalytics-iOS-SDK.a"
                BlueprintName = "Pods-Tiva-GoogleAnalytics-iOS-SDK"
                ReferencedContainer = "container:Pods.xcodeproj">

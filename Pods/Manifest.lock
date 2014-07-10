@@ -20,8 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - BackgroundBlurEffectUIView (0.0.1)
   - Bolts (1.0.0)
-  - Facebook-iOS-SDK (3.15.0):
+  - Facebook-iOS-SDK (3.15.1):
     - Bolts
   - GoogleAnalytics-iOS-SDK (3.0.7)
   - iCarousel (1.7.6)
@@ -55,9 +56,11 @@ PODS:
     - SAMTextField
     - SAMTextView
     - SAMWebView
+  - UIImage+BlurredFrame (0.0.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.3)
+  - BackgroundBlurEffectUIView (~> 0.0)
   - Bolts (from `https://github.com/BoltsFramework/Bolts-iOS`)
   - GoogleAnalytics-iOS-SDK (~> 3.0)
   - iCarousel (~> 1.7)
@@ -69,6 +72,7 @@ DEPENDENCIES:
   - SAMLoadingView (from `https://github.com/soffes/SAMLoadingView`)
   - SAMWebView (from `https://github.com/soffes/SAMWebView`)
   - SSToolkit (~> 2.0)
+  - UIImage+BlurredFrame (~> 0.0)
 
 EXTERNAL SOURCES:
   Bolts:
@@ -82,8 +86,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  BackgroundBlurEffectUIView: a624fc0881dbf570dd9fd1d2f6b188c8107a24e8
   Bolts: b213a26615a5cc7ed1255f87e29074ed5a45efe2
-  Facebook-iOS-SDK: d67a9aa373f28b581e00cefdfd5a1ab8f883ac14
+  Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
   GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
   iCarousel: c35a4e26b3c657847e523012b593e70ddbd84992
   NSString+VTContainsSubstring: d40bf02fd8bbbcd92b2acf64b97f7fcbc4385d69
@@ -103,5 +108,6 @@ SPEC CHECKSUMS:
   SAMTextView: 1062a784ba7b2080b0c17748001c416b53010b4b
   SAMWebView: e615d50d3683b9b4fd3e10da9d079ed03230ee24
   SSToolkit: 64d8bb043b4f36da68936ddbb4ec4e8cb3c5a8df
+  UIImage+BlurredFrame: 0c38f5760d72125c47d16001a88faaac573bd35d
 
 COCOAPODS: 0.33.1

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Tiva-BackgroundBlurEffectUIView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Tiva-Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -109,6 +114,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Tiva-UIImage+BlurredFrame.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Tiva-iCarousel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -122,117 +132,127 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>233E594000144099B31199DC</key>
+		<key>02F20084B98045A188BC484A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29E52632FDDD40DAA993B841</key>
+		<key>0CF6CF248D244F589E608F26</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>387077E169CD4F23B45B18B6</key>
+		<key>1A508256646F4D86A5CCD88D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40063C730E3741B1B691B0E2</key>
+		<key>318C2B70ED384859A2E94F15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>42A086B99620489E862C8DC8</key>
+		<key>3951BCBD984341FEB6CF8EB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>431501C0BCF34DDFA43BD886</key>
+		<key>3F70742F6E1C45BC8263D8DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5452102F67854DB099C408EC</key>
+		<key>4037F2E534B84F1AA1028FDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>656920D653F1434687B63F1C</key>
+		<key>4309171516B747858ABF7697</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>657FD56B96A1499797C07383</key>
+		<key>4FD40F1832994256B608D271</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>659D500049E0450D906AFCFF</key>
+		<key>537A7848FE574383B0E87DBE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76FA9A9360AA460588131AFF</key>
+		<key>5575B085BDAE4B2F962DDDA5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85A79E405F794F15A8F73CA1</key>
+		<key>559E4997FEAF49A0BC438D33</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B2D1398906F4795A792BFCA</key>
+		<key>5ACE57EF19E249859E2B803E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C6E5B2AC3D44A09A99E6AD9</key>
+		<key>63722C48B5BE4FC280E44405</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7041BF876CF4EF3ADC8E053</key>
+		<key>7140A89EB26540A4BA5E63D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5AD9718D60148D69E0F1EA8</key>
+		<key>92CEC028004D4727B9734484</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBD6BACF3F334C66979D0FD3</key>
+		<key>A6EB7652998D4DF4A2F7E0B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE94774D06974F16851CB8C0</key>
+		<key>A737974E57BC466684E69E35</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DC05ABDF61D344CB8D9853B1</key>
+		<key>BD9B207648D647B6A843670B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E6F6DDBFC5E2408888AD94CE</key>
+		<key>C295419BA7254A8AB4D46921</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7DECC35784D4D04BEF85E2D</key>
+		<key>D4D4743C2C064C60BFC4CC41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F6F218F0DBF14C449EF2B51F</key>
+		<key>DDF5EEFEB34E45FCA5E404EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FD94EAE26BBA4FC0A6A5CE08</key>
+		<key>E7C3DC0F1FAD406EB1839A03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1709E171F4A4126B5DF2B02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F710218E3098454F85156F3C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
