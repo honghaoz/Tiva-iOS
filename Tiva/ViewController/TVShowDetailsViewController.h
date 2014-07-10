@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *AddListButton;
 @property (weak, nonatomic) IBOutlet UIButton *RemoveListButton;
 @property (weak, nonatomic) IBOutlet UIButton *RecButton;
+@property (weak, nonatomic) IBOutlet UILabel *commentsLable;
+@property (weak, nonatomic) IBOutlet UITextField *commentsTextbox;
 
 - (void)setShow:(TVShow *)theShow;
 - (void)setShowImage:(UIImageView *)showImage;

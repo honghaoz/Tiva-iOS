@@ -149,7 +149,7 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     NSLog(@"User is in");
-    [self dismissViewControllerAnimated:YES completion:NO];
+   // [self dismissViewControllerAnimated:YES completion:NO];
     
     
 }

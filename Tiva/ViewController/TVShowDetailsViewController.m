@@ -31,6 +31,8 @@
 @synthesize AddListButton;
 @synthesize RemoveListButton;
 @synthesize RecButton;
+@synthesize commentsLable;
+@synthesize commentsTextbox;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +57,7 @@
     
     [self.view addSubview:_showImage];
     
-    UITextView *overview = [[UITextView alloc]initWithFrame:CGRectMake(_showImage.bounds.size.width + 15, 150,200,200)];
+    UITextView *overview = [[UITextView alloc]initWithFrame:CGRectMake(_showImage.bounds.size.width + 15, 130,200,160)];
      NSLog(@"over %@ ", _theShow.overview);
     [overview setText:_theShow.overview];
     [self.view addSubview:overview];

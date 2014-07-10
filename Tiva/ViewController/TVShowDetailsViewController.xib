@@ -10,6 +10,8 @@
                 <outlet property="RecButton" destination="jkw-wO-eJ2" id="yS2-y5-vTJ"/>
                 <outlet property="RemoveListButton" destination="5HO-HQ-s74" id="JQ9-Ls-Uho"/>
                 <outlet property="airDateLable" destination="ep4-bD-XFr" id="CNg-Uz-8Kh"/>
+                <outlet property="commentsLable" destination="kxp-AS-Iyc" id="LYB-sL-LVU"/>
+                <outlet property="commentsTextbox" destination="iao-dp-fQP" id="1dq-fy-7ZC"/>
                 <outlet property="doneButton" destination="0q6-Se-5MP" id="vzx-o9-ZR9"/>
                 <outlet property="networkLable" destination="sim-jD-IIe" id="a7r-Pf-2U5"/>
                 <outlet property="otherInfoText" destination="q6Y-wD-5L6" id="bsH-Fc-LKD"/>
@@ -32,6 +34,13 @@
                 </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Other Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TW-O4-qSc">
                     <rect key="frame" x="6" y="401" width="77" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxp-AS-Iyc">
+                    <rect key="frame" x="272" y="313" width="85" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -100,21 +109,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xm-7b-Ca7">
-                    <rect key="frame" x="20" y="571" width="97" height="30"/>
+                    <rect key="frame" x="6" y="579" width="97" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Add To List">
                         <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HO-HQ-s74">
-                    <rect key="frame" x="136" y="571" width="125" height="30"/>
+                    <rect key="frame" x="152" y="579" width="125" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Remove From List">
                         <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkw-wO-eJ2">
-                    <rect key="frame" x="295" y="571" width="170" height="30"/>
+                    <rect key="frame" x="336" y="579" width="170" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Recommend To A Friend">
                         <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -123,6 +132,13 @@
                         <action selector="pickFriendsClick:" destination="-1" eventType="touchUpInside" id="oXO-OX-4ZX"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Add Your Comments Here" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iao-dp-fQP">
+                    <rect key="frame" x="272" y="342" width="249" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
