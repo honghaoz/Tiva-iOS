@@ -12,6 +12,7 @@
 #import "TVRoundedButton.h"
 #import "TVUser.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "TVAppDelegate.h"
 
 @interface TVLoginViewController ()
 
@@ -149,9 +150,9 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     NSLog(@"User is in");
+    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
+    [theAppDelegate setFbUserName:user.username];
    // [self dismissViewControllerAnimated:YES completion:NO];
-    
-    
 }
 
 // Handle possible errors that can occur during login

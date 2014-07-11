@@ -25,10 +25,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *RecButton;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLable;
 @property (weak, nonatomic) IBOutlet UITextField *commentsTextbox;
+@property (weak, nonatomic) IBOutlet UIButton *commentSendButton;
+@property (weak, nonatomic) IBOutlet UIButton *addToListButton;
+@property (weak, nonatomic) IBOutlet UIButton *removeFromListButton;
 
 - (void)setShow:(TVShow *)theShow;
 - (void)setShowImage:(UIImageView *)showImage;
+- (IBAction)addPressed:(id)sender;
+- (IBAction)removePressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)commentButtonPressed:(id)sender;
 - (IBAction)pickFriendsClick:(UIButton *)sender;
+
 
 @end

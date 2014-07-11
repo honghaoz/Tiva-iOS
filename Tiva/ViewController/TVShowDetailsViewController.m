@@ -11,6 +11,9 @@
 #import "TVShowStore.h"
 #import "TVHelperMethods.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "TvAppDelegate.h"
+#import <Parse/Parse.h>
+
 
 @interface TVShowDetailsViewController ()
 
@@ -89,13 +92,60 @@
      // NSLog(@"URL %@ ", posterURLString);
     _showImage = showImage;
 }
+- (IBAction)addPressed:(id)sender{
+    //Add the show object
+    NSString *showId = _theShow.tvdb_id;
+    // Replace the name and paramenter in the function call below to send comments.
+    //    [PFCloud callFunctionInBackground:@"recommendShow"
+    //                       withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
+    //                                block:^(NSString *result, NSError *error) {
+    //                                    if (!error) {
+    //                                        NSLog(@"SHIT FAILED YO");
+    //                                    }
+    //                                }];
+}
+- (IBAction)removePressed:(id)sender{
+    NSString *showId = _theShow.tvdb_id;
+    // Replace the name and paramenter in the function call below to send comments.
+    //    [PFCloud callFunctionInBackground:@"recommendShow"
+    //                       withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
+    //                                block:^(NSString *result, NSError *error) {
+    //                                    if (!error) {
+    //                                        NSLog(@"SHIT FAILED YO");
+    //                                    }
+    //                                }];
+    
+}
+
 
 - (IBAction)doneButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)commentButtonPressed:(id)sender{
+    NSLog(@"Comment: %@", commentsTextbox.text);
+    // send text to parse now.
+    // Replace the name and paramenter in the function call below to send comments.
+//    [PFCloud callFunctionInBackground:@"recommendShow"
+//                       withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        NSLog(@"SHIT FAILED YO");
+//                                    }
+//                                }];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touchesBegan:withEvent:");
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
 // Pick Friends button handler
 - (IBAction)pickFriendsClick:(UIButton *)sender {
+    //Username of the current user is stored in the app delegate.
+    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
+    
     FBFriendPickerViewController *friendPickerController = [[FBFriendPickerViewController alloc] init];
     friendPickerController.title = @"Pick Friends";
     [friendPickerController loadData];
@@ -122,10 +172,22 @@
                      [text appendString:@", "];
                  }
                  [text appendString:user.name];
+                 // SEND TO PARSE
+                 NSString *reccomendee = user.username;
+                 NSString *reccomender = theAppDelegate.fbUserName;
+                 NSString *showId = _theShow.tvdb_id;
+                 
+                 [PFCloud callFunctionInBackground:@"recommendShow"
+                                    withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
+                                             block:^(NSString *result, NSError *error) {
+                                                 if (!error) {
+                                                     NSLog(@"SHIT FAILED YO");
+                                                 }
+                                             }];
              }
              message = text;
          }
-         
+         // Only for debug
          [[[UIAlertView alloc] initWithTitle:@"You Picked:"
                                      message:message
                                     delegate:nil

@@ -16,6 +16,8 @@
 
 @implementation TVAppDelegate
 
+@synthesize fbUserName;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Set Parse Id

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-Tiva-BackgroundBlurEffectUIView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
+		</dict>
 		<key>Pods-Tiva-Bolts.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -109,10 +114,20 @@
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
+		<key>Pods-Tiva-UIImage+BlurredFrame.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
 		<key>Pods-Tiva-iCarousel.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>9</integer>
+		</dict>
+		<key>Pods-Tiva-iOS-blur.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>26</integer>
 		</dict>
 		<key>Pods-Tiva.xcscheme</key>
 		<dict>
@@ -122,7 +137,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0162489815E64296AFD9E815</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03C3700F2B474DC2B8E1A3A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>08962B66D1734869B42225A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>12AF77314B5D417098FD133E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>12BCC413D69E42778BB5FA9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +177,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>278339BE0B5C4205AFAD9F94</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>29E52632FDDD40DAA993B841</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>321613CB02BE4FA187ABB092</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>342943BE1FE04BDDB453A090</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>354F478AF8C04008A65A0FE1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,7 +207,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3E1B53B6C9714631ABCCF934</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>40063C730E3741B1B691B0E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41A85623CF344CEE8C208F37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -168,6 +233,21 @@
 			<true/>
 		</dict>
 		<key>431501C0BCF34DDFA43BD886</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>43BFA4336D264092903800B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>454616AC68244BDA8961DDCD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>52C8B531BDC14BCA94B34A10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,6 +272,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>71E8778561194B6399A0E786</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>74AD30444FBD4765B228F69B</key>
 		<dict>
 			<key>primary</key>
@@ -203,6 +288,11 @@
 			<true/>
 		</dict>
 		<key>85A79E405F794F15A8F73CA1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8710416740DE4A3183BF7B11</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -222,7 +312,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A43900E80BE343798CFC125D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A58DB3D7195347EBB9907B6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A7041BF876CF4EF3ADC8E053</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AAFEF239903E457C9AC95815</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ADA39112FAD74BA3BF7527D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1C01838235D4031BBCBEBB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B402B4F4FD584D70951808F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B59FD34EB9164F63AD3086FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -242,12 +367,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C26910872D3D46C5AC574CF0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4DC6362E9C94C72A6ADFC14</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C76F1053BC38498681F30FE1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D03134299BB74C43B45B4A41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4F5B8CB56084A9C9C59743F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D710F8D23D4A447695C18BB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
