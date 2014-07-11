@@ -150,8 +150,12 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     NSLog(@"User is in");
+    NSLog(@"Username: %@", user.username);
     TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
-    [theAppDelegate setFbUserName:user.username];
+    
+    //[theAppDelegate setFbUserName:user.username];
+    // ---------------THIS IS FAKE!!! CHANGE IT----------------
+    [theAppDelegate setFbUserName:@"alice"];
    // [self dismissViewControllerAnimated:YES completion:NO];
 }
 

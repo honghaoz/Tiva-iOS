@@ -20,6 +20,8 @@
 @property (nonatomic, strong) TVShow *theShow;
 @property (nonatomic, strong) UIImageView *showImage;
 @property (nonatomic, strong) NSString *fbUserid;
+@property (nonatomic, strong) NSString *showID;
+
 
 @end
 
@@ -38,6 +40,7 @@
 @synthesize commentsLable;
 @synthesize commentsTextbox;
 @synthesize fbUserid;
+@synthesize showID;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,17 +54,15 @@
 
 - (void)viewDidLoad
 {
+    // Setting userID from app delegate
     TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
     fbUserid = theAppDelegate.fbUserName;
+    NSLog(@"fbuserName %@", theAppDelegate.fbUserName);
+    // Setting show ID
+    showID = _theShow.tvdb_id;
     [super viewDidLoad];
     [showTitle setText:_theShow.title]; // Change this to be dynamic
-    //UIScrollView *scrollView = [[UIScrollView alloc]init];
-    
-    //[self.view addSubview:scrollView];
-    //UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    
-     //NSLog(@"Image %d ",  _showImage.bounds.size.width);
-    
+
     [self.view addSubview:_showImage];
     
     UITextView *overview = [[UITextView alloc]initWithFrame:CGRectMake(_showImage.bounds.size.width + 15, 130,200,160)];
@@ -98,19 +99,17 @@
 }
 - (IBAction)addPressed:(id)sender{
     //Add the show object
-    NSString *showId = _theShow.tvdb_id;
     [PFCloud callFunctionInBackground:@"addFavourite"
-                       withParameters:@{@"userID":fbUserid,@"showID":showId}
+                       withParameters:@{@"userID":fbUserid,@"showID":showID}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
-                                        NSLog(@"SHIT FAILED YO");
+                                        NSLog(@"It works");
                                     }
                                 }];
 
   
 }
 - (IBAction)removePressed:(id)sender{
-    NSString *showId = _theShow.tvdb_id;
     // Replace the name and paramenter in the function call below to send comments.
     //    [PFCloud callFunctionInBackground:@"recommendShow"
     //                       withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
@@ -128,16 +127,19 @@
 }
 
 - (IBAction)commentButtonPressed:(id)sender{
-    NSLog(@"Comment: %@", commentsTextbox.text);
+    
+    NSString *comment = commentsTextbox.text;
+    NSLog(@"Comment: %@, ID: %@, show: %@", comment,fbUserid,showID);
     // send text to parse now.
     // Replace the name and paramenter in the function call below to send comments.
-//    [PFCloud callFunctionInBackground:@"recommendShow"
-//                       withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
-//                                block:^(NSString *result, NSError *error) {
-//                                    if (!error) {
-//                                        NSLog(@"SHIT FAILED YO");
-//                                    }
-//                                }];
+    //commentShow(senderID, contents, showID)
+    [PFCloud callFunctionInBackground:@"commentShow"
+                       withParameters:@{@"senderID":fbUserid,@"contents": comment,@"showID":showID}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"it works");
+                                    }
+                                }];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -180,10 +182,10 @@
                  // SEND TO PARSE
                  NSString *reccomendee = user.username;
                  NSString *reccomender = theAppDelegate.fbUserName;
-                 NSString *showId = _theShow.tvdb_id;
+                 //NSString *showId = _theShow.tvdb_id;
                  
                  [PFCloud callFunctionInBackground:@"recommendShow"
-                                    withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
+                                    withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showID}
                                              block:^(NSString *result, NSError *error) {
                                                  if (!error) {
                                                      NSLog(@"SHIT FAILED YO");
