@@ -97,7 +97,7 @@
 }
 
 - (void)buttonTapped:(id)sender {
-    NSLog(@"adasd");
+//    NSLog(@"adasd");
 }
 
 /*

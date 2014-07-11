@@ -24,6 +24,9 @@
 @property (nonatomic, weak) TVShow *show;
 //@property (nonatomic, strong)
 
++ (NSComparator)episodeUniqueComparator;
++ (NSComparator)episodeOrderComparator;
 - (instancetype)initWithParseEpisodeObject:(id)object parentShow:(TVShow *)show;
+
 
 @end

@@ -98,7 +98,7 @@
         [_mainScrollView setDelegate:self];
         
         NSInteger maxNumberOfEpisodes = 0;
-        NSMutableArray *dateKeys = [self dateKeysForDay:[NSDate date] numberOfDaysBefore:6 numberOfDaysAfter:6];
+        NSMutableArray *dateKeys = [TVHelperMethods dateKeysForDay:[NSDate date] numberOfDaysBefore:6 numberOfDaysAfter:6];
         
         NSInteger dateKeysCount = [dateKeys count];
         for (int i = 0; i < dateKeysCount; i++) {
@@ -106,7 +106,7 @@
             NSArray *episodes = (NSArray *)[_mainStore.episodesDictionary objectForKey:key];
             if (episodes) {
                 NSInteger episodesCount = [episodes count];
-                NSLog(@"ep count: %d", episodesCount);
+//                NSLog(@"ep count: %d", episodesCount);
                 if (episodesCount > maxNumberOfEpisodes) {
                     maxNumberOfEpisodes = episodesCount;
                 }
@@ -203,21 +203,6 @@
     UIGraphicsEndImageContext();
     
     return image;
-}
-
-- (NSMutableArray *)dateKeysForDay:(NSDate *)date numberOfDaysBefore:(NSInteger)daysBefore numberOfDaysAfter:(NSInteger)daysAfter {
-    NSMutableArray *keys = [[NSMutableArray alloc] init];
-    
-    for (int i = daysBefore; i > 0; i--) {
-        NSDate *theDay = [[NSDate date] dateByAddingTimeInterval:-(60 * 60 * 24) * i];
-        [keys addObject:[TVHelperMethods dateWithOutTime:theDay]];
-    }
-    [keys addObject:[TVHelperMethods dateWithOutTime:[NSDate date]]];
-    for (int i = 1; i <= daysAfter; i++) {
-        NSDate *theDay = [[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24) * i];
-        [keys addObject:[TVHelperMethods dateWithOutTime:theDay]];
-    }
-    return keys;
 }
 
 - (void)moveToToday {

@@ -10,7 +10,32 @@
 #import "TVShow.h"
 #import "TVShowStore.h"
 
+static NSComparator episodeUniqueComparator = ^(id e1, id e2) {
+    TVEpisode *ep1 = (TVEpisode *)e1;
+    TVEpisode *ep2 = (TVEpisode *)e2;
+    // Compare show.tvdb_id, airedDateUTC
+    if ([ep1.show.tvdb_id isEqualToString:ep2.show.tvdb_id]) {
+        return [ep1.airedDateUTC compare:ep2.airedDateUTC];
+    } else {
+        return NSOrderedAscending;
+    }
+};
+
+static NSComparator episodeOrderComparator = ^(id e1, id e2) {
+    TVEpisode *ep1 = (TVEpisode *)e1;
+    TVEpisode *ep2 = (TVEpisode *)e2;
+    return [ep1.airedDateUTC compare:ep2.airedDateUTC];
+};
+
 @implementation TVEpisode
+
++ (NSComparator)episodeUniqueComparator {
+    return episodeUniqueComparator;
+}
+
++ (NSComparator)episodeOrderComparator {
+    return episodeOrderComparator;
+}
 
 - (instancetype)init {
     self = [super init];

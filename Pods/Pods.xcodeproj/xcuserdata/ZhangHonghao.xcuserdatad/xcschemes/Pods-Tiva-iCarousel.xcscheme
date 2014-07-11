@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A508256646F4D86A5CCD88D"
+               BlueprintIdentifier = "B59FD34EB9164F63AD3086FF"
                BuildableName = "libPods-Tiva-iCarousel.a"
                BlueprintName = "Pods-Tiva-iCarousel"
                ReferencedContainer = "container:Pods.xcodeproj">

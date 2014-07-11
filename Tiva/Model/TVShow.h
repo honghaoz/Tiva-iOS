@@ -36,10 +36,12 @@
 
 @property (nonatomic, strong) NSArray *genres;
 
-@property (nonatomic, strong) NSArray *episodes;
+@property (nonatomic, strong) NSMutableArray *episodes;
 
++ (NSComparator)showUniqueComparator;
++ (NSComparator)showOrderComparator;
 - (instancetype)initWithParseShowObject:(PFObject *)object;
-
 //- (void)loadImage:(UIImage *)image withURL:(NSURL *)url;
 
+- (instancetype)initWithParseShowObjectNoEpisodes:(PFObject *)object;
 @end

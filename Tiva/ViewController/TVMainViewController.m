@@ -13,6 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIImage+BlurredFrame.h>
 #import "UIView+BackgroundBlurEffect.h"
+#import "JCRBlurView.h"
+#import <Parse/Parse.h>
 
 #import "TVShowStore.h"
 #import "TVShow.h"
@@ -73,11 +75,9 @@
 }
 
 - (void)loadView {
-    LogMethod;
     self.view = [[UIView alloc] init];
     _mainScreen = [UIScreen mainScreen].bounds;
     Swap(&_mainScreen.size.height, &_mainScreen.size.width);
-//    self.view.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.7];
     [self updateBackground];
     
     // Menu button
@@ -150,7 +150,6 @@
 //    [toolbar setBarTintColor: [UIColor colorWithRed:0. green:0.7 blue:0. alpha:0.05]];
 //    [self.layer insertSublayer:[toolbar layer] atIndex:0];
 //    [_todayLabel insertSubview:toolbar atIndex:0];
-
     
 //    [_todayLabel setBlurTintColor:[UIColor colorWithRed:0. green:0.7 blue:0. alpha:0.05]];
     [_todayLabel setTextColor:FONT_COLOR];
@@ -203,7 +202,7 @@
     [_recommendationTitle setText:@"Friends' Recommendation"];
     [_recommendationTitle setTextAlignment:NSTextAlignmentCenter];
     [_recommendationTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
-    [_recommendationTitle setBackgroundColor:LABEL_COLOR];
+    [_recommendationTitle setBackgroundColor:[UIColor clearColor]];
     [_recommendationTitle setTextColor:FONT_COLOR];
     [_recommendationParentView addSubview:_recommendationTitle];
     
@@ -218,6 +217,7 @@
     _recommendationTableView.dataSource = self;
     _recommendationTableView.delegate = self;
     [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [_recommendationTableView setBackgroundColor:[UIColor clearColor]];
     [_recommendationParentView addSubview:_recommendationTableView];
     
     // Comments view
@@ -240,7 +240,7 @@
     [_commentsTitle setText:@"Latest Comments"];
     [_commentsTitle setTextAlignment:NSTextAlignmentCenter];
     [_commentsTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
-    [_commentsTitle setBackgroundColor:LABEL_COLOR];
+    [_commentsTitle setBackgroundColor:[UIColor clearColor]];
     [_commentsTitle setTextColor:FONT_COLOR];
     [_commentsParentView addSubview:_commentsTitle];
 
@@ -256,6 +256,7 @@
     _commentsTableView.dataSource = self;
     _commentsTableView.delegate = self;
     [_commentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_commentsTableView setBackgroundColor:[UIColor clearColor]];
     [_commentsParentView addSubview:_commentsTableView];
     
     [self.view addSubview:_carouselParentView];
@@ -288,14 +289,15 @@
     [super viewDidLoad];
     _sharedShowStore = [TVShowStore sharedStore];
     _sharedUser = [TVUser sharedUser];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:_sharedShowStore];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCarouselShowsUpdates:) name:@"FavouriteShowUpdated" object:_sharedUser];
     _sharedUser.username = @"alice";
     _sharedUser.password = @"a";
     [_sharedUser login];
-    [_sharedUser retrieveUserData];
-    [_sharedShowStore retrieveShows];
+//    [_sharedUser retrieveUserData];
+//    [_sharedShowStore retrieveShows];
+    [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
     
 //    [[TVTraktUser sharedUser] setUsername:@"honghaoz" andPassword:@"Zhh358279765099"];
 //    [[TVAPIClient sharedClient] testUsername:[TVTraktUser sharedUser].username passwordSha1:[TVTraktUser sharedUser].passwordSha1 success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -303,10 +305,11 @@
 //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //        NSLog(@"failure: %@", error);
 //    }];
+    
     [self setNeedsStatusBarAppearanceUpdate];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self menuButtonTapped:nil];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self menuButtonTapped:nil];
+//    });
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -335,29 +338,45 @@
     [self presentViewController:loginVC animated:YES completion:^(){
         [loginVC updateSubViews];
     }];
+    
+//    [PFCloud callFunctionInBackground:@"getShowComments"
+//                       withParameters:@{@"tvdb_id" : @"268583"}
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        // result is @"Hello world!"
+//                                        NSLog(@"%@", result);
+//                                    }
+//                                }];
+    
 }
 
 - (void)calendarButtonTapped:(id)sender {
     LogMethod;
-    [_sharedShowStore processEpisodesDictionary];
-    TVCalendarViewController *calendarVC = [[TVCalendarViewController alloc] init];
-//    UINavigationController *newNavigationVC = [[UINavigationController alloc] initWithRootViewController:calendarVC];
-//    [newNavigationVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-//    [newNavigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
-    [calendarVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [calendarVC setModalPresentationStyle:UIModalPresentationFullScreen];
-    [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
-    [self presentViewController:calendarVC animated:YES completion:nil];
+//    [_sharedShowStore processEpisodesDictionary];
+//    TVCalendarViewController *calendarVC = [[TVCalendarViewController alloc] init];
+//
+//    [calendarVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+//    [calendarVC setModalPresentationStyle:UIModalPresentationFullScreen];
+//    [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
+//    [self presentViewController:calendarVC animated:YES completion:nil];
+//    [_sharedShowStore retrieveEpisodesForDay:[NSDate date]];
+    [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
 }
 
 #pragma mark - NSNotificationCenter methods
 
 - (void)showStoreUpdates:(NSNotification *)notification {
-//    NSLog(@"Received ShowStoreUpdated");
-//    NSInteger updatedIndex = [[notification userInfo][@"ShowIndex"] integerValue];
-//    [_mainCarouselView reloadItemAtIndex:updatedIndex animated:YES];
-    [_todayTableView reloadData];
-    [_recommendationTableView reloadData];
+    NSLog(@"Received ShowStoreUpdated");
+    NSDictionary *userInfo = notification.userInfo;
+    // If data kind is for today
+    if ([userInfo[@"DataKind"] isEqualToString:@"Episodes"]
+        &&
+        [userInfo[@"BeginDay"] isEqualToDate:[TVHelperMethods dateWithOutTime:[NSDate date]]]
+        && [userInfo[@"EndDay"] isEqualToDate:[TVHelperMethods dateWithOutTime:[NSDate date]]]) {
+        [_todayTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+//    [_recommendationTableView reloadData];
 }
 
 - (void)iCarouselShowsUpdates:(NSNotification *)notification {
@@ -369,7 +388,7 @@
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     //return [_sharedShowStore.shows count];
-    NSLog(@"%d", [_sharedUser.favouriteShows count]);
+//    NSLog(@"%d", [_sharedUser.favouriteShows count]);
     return [_sharedUser.favouriteShows count];
 }
 
@@ -441,8 +460,11 @@
 #pragma mark - Today table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    LogMethod;
     if (tableView == _todayTableView) {
-        return [_sharedShowStore.shows count];
+//        return [_sharedShowStore.shows count];
+        NSLog(@"%d", [_sharedShowStore.todayEpisodes count]);
+        return [_sharedShowStore.todayEpisodes count];
     } else if (tableView == _recommendationTableView) {
 //        return [_sharedShowStore.shows count];
         return 5;
@@ -462,18 +484,21 @@
     NSArray *array1 = [[NSArray alloc] initWithObjects: @"Game of Thrones", @"Breaking Bad", @"Big Bang Theory",  @"The Wire", @"The Daily Show",nil];
     NSArray *array2 = [[NSArray alloc] initWithObjects:  @"Alfred", @"Jane",  @"Carmen", @"Joe",@"Bill",nil];
     if (tableView == _todayTableView) {
+        
         TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
         if (cell == nil) {
             cell = [[TVEpisodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TodayShow" cellWidth:tableView.bounds.size.width cellHeight:50];
         }
-        TVShow *theShow = _sharedShowStore.shows[indexPath.row];
-        [cell setShowTitle:theShow.title airedTime:theShow.firstAiredDateUTC];
+        TVEpisode *episode = _sharedShowStore.todayEpisodes[indexPath.row];
+        TVShow *theShow = episode.show;
+//        NSLog(@"%@", theShow.title);
+        [cell setShowTitle:theShow.title airedTime:episode.airedDateUTC];
         return cell;
     } else if (tableView == _recommendationTableView) {
 
 
        // UIImageView *bannerImageView = nil;
-        NSLog(@"We in rec yo");
+//        NSLog(@"We in rec yo");
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TodayShow"];
@@ -512,6 +537,15 @@
 }
 
 #pragma mark - table view delegate
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    if (tableView == _todayTableView) {
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 5.0)];
+//        [view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:0.2]];
+//        return view;
+//    }
+//    return nil;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _todayTableView) {

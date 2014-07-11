@@ -30,4 +30,8 @@
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
++ (void)printDateInLocalTime:(NSDate *)date;
+
++ (NSMutableArray *)dateKeysForDay:(NSDate *)date numberOfDaysBefore:(NSInteger)daysBefore numberOfDaysAfter:(NSInteger)daysAfter;
+
 @end

@@ -8,9 +8,11 @@
 
 #import "TVShowStore.h"
 #import "TVShow.h"
+#import "TVEpisode.h"
 #import <Parse/Parse.h>
 #import "NSMutableArray+InsertInOrder.h"
 #import "TVHelperMethods.h"
+#import "NSMutableArray+AddUnique.h"
 
 @implementation TVShowStore
 
@@ -26,10 +28,30 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _shows = [[NSMutableArray alloc] init];
-        _episodes = [[NSMutableArray alloc] init];
+        
     }
     return self;
+}
+
+- (NSMutableArray *)shows {
+    if (_shows == nil) {
+        _shows = [[NSMutableArray alloc] init];
+    }
+    return _shows;
+}
+
+- (NSMutableArray *)episodes {
+    if (_episodes == nil) {
+        _episodes = [[NSMutableArray alloc] init];
+    }
+    return _episodes;
+}
+
+- (NSMutableArray *)todayEpisodes {
+    if (_todayEpisodes == nil) {
+        _todayEpisodes = [[NSMutableArray alloc] init];
+    }
+    return _todayEpisodes;
 }
 
 - (NSMutableArray *)episodesDictionaryKeys {
@@ -48,27 +70,210 @@
     return _episodesDictionary;
 }
 
-- (void)retrieveShows {
-    PFQuery *query = [PFQuery queryWithClassName:@"Show"];
-    query.limit = 1000;
-    [query setCachePolicy:kPFCachePolicyNetworkElseCache];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//- (void)retrieveShows {
+//    PFQuery *query = [PFQuery queryWithClassName:@"Show"];
+//    query.limit = 1000;
+//    [query setCachePolicy:kPFCachePolicyNetworkElseCache];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"Query Shows Succeed: %d", [objects count]);
+//            // Do something with the found objects
+//            for (PFObject *object in objects) {
+//                TVShow *newShow = [[TVShow alloc] initWithParseShowObject:object];
+//                [self.shows addObject:newShow];
+////                NSLog(@"Post ShowStoreUpdated");
+////                [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.shows indexOfObject:newShow]]}];
+//            }
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Query Shows Error: %@ %@", error, [error localizedDescription]);
+//        }
+//    }];
+//}
+
+
+//- (void)retrieveEpisodes {
+//    LogMethod;
+//    NSDate *beginDay = [[NSDate date] dateByAddingTimeInterval:-(60 * 60 * 24) * 6];
+//    NSDate *endDay = [[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24) * 6];
+//    
+//    PFQuery *queryForEpisode = [PFQuery queryWithClassName:@"Episode"];
+//    queryForEpisode.limit = 1000;
+//    [queryForEpisode setCachePolicy:kPFCachePolicyNetworkElseCache];
+//    [queryForEpisode whereKey:@"Air_Date_UTC" greaterThanOrEqualTo:beginDay];
+//    [queryForEpisode whereKey:@"Air_Date_UTC" lessThan:endDay];
+//    [queryForEpisode includeKey:@"Parent"];
+//    [queryForEpisode orderByAscending:@"Air_Date_UTC"];
+//    [queryForEpisode findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            for (PFObject *episode in objects) {
+//                
+//                PFObject *show = episode[@"Parent"];
+//                TVShow *newShow = [[TVShow alloc] initWithParseShowObjectNoEpisodes:show];
+//                
+//                TVEpisode *newEp = [[TVEpisode alloc] initWithParseEpisodeObject:episode parentShow:newShow];
+//                [self.episodes addUniqueObject:newEp
+//                         usingUniqueComparator:[TVEpisode episodeUniqueComparator]
+//                               orderComparator:[TVEpisode episodeOrderComparator]];
+//            }
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"DataKind" : @"EpisodesAll"}];
+//        } else {
+//            NSLog(@"Query episode error");
+//        }
+//    }];
+//}
+//
+//- (void)retrieveEpisodesForDay:(NSDate *)day {
+//    LogMethod;
+//    PFQuery *queryForEpisode = [PFQuery queryWithClassName:@"Episode"];
+//    queryForEpisode.limit = 1000;
+//    [queryForEpisode setCachePolicy:kPFCachePolicyNetworkElseCache];
+//    BOOL isToday = NO;
+//    // If day is today, change episode array to be added to self.todayEpisodes
+//    if ([[TVHelperMethods dateWithOutTime:[NSDate date]] isEqualToDate:[TVHelperMethods dateWithOutTime:day]]) {
+//        isToday = YES;
+//    }
+//    
+//    NSDate *beginDate = [TVHelperMethods dateWithOutTime:day];
+//    NSDate *endDate = [TVHelperMethods dateWithOutTime:[day dateByAddingTimeInterval:60 * 60 * 24]];
+//    
+//    [queryForEpisode whereKey:@"Air_Date_UTC" greaterThanOrEqualTo:beginDate];
+//    [queryForEpisode whereKey:@"Air_Date_UTC" lessThan:endDate];
+//    [queryForEpisode includeKey:@"Parent"];
+//    [queryForEpisode orderByAscending:@"Air_Date_UTC"];
+//    [queryForEpisode findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            for (PFObject *episode in objects) {
+//                // Becarful retain cycle
+//                // Show has strong pointers to episodes
+//                // Episode has weak pointer to show
+//                PFObject *show = episode[@"Parent"];
+//                TVShow *newShow = [[TVShow alloc] initWithParseShowObjectNoEpisodes:show];
+//                
+//                BOOL addResult = [self.shows addUniqueObject:newShow
+//                                       usingUniqueComparator:[TVShow showUniqueComparator]
+//                                             orderComparator:[TVShow showOrderComparator]];
+//                // If the show is existed, link this episode to the existed show;
+//                if (addResult == NO) {
+//                    for (TVShow *eachShow in self.shows) {
+//                        if ([TVShow showUniqueComparator](eachShow, newShow) == NSOrderedSame) {
+//                            newShow = eachShow;
+//                            break;
+//                        }
+//                    }
+//                }
+//                
+//                TVEpisode *newEp = [[TVEpisode alloc] initWithParseEpisodeObject:episode parentShow:newShow];
+//                [newShow.episodes addObject:newEp];
+//                
+//                // Added to episodes
+//                [self.episodes addUniqueObject:newEp
+//                         usingUniqueComparator:[TVEpisode episodeUniqueComparator]
+//                               orderComparator:[TVEpisode episodeOrderComparator]];
+//                // Check Whether need to add to todayEpisodes
+//                if (isToday) {
+////                    NSLog(@"isToday");
+//                    [self.todayEpisodes addUniqueObject:newEp
+//                                  usingUniqueComparator:[TVEpisode episodeUniqueComparator]
+//                                        orderComparator:[TVEpisode episodeOrderComparator]];
+//                }
+//            }
+//            NSLog(@"shows: %d, epi: %d", [self.shows count], [self.episodes count]);
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"DataKind" : @"EpisodesOneDay", @"Day" : [TVHelperMethods dateWithOutTime:day]}];
+//        } else {
+//            NSLog(@"Query episode error");
+//        }
+//    }];
+//}
+
+- (void)retrieveEpisodesFromDay:(NSDate *)day1 toDay:(NSDate *)day2 {
+    LogMethod;
+    PFQuery *queryForEpisode = [PFQuery queryWithClassName:@"Episode"];
+    queryForEpisode.limit = 1000;
+    [queryForEpisode setCachePolicy:kPFCachePolicyNetworkElseCache];
+    NSDate *beginDate = [TVHelperMethods dateWithOutTime:day1];
+    NSDate *endDate = [TVHelperMethods dateWithOutTime:[day2 dateByAddingTimeInterval:60 * 60 * 24]];
+    
+    BOOL isToday = NO;
+    // If day is today, change episode array to be added to self.todayEpisodes
+    if ([[TVHelperMethods dateWithOutTime:[NSDate date]] isEqualToDate:[TVHelperMethods dateWithOutTime:day1]] && [[TVHelperMethods dateWithOutTime:[NSDate date]] isEqualToDate:[TVHelperMethods dateWithOutTime:day2]]) {
+        isToday = YES;
+    }
+    
+    [queryForEpisode whereKey:@"Air_Date_UTC" greaterThanOrEqualTo:beginDate];
+    [queryForEpisode whereKey:@"Air_Date_UTC" lessThan:endDate];
+    [queryForEpisode includeKey:@"Parent"];
+    [queryForEpisode orderByAscending:@"Air_Date_UTC"];
+    [queryForEpisode findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
-            NSLog(@"Query Shows Succeed: %d", [objects count]);
-            // Do something with the found objects
-            for (PFObject *object in objects) {
-                TVShow *newShow = [[TVShow alloc] initWithParseShowObject:object];
-                [self.shows addObject:newShow];
-//                NSLog(@"Post ShowStoreUpdated");
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.shows indexOfObject:newShow]]}];
+            for (PFObject *episode in objects) {
+                // Becarful retain cycle
+                // Show has strong pointers to episodes
+                // Episode has weak pointer to show
+                PFObject *show = episode[@"Parent"];
+                TVShow *newShow = [[TVShow alloc] initWithParseShowObjectNoEpisodes:show];
+                
+                BOOL addResult = [self.shows addUniqueObject:newShow
+                                       usingUniqueComparator:[TVShow showUniqueComparator]
+                                             orderComparator:[TVShow showOrderComparator]];
+                // If the show is existed, link this episode to the existed show;
+                if (addResult == NO) {
+                    for (TVShow *eachShow in self.shows) {
+                        if ([TVShow showUniqueComparator](eachShow, newShow) == NSOrderedSame) {
+                            newShow = eachShow;
+                            break;
+                        }
+                    }
+                }
+                
+                TVEpisode *newEp = [[TVEpisode alloc] initWithParseEpisodeObject:episode parentShow:newShow];
+                [newShow.episodes addObject:newEp];
+                
+                // Added to episodes
+                [self.episodes addUniqueObject:newEp
+                         usingUniqueComparator:[TVEpisode episodeUniqueComparator]
+                               orderComparator:[TVEpisode episodeOrderComparator]];
+                // Check Whether need to add to todayEpisodes
+                if (isToday) {
+                    //                    NSLog(@"isToday");
+                    [self.todayEpisodes addUniqueObject:newEp
+                                  usingUniqueComparator:[TVEpisode episodeUniqueComparator]
+                                        orderComparator:[TVEpisode episodeOrderComparator]];
+                }
             }
+            NSLog(@"shows: %d, epi: %d", [self.shows count], [self.episodes count]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowStoreUpdated" object:self userInfo:@{@"DataKind" : @"Episodes", @"BeginDay" : [TVHelperMethods dateWithOutTime:day1], @"EndDay" : [TVHelperMethods dateWithOutTime:day2]}];
         } else {
-            // Log details of the failure
-            NSLog(@"Query Shows Error: %@ %@", error, [error localizedDescription]);
+            NSLog(@"Query episode error");
         }
     }];
 }
+
+//// Init shows using episodes
+//- (void)initShows {
+//    if ([self.episodes count] != 0) {
+//        for (TVEpisode *eachEP in self.episodes) {
+//            BOOL addResult = [self.shows addUniqueObject:eachEP.show
+//                                   usingUniqueComparator:[TVShow showUniqueComparator]
+//                                         orderComparator:[TVShow showOrderComparator]];
+//            // If the show is existed, link this episode to the existed show;
+//            if (addResult == NO) {
+//                TVShow *existedShow = nil;
+//                for (TVShow *eachShow in self.shows) {
+//                    if ([TVShow showUniqueComparator](eachShow, eachEP.show) == NSOrderedSame) {
+//                        existedShow = eachShow;
+//                        break;
+//                    }
+//                }
+//                assert(existedShow != nil);
+//                eachEP.show = nil;
+//                eachEP.show = existedShow;
+////                [existedShow.episodes ]
+//            }
+//        }
+//    }
+//}
 
 - (void)processEpisodesDictionary {
     if (_episodes) {

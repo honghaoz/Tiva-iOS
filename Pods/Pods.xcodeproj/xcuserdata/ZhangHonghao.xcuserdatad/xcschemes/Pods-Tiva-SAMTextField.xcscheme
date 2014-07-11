@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5575B085BDAE4B2F962DDDA5"
+               BlueprintIdentifier = "D710F8D23D4A447695C18BB2"
                BuildableName = "libPods-Tiva-SAMTextField.a"
                BlueprintName = "Pods-Tiva-SAMTextField"
                ReferencedContainer = "container:Pods.xcodeproj">

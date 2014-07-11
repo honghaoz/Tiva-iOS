@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92CEC028004D4727B9734484"
+               BlueprintIdentifier = "AAFEF239903E457C9AC95815"
                BuildableName = "libPods-Tiva-BackgroundBlurEffectUIView.a"
                BlueprintName = "Pods-Tiva-BackgroundBlurEffectUIView"
                ReferencedContainer = "container:Pods.xcodeproj">

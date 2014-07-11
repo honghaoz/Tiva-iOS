@@ -28,6 +28,10 @@
 		1B0F96F81955DD8D004FD9BD /* NSString+PJR.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F96F61955DD8D004FD9BD /* NSString+PJR.m */; };
 		1B0F96F91955DD8D004FD9BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F96F71955DD8D004FD9BD /* README.md */; };
 		1B3E9BB7195A5371000D144E /* TVEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E9BB6195A5371000D144E /* TVEpisodeTableViewCell.m */; };
+		1B4AE5E7196F59CA00E02BCB /* BLRView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AE5E2196F59CA00E02BCB /* BLRView.m */; };
+		1B4AE5E8196F59CA00E02BCB /* BLRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AE5E3196F59CA00E02BCB /* BLRView.xib */; };
+		1B4AE5E9196F59CA00E02BCB /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AE5E6196F59CA00E02BCB /* UIImage+ImageEffects.m */; };
+		1B4AE5EC1970308900E02BCB /* NSMutableArray+AddUnique.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AE5EB1970308900E02BCB /* NSMutableArray+AddUnique.m */; };
 		1B7B31CD19465FE600848D85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CC19465FE600848D85 /* CoreGraphics.framework */; };
 		1B7B31CF19465FE600848D85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7B31CE19465FE600848D85 /* UIKit.framework */; };
 		1B7B31D519465FE700848D85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B7B31D319465FE700848D85 /* InfoPlist.strings */; };
@@ -98,6 +102,13 @@
 		1B0F96F71955DD8D004FD9BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1B3E9BB5195A5371000D144E /* TVEpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVEpisodeTableViewCell.h; path = View/TVEpisodeTableViewCell.h; sourceTree = "<group>"; };
 		1B3E9BB6195A5371000D144E /* TVEpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVEpisodeTableViewCell.m; path = View/TVEpisodeTableViewCell.m; sourceTree = "<group>"; };
+		1B4AE5E1196F59CA00E02BCB /* BLRView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLRView.h; sourceTree = "<group>"; };
+		1B4AE5E2196F59CA00E02BCB /* BLRView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLRView.m; sourceTree = "<group>"; };
+		1B4AE5E3196F59CA00E02BCB /* BLRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLRView.xib; sourceTree = "<group>"; };
+		1B4AE5E5196F59CA00E02BCB /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		1B4AE5E6196F59CA00E02BCB /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		1B4AE5EA1970308900E02BCB /* NSMutableArray+AddUnique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddUnique.h"; sourceTree = "<group>"; };
+		1B4AE5EB1970308900E02BCB /* NSMutableArray+AddUnique.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AddUnique.m"; sourceTree = "<group>"; };
 		1B7B31C719465FE600848D85 /* Tiva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tiva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7B31CA19465FE600848D85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1B7B31CC19465FE600848D85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -191,6 +202,7 @@
 		1B0F96991953DE13004FD9BD /* OpenSource */ = {
 			isa = PBXGroup;
 			children = (
+				1B4AE5E0196F59CA00E02BCB /* BLR */,
 				1B0F969A1953DE13004FD9BD /* ZHHHandyMacros */,
 			);
 			name = OpenSource;
@@ -216,6 +228,8 @@
 				1B0F96B71953EF02004FD9BD /* UIDevice-Hardware.m */,
 				1B932A81195792F90071843D /* NSMutableArray+InsertInOrder.h */,
 				1B932A82195792F90071843D /* NSMutableArray+InsertInOrder.m */,
+				1B4AE5EA1970308900E02BCB /* NSMutableArray+AddUnique.h */,
+				1B4AE5EB1970308900E02BCB /* NSMutableArray+AddUnique.m */,
 			);
 			name = Category;
 			path = Tiva/Category;
@@ -258,6 +272,26 @@
 			);
 			name = "PJR-NSString-Category";
 			path = "../OpenSource/PJR-NSString-Category";
+			sourceTree = "<group>";
+		};
+		1B4AE5E0196F59CA00E02BCB /* BLR */ = {
+			isa = PBXGroup;
+			children = (
+				1B4AE5E1196F59CA00E02BCB /* BLRView.h */,
+				1B4AE5E2196F59CA00E02BCB /* BLRView.m */,
+				1B4AE5E3196F59CA00E02BCB /* BLRView.xib */,
+				1B4AE5E4196F59CA00E02BCB /* Categories */,
+			);
+			path = BLR;
+			sourceTree = "<group>";
+		};
+		1B4AE5E4196F59CA00E02BCB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1B4AE5E5196F59CA00E02BCB /* UIImage+ImageEffects.h */,
+				1B4AE5E6196F59CA00E02BCB /* UIImage+ImageEffects.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		1B7B31BE19465FE600848D85 = {
@@ -458,6 +492,7 @@
 				1B7B31D519465FE700848D85 /* InfoPlist.strings in Resources */,
 				1B0F96F91955DD8D004FD9BD /* README.md in Resources */,
 				1B7B31DD19465FE700848D85 /* Images.xcassets in Resources */,
+				1B4AE5E8196F59CA00E02BCB /* BLRView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +552,7 @@
 				1B3E9BB7195A5371000D144E /* TVEpisodeTableViewCell.m in Sources */,
 				1B0F96F01954C3B9004FD9BD /* TVShowStore.m in Sources */,
 				1B932A83195792F90071843D /* NSMutableArray+InsertInOrder.m in Sources */,
+				1B4AE5E9196F59CA00E02BCB /* UIImage+ImageEffects.m in Sources */,
 				1B0F969D1953DE13004FD9BD /* ZHHHandyMacros.m in Sources */,
 				1B932A871958C0830071843D /* TVRoundedButton.m in Sources */,
 				1B0F96DF19547C5A004FD9BD /* TVShow.m in Sources */,
@@ -526,6 +562,8 @@
 				1BEDB70D19566A12005FFE29 /* TVUser.m in Sources */,
 				1B932A8A1958CB210071843D /* TVHelperMethods.m in Sources */,
 				1B7B31DB19465FE700848D85 /* TVAppDelegate.m in Sources */,
+				1B4AE5E7196F59CA00E02BCB /* BLRView.m in Sources */,
+				1B4AE5EC1970308900E02BCB /* NSMutableArray+AddUnique.m in Sources */,
 				1B0F96C01953EF1E004FD9BD /* ZHHParseDevice.m in Sources */,
 				1B0F96B91953EF02004FD9BD /* UIDevice-Hardware.m in Sources */,
 				1B0F96F81955DD8D004FD9BD /* NSString+PJR.m in Sources */,

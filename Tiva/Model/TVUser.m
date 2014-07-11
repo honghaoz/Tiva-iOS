@@ -78,7 +78,7 @@
                 for (PFObject *object in objects) {
                     TVShow *newShow = [[TVShow alloc] initWithParseShowObject:object];
                     [self.favouriteShows addObject:newShow];
-                    NSLog(@"%@ %d", newShow.title, [self.favouriteShows count]);
+//                    NSLog(@"%@ %d", newShow.title, [self.favouriteShows count]);
                     //                NSLog(@"Post ShowStoreUpdated");
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"FavouriteShowUpdated" object:self userInfo:@{@"ShowIndex": [NSNumber numberWithInteger:[self.favouriteShows indexOfObject:newShow]]}];
                 }

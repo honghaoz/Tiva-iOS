@@ -58,7 +58,7 @@
     [self.view addSubview:_showImage];
     
     UITextView *overview = [[UITextView alloc]initWithFrame:CGRectMake(_showImage.bounds.size.width + 15, 130,200,160)];
-     NSLog(@"over %@ ", _theShow.overview);
+//     NSLog(@"over %@ ", _theShow.overview);
     [overview setText:_theShow.overview];
     [self.view addSubview:overview];
     

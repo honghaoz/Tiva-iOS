@@ -107,7 +107,7 @@
     [_signUpButton setTitle:@"Sign up" forState:UIControlStateNormal];
     [_signUpButton addTarget:self action:@selector(signUpButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_signUpView addSubview:_signUpButton];
-    NSLog(@"%@", NSStringFromCGRect(_signUpButton.frame));
+//    NSLog(@"%@", NSStringFromCGRect(_signUpButton.frame));
     
     // Skip button
     CGFloat skipX = signUpButtonX;

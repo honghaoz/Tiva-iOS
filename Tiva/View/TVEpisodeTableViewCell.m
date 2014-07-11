@@ -49,7 +49,7 @@
         CGFloat showAiredTimeLabelY = showTitleLabelY + showTitleLabelHeight - 2;
         CGFloat showAiredTimeLabelWidth = containerView.bounds.size.width - 20;
         CGFloat showAiredTimeLabelHeight = 20;//containerView.bounds.size.height - showTitleLabelHeight - 2.5 * 3;
-        NSLog(@"%f",containerView.bounds.size.height - showTitleLabelHeight - 2.5 * 3);
+//        NSLog(@"%f",containerView.bounds.size.height - showTitleLabelHeight - 2.5 * 3);
         CGRect showAiredTimeLabelFrame = CGRectMake(showAiredTimeLabelX, showAiredTimeLabelY, showAiredTimeLabelWidth, showAiredTimeLabelHeight);
         _showAiredTimeLabel = [[UILabel alloc] initWithFrame:showAiredTimeLabelFrame];
         [_showAiredTimeLabel setTextAlignment:NSTextAlignmentLeft];
@@ -60,8 +60,8 @@
         [containerView addSubview:_showTitleLabel];
         [containerView addSubview:_showAiredTimeLabel];
 //        self.backgroundView = [UIView new];
-        NSLog(@"content: %@", NSStringFromCGRect(self.contentView.bounds));
-        NSLog(@"contaioner: %@", NSStringFromCGRect(containerView.bounds));
+//        NSLog(@"content: %@", NSStringFromCGRect(self.contentView.bounds));
+//        NSLog(@"contaioner: %@", NSStringFromCGRect(containerView.bounds));
         
 //        self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.contentView.bounds];
 //        [self.selectedBackgroundView setBackgroundColor:[UIColor clearColor]];
@@ -86,7 +86,7 @@
 - (void)setShowTitle:(NSString *)showTitle airedTime:(NSDate *)airedTime {
     [_showTitleLabel setText:showTitle];
     NSDateFormatter *formater = [TVHelperMethods localDateFormatter];
-    [formater setDateFormat:@"cccc hh:mm aa"];
+    [formater setDateFormat:@"hh:mm aa dd-MM-yyyy"];//@"cccc hh:mm aa, dd-MM"];
     
     [_showAiredTimeLabel setText:[formater stringFromDate:airedTime]];
 }

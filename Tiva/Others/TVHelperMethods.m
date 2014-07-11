@@ -66,4 +66,25 @@
     return newImage;
 }
 
++ (void)printDateInLocalTime:(NSDate *)date {
+    NSDateFormatter *formatter = [self localDateFormatter];
+    [formatter setDateFormat:@"hh:mm aa dd-MM-yyyy"];
+    NSLog([formatter stringFromDate:date]);
+}
+
++ (NSMutableArray *)dateKeysForDay:(NSDate *)date numberOfDaysBefore:(NSInteger)daysBefore numberOfDaysAfter:(NSInteger)daysAfter {
+    NSMutableArray *keys = [[NSMutableArray alloc] init];
+    
+    for (int i = daysBefore; i > 0; i--) {
+        NSDate *theDay = [[NSDate date] dateByAddingTimeInterval:-(60 * 60 * 24) * i];
+        [keys addObject:[TVHelperMethods dateWithOutTime:theDay]];
+    }
+    [keys addObject:[TVHelperMethods dateWithOutTime:[NSDate date]]];
+    for (int i = 1; i <= daysAfter; i++) {
+        NSDate *theDay = [[NSDate date] dateByAddingTimeInterval:(60 * 60 * 24) * i];
+        [keys addObject:[TVHelperMethods dateWithOutTime:theDay]];
+    }
+    return keys;
+}
+
 @end

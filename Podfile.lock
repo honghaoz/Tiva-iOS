@@ -26,6 +26,7 @@ PODS:
     - Bolts
   - GoogleAnalytics-iOS-SDK (3.0.7)
   - iCarousel (1.7.6)
+  - iOS-blur (0.0.5)
   - NSString+VTContainsSubstring (0.3)
   - NSString+VTSubstringOccurrences (0.1)
   - NSString-Hashes (1.2.2)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - Bolts (from `https://github.com/BoltsFramework/Bolts-iOS`)
   - GoogleAnalytics-iOS-SDK (~> 3.0)
   - iCarousel (~> 1.7)
+  - iOS-blur (~> 0.0)
   - NSString+VTContainsSubstring (~> 0.3)
   - NSString+VTSubstringOccurrences (~> 0.1)
   - NSString-Hashes (~> 1.2)
@@ -91,6 +93,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
   GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
   iCarousel: c35a4e26b3c657847e523012b593e70ddbd84992
+  iOS-blur: 5ec57b4a72e57a4f8f5f47ff3f59e56c0690b761
   NSString+VTContainsSubstring: d40bf02fd8bbbcd92b2acf64b97f7fcbc4385d69
   NSString+VTSubstringOccurrences: 44f2b44a3aad80df390858f1e50c10c4bdeed270
   NSString-Hashes: ddf6e856e93d3c83c5d4ef8fcdea2a96ed77c6bc

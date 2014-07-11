@@ -13,7 +13,29 @@
 #import "TVEpisode.h"
 #import "TVShowStore.h"
 
+static NSComparator showUniqueComparator = ^(id s1, id s2) {
+    TVShow *show1 = (TVShow *)s1;
+    TVShow *show2 = (TVShow *)s2;
+    // Compare tvdb_id
+    return [show1.tvdb_id compare:show2.tvdb_id];
+};
+
+static NSComparator showOrderComparator = ^(id s1, id s2) {
+    TVShow *show1 = (TVShow *)s1;
+    TVShow *show2 = (TVShow *)s2;
+    // Compare tvdb_id
+    return [show1.title compare:show2.title];
+};
+
 @implementation TVShow
+
++ (NSComparator)showUniqueComparator {
+    return showUniqueComparator;
+}
+
++ (NSComparator)showOrderComparator {
+    return showOrderComparator;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -21,6 +43,13 @@
         
     }
     return self;
+}
+
+- (NSMutableArray *)episodes {
+    if (_episodes == nil) {
+        _episodes = [NSMutableArray new];
+    }
+    return _episodes;
 }
 
 - (instancetype)initWithParseShowObject:(PFObject *)object {
@@ -63,6 +92,26 @@
                       episodes:episodes];
 }
 
+- (instancetype)initWithParseShowObjectNoEpisodes:(PFObject *)object {
+    return [self initWithTitle:object[@"Title"]
+                          year:object[@"Year"]
+                     URLString:object[@"URL"]
+             firstAiredDateUTC:object[@"First_Aired_UTC"]
+                       country:object[@"Country"]
+                      overview:object[@"Overview"]
+                       runtime:object[@"Runtime"]
+                       network:object[@"Network"]
+                 certification:object[@"Certification"]
+                       imdb_id:object[@"imdb_id"]
+                       tvdb_id:object[@"tvdb_id"]
+                     tvrage_id:object[@"tvrage_id"]
+                     bannerURL:object[@"Banner"]
+                     posterURL:object[@"Poster"]
+                     fanartURL:object[@"Fanart"]
+                        genres:object[@"Genres"]
+                      episodes:nil];
+}
+
 - (instancetype)initWithTitle:(NSString *)title
                          year:(NSNumber *)year
                     URLString:(NSString *)url
@@ -79,7 +128,7 @@
                     posterURL:(NSString *)posterURL
                     fanartURL:(NSString *)fanartURL
                        genres:(NSArray *)genres
-                     episodes:(NSArray *)episodes {
+                     episodes:(NSMutableArray *)episodes {
     self = [super init];
     if (self) {
         self.title = title;
