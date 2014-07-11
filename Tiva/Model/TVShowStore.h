@@ -23,15 +23,6 @@
 
 + (TVShowStore *)sharedStore;
 
-/**
- *  Retrieve data from Parse to initiate shows and episodes
- */
-//- (void)retrieveShows;
-
-//- (void)retrieveEpisodes;
-//- (void)retrieveEpisodesForDay:(NSDate *)day;
-
-
 // Retrive episodes from day1 to day2 (inclusive), init episodes and shows
 - (void)retrieveEpisodesFromDay:(NSDate *)day1 toDay:(NSDate *)day2;
 
