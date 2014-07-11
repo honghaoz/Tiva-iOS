@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) TVShow *theShow;
 @property (nonatomic, strong) UIImageView *showImage;
+@property (nonatomic, strong) NSString *fbUserid;
 
 @end
 
@@ -36,6 +37,7 @@
 @synthesize RecButton;
 @synthesize commentsLable;
 @synthesize commentsTextbox;
+@synthesize fbUserid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +51,8 @@
 
 - (void)viewDidLoad
 {
+    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
+    fbUserid = theAppDelegate.fbUserName;
     [super viewDidLoad];
     [showTitle setText:_theShow.title]; // Change this to be dynamic
     //UIScrollView *scrollView = [[UIScrollView alloc]init];
@@ -95,14 +99,15 @@
 - (IBAction)addPressed:(id)sender{
     //Add the show object
     NSString *showId = _theShow.tvdb_id;
-    // Replace the name and paramenter in the function call below to send comments.
-    //    [PFCloud callFunctionInBackground:@"recommendShow"
-    //                       withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showId}
-    //                                block:^(NSString *result, NSError *error) {
-    //                                    if (!error) {
-    //                                        NSLog(@"SHIT FAILED YO");
-    //                                    }
-    //                                }];
+    [PFCloud callFunctionInBackground:@"addFavourite"
+                       withParameters:@{@"userID":fbUserid,@"showID":showId}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"SHIT FAILED YO");
+                                    }
+                                }];
+
+  
 }
 - (IBAction)removePressed:(id)sender{
     NSString *showId = _theShow.tvdb_id;
