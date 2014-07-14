@@ -169,7 +169,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
     query.limit = 1000;
     [query setCachePolicy:kPFCachePolicyNetworkElseCache];
-    
+    [query orderByDescending:@"createdAt"];
 }
 
 - (void)processEpisodesDictionary {

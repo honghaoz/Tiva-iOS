@@ -140,7 +140,7 @@
         PFRelation *favouriteShows = _currentPFUser[@"FavouriteShows"];
         PFQuery *queryForFavourite = [favouriteShows query];
         [queryForFavourite setCachePolicy:kPFCachePolicyNetworkElseCache];
-        [queryForFavourite orderByAscending:@"createdAt"];
+        [queryForFavourite orderByDescending:@"createdAt"];
         [queryForFavourite findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 // The find succeeded.
