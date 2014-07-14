@@ -357,16 +357,16 @@
 
 - (void)calendarButtonTapped:(id)sender {
     LogMethod;
-//    [_sharedShowStore processEpisodesDictionary];
-//    TVCalendarViewController *calendarVC = [[TVCalendarViewController alloc] init];
-//
-//    [calendarVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-//    [calendarVC setModalPresentationStyle:UIModalPresentationFullScreen];
-//    [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
-//    [self presentViewController:calendarVC animated:YES completion:nil];
+    [_sharedShowStore processEpisodesDictionary];
+    TVCalendarViewController *calendarVC = [[TVCalendarViewController alloc] init];
+
+    [calendarVC setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [calendarVC setModalPresentationStyle:UIModalPresentationFullScreen];
+    [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
+    [self presentViewController:calendarVC animated:YES completion:nil];
 //    [_sharedShowStore retrieveEpisodesForDay:[NSDate date]];
-//    [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
-    [_sharedUser retrieveRecommendations];
+    [_sharedShowStore retrieveEpisodesFromDay:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * (-3)] toDay:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * 3]];
+//    [_sharedUser retrieveRecommendations];
 }
 
 #pragma mark - NSNotificationCenter methods
