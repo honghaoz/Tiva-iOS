@@ -106,6 +106,7 @@
                                         NSLog(@"It works");
                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@ is added", _theShow.title] message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                         [alertView show];
+                                        [[TVUser sharedUser] retrieveFavorites];
                                     }
                                 }];
 
