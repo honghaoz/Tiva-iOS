@@ -54,6 +54,13 @@
     return _todayEpisodes;
 }
 
+- (NSMutableArray *)comments {
+    if (_comments == nil) {
+        _comments = [[NSMutableArray alloc] init];
+    }
+    return _comments;
+}
+
 - (NSMutableArray *)episodesDictionaryKeys {
     if (_episodesDictionaryKeys == nil) {
         _episodesDictionaryKeys = [[NSMutableArray alloc] init];
@@ -153,6 +160,16 @@
             NSLog(@"Query episode error");
         }
     }];
+}
+
+
+- (void)retrieveComments
+{
+    [self.comments removeAllObjects];
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    query.limit = 1000;
+    [query setCachePolicy:kPFCachePolicyNetworkElseCache];
+    
 }
 
 - (void)processEpisodesDictionary {

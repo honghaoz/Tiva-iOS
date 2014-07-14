@@ -248,6 +248,14 @@
     [_commentsParentView addSubview:_commentsTitle];
 
     
+    UILabel *emptyComments = [[UILabel alloc] initWithFrame:CGRectOffset(commentsTitleFrame, 0, commentsTitleHeight)];
+    [emptyComments setText:@"No comments available"];
+    [emptyComments setTextAlignment:NSTextAlignmentCenter];
+    [emptyComments setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
+    [emptyComments setBackgroundColor:[UIColor clearColor]];
+    [emptyComments setTextColor:FONT_COLOR];
+    [_commentsParentView addSubview:emptyComments];
+    
     // Recommendation table view
     CGFloat commentsTableViewX = 0;
     CGFloat commentsTableViewY = commentsTitleHeight;
@@ -261,6 +269,7 @@
     [_commentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_commentsTableView setBackgroundColor:[UIColor clearColor]];
     [_commentsParentView addSubview:_commentsTableView];
+    
     
     [self.view addSubview:_carouselParentView];
     [self.view addSubview:_menuButton];
@@ -315,6 +324,10 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self menuButtonTapped:nil];
     });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * 1e9), dispatch_get_current_queue(),^{
+        [_sharedShowStore retrieveEpisodesFromDay:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * (-3)] toDay:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * 3]];
+    });
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -365,7 +378,6 @@
     [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
     [self presentViewController:calendarVC animated:YES completion:nil];
 //    [_sharedShowStore retrieveEpisodesForDay:[NSDate date]];
-    [_sharedShowStore retrieveEpisodesFromDay:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * (-3)] toDay:[[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * 3]];
 //    [_sharedUser retrieveRecommendations];
 }
 

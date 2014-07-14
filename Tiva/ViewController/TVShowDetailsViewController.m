@@ -132,12 +132,12 @@
 - (IBAction)commentButtonPressed:(id)sender{
     
     NSString *comment = commentsTextbox.text;
-    NSLog(@"Comment: %@, ID: %@, show: %@", comment,fbUserid,showID);
+    NSLog(@"Comment: %@, ID: %@, show: %@", comment,[TVUser sharedUser].currentPFUser.objectId,_theShow.tvdb_id);
     // send text to parse now.
     // Replace the name and paramenter in the function call below to send comments.
     //commentShow(senderID, contents, showID)
     [PFCloud callFunctionInBackground:@"commentShow"
-                       withParameters:@{@"senderID":fbUserid,@"contents": comment,@"showID":showID}
+                       withParameters:@{@"senderID":[TVUser sharedUser].currentPFUser.objectId, @"contents": comment,@"showID":_theShow.objectID}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         NSLog(@"it works");

@@ -52,7 +52,7 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:LABEL_COLOR];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipButtonTapped:) name:@"LoginSucceed" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipButtonTapped:) name:@"LoginSucceed" object:nil];
 }
 
 - (void)didReceiveMemoryWarning

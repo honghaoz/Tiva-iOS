@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *shows;
 @property (nonatomic, strong) NSMutableArray *episodes;
 //@property (nonatomic, strong) TVUser *user;
+@property (nonatomic, strong) NSMutableArray *comments;
 
 @property (nonatomic, strong) NSMutableArray *episodesDictionaryKeys;
 @property (nonatomic, strong) NSMutableDictionary *episodesDictionary;
@@ -34,5 +35,5 @@
  */
 - (void)processEpisodesDictionary;
 
-
+- (void)retrieveComments;
 @end
