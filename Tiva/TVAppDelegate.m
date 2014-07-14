@@ -13,10 +13,9 @@
 #import <Accelerate/Accelerate.h>
 #import "TVShowStore.h"
 #import <AFNetworkActivityIndicatorManager.h>
+#import "TVUser.h"
 
 @implementation TVAppDelegate
-
-@synthesize fbUserName;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,6 +40,8 @@
         [ZHHParseDevice trackDevice];
     }
     
+    [PFFacebookUtils initializeFacebook];
+    
     // Register for push notifications
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge |
@@ -61,12 +62,16 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
-    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
     
-    // You can add your app-specific url handling code here if needed
-    
-    return wasHandled;
+//    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+//    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+//    
+//    // You can add your app-specific url handling code here if needed
+//    
+//    return wasHandled;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -89,6 +94,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -102,6 +108,7 @@
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    LogMethod;
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
@@ -110,7 +117,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    NSLog(@"%@", userInfo);
+    if ([userInfo[@"type"] isEqualToString:@"Recommendation"]) {
+        [[TVUser sharedUser] retrieveRecommendations];
+    }
+//    [PFPush handlePush:userInfo];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"type"] message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

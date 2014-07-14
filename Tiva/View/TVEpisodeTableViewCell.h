@@ -20,5 +20,7 @@
 - (void)setShowTitle:(NSString *)showTitle
            airedTime:(NSDate *)airedTime;
 
+- (void)setShowTitle:(NSString *)showTitle detailText:(NSString *)detail;
+
 
 @end

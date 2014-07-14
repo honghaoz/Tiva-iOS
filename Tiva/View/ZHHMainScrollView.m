@@ -29,7 +29,8 @@
     return nil;
 }
 
-- (id)initWithFrame:(CGRect)frame contentViewWithViews:(NSArray *)views direction:(ScrollDirection)direction {
+- (id)initWithFrame:(CGRect)frame contentViewWithViews:(NSArray*)views direction:(ScrollDirection)direction
+{
     self = [super initWithFrame:frame];
     if (self) {
         [self setShowsHorizontalScrollIndicator:NO];
@@ -52,9 +53,9 @@
         CGFloat maxHeight = 0;
         CGFloat totalWidth = 0;
         CGFloat lastWidthOffset = 0;
-        
+
         for (int i = 0; i < viewsCount; i++) {
-            UIView *eachView = views[i];
+            UIView* eachView = views[i];
             eachView.userInteractionEnabled = YES;
             // Init _coveredViews
             [_coveredViews addObject:eachView];
@@ -62,7 +63,7 @@
             if (i == 0) {
                 [_contentOffsetCouldMove addObject:[NSNumber numberWithFloat:0]];
             } else {
-                UIView *lastView = views[i - 1];
+                UIView* lastView = views[i - 1];
                 [_contentOffsetCouldMove addObject:[NSNumber numberWithFloat:lastWidthOffset + lastView.bounds.size.width]];
                 lastWidthOffset += eachView.bounds.size.width;
             }

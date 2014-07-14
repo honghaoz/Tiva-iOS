@@ -9,6 +9,7 @@
 #import "TVEpisode.h"
 #import "TVShow.h"
 #import "TVShowStore.h"
+#import <Parse/Parse.h>
 
 static NSComparator episodeUniqueComparator = ^(id e1, id e2) {
     TVEpisode *ep1 = (TVEpisode *)e1;
@@ -45,7 +46,7 @@ static NSComparator episodeOrderComparator = ^(id e1, id e2) {
     return self;
 }
 
-- (instancetype)initWithParseEpisodeObject:(id)object parentShow:(TVShow *)show {
+- (instancetype)initWithParseEpisodeObject:(PFObject *)object parentShow:(TVShow *)show {
     return [self initWithSeason:object[@"Season"]
                          number:object[@"Mumber"]
                           title:object[@"Title"]
@@ -53,7 +54,8 @@ static NSComparator episodeOrderComparator = ^(id e1, id e2) {
                             URL:object[@"URL"]
                    airedDateUTC:object[@"Air_Date_UTC"]
                  screenImageURL:object[@"Screen"]
-                           show:show];
+                           show:show
+                       objectID:object.objectId];
 }
 
 - (instancetype)initWithSeason:(NSNumber *)season
@@ -63,7 +65,8 @@ static NSComparator episodeOrderComparator = ^(id e1, id e2) {
                            URL:(NSString *)url
                   airedDateUTC:(NSDate *)airedDateUTC
                 screenImageURL:(NSString *)screenImageURL
-                          show:(TVShow *)show{
+                          show:(TVShow *)show
+                      objectID:(NSString *)objectID{
     self = [super init];
     if (self) {
         self.season = [season integerValue];
@@ -74,6 +77,7 @@ static NSComparator episodeOrderComparator = ^(id e1, id e2) {
         self.airedDateUTC = airedDateUTC;
         self.screenImageURL = [NSURL URLWithString:screenImageURL];
         self.show = show;
+        self.objectID = objectID;
     }
     return self;
 }

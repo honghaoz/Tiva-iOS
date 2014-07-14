@@ -89,7 +89,8 @@ static NSComparator showOrderComparator = ^(id s1, id s2) {
                      posterURL:object[@"Poster"]
                      fanartURL:object[@"Fanart"]
                         genres:object[@"Genres"]
-                      episodes:episodes];
+                      episodes:episodes
+                      objectID:object.objectId];
 }
 
 - (instancetype)initWithParseShowObjectNoEpisodes:(PFObject *)object {
@@ -109,7 +110,8 @@ static NSComparator showOrderComparator = ^(id s1, id s2) {
                      posterURL:object[@"Poster"]
                      fanartURL:object[@"Fanart"]
                         genres:object[@"Genres"]
-                      episodes:nil];
+                      episodes:nil
+                      objectID:object.objectId];
 }
 
 - (instancetype)initWithTitle:(NSString *)title
@@ -128,7 +130,8 @@ static NSComparator showOrderComparator = ^(id s1, id s2) {
                     posterURL:(NSString *)posterURL
                     fanartURL:(NSString *)fanartURL
                        genres:(NSArray *)genres
-                     episodes:(NSMutableArray *)episodes {
+                     episodes:(NSMutableArray *)episodes
+                     objectID:(NSString *)objectID{
     self = [super init];
     if (self) {
         self.title = title;
@@ -148,6 +151,7 @@ static NSComparator showOrderComparator = ^(id s1, id s2) {
         self.fanartURL = [NSURL URLWithString:fanartURL];
         self.genres = genres;
         self.episodes = episodes;
+        self.objectID = objectID;
     }
     return self;
 }

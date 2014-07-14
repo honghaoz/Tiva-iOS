@@ -12,6 +12,7 @@
 
 @interface TVEpisode : NSObject
 
+@property (nonatomic, copy) NSString *objectID;
 @property (nonatomic, assign) NSInteger season;
 @property (nonatomic, assign) NSInteger number;
 @property (nonatomic, copy) NSString *title;
@@ -26,7 +27,7 @@
 
 + (NSComparator)episodeUniqueComparator;
 + (NSComparator)episodeOrderComparator;
-- (instancetype)initWithParseEpisodeObject:(id)object parentShow:(TVShow *)show;
+- (instancetype)initWithParseEpisodeObject:(PFObject *)object parentShow:(TVShow *)show;
 
 
 @end

@@ -13,6 +13,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "TvAppDelegate.h"
 #import <Parse/Parse.h>
+#import "TVUser.h"
 
 
 @interface TVShowDetailsViewController ()
@@ -55,11 +56,10 @@
 - (void)viewDidLoad
 {
     // Setting userID from app delegate
-    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
-    fbUserid = theAppDelegate.fbUserName;
-    NSLog(@"fbuserName %@", theAppDelegate.fbUserName);
+    fbUserid = [TVUser sharedUser].fbID;
+    NSLog(@"fbID: %@", fbUserid);
     // Setting show ID
-    showID = _theShow.tvdb_id;
+    showID = _theShow.objectID;
     [super viewDidLoad];
     [showTitle setText:_theShow.title]; // Change this to be dynamic
 
@@ -104,6 +104,8 @@
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         NSLog(@"It works");
+                                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@ is added", _theShow.title] message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                        [alertView show];
                                     }
                                 }];
 
@@ -151,7 +153,7 @@
 // Pick Friends button handler
 - (IBAction)pickFriendsClick:(UIButton *)sender {
     //Username of the current user is stored in the app delegate.
-    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
+//    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
     
     FBFriendPickerViewController *friendPickerController = [[FBFriendPickerViewController alloc] init];
     friendPickerController.title = @"Pick Friends";
@@ -179,15 +181,22 @@
                      [text appendString:@", "];
                  }
                  [text appendString:user.name];
+                 NSLog(@"usr_id::%@",user.objectID);
+                 NSLog(@"usr_first_name::%@",user.first_name);
+                 NSLog(@"usr_middle_name::%@",user.middle_name);
+                 NSLog(@"usr_last_nmae::%@",user.last_name);
+                 NSLog(@"usr_Username::%@",user.username);
+                 NSLog(@"usr_b_day::%@",user.birthday);
                  // SEND TO PARSE
-                 NSString *reccomendee = user.username;
-                 NSString *reccomender = theAppDelegate.fbUserName;
+                 NSString *reccomendee = user.objectID;
+                 NSString *reccomender = [TVUser sharedUser].currentPFUser.objectId;
                  //NSString *showId = _theShow.tvdb_id;
                  
-                 [PFCloud callFunctionInBackground:@"recommendShow"
-                                    withParameters:@{@"recommendeeID":reccomendee,@"recommenderID":reccomender,@"showID":showID}
+                 [PFCloud callFunctionInBackground:@"recommendShow" withParameters:@{@"recommendeeID":reccomendee, @"recommenderID":reccomender,@"showID":showID}
                                              block:^(NSString *result, NSError *error) {
                                                  if (!error) {
+                                                     NSLog(@"SHIT Succeed YO");
+                                                 } else {
                                                      NSLog(@"SHIT FAILED YO");
                                                  }
                                              }];

@@ -93,7 +93,7 @@
 //}
 
 - (void)retrieveEpisodesFromDay:(NSDate *)day1 toDay:(NSDate *)day2 {
-    LogMethod;
+//    LogMethod;
     PFQuery *queryForEpisode = [PFQuery queryWithClassName:@"Episode"];
     queryForEpisode.limit = 1000;
     [queryForEpisode setCachePolicy:kPFCachePolicyNetworkElseCache];

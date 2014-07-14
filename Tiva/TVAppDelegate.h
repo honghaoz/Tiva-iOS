@@ -11,6 +11,5 @@
 @interface TVAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSString *fbUserName;
 
 @end

@@ -13,6 +13,7 @@
 
 @interface TVShow : NSObject
 
+@property (nonatomic, copy) NSString *objectID;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger year;
 @property (nonatomic, copy) NSURL *URL;

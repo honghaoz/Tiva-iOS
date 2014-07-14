@@ -28,6 +28,7 @@
 #import "TVHelperMethods.h"
 #import "TVLoginViewController.h"
 #import "TVEpisodeTableViewCell.h"
+#import <objc/runtime.h>
 
 #define POSTER_ASPECT_RATIO (680 / 1000.0)
 #define EMPTY_POSTER_URL_STRING @"http://slurm.trakt.us/images/poster-dark"
@@ -88,7 +89,7 @@
     CGRect menuButtonFrame = CGRectMake(menuButtonX, menuButtonY, menuButtonWdith, menuButtonHeight);
     _menuButton = [[TVRoundedButton alloc] initWithFrame:menuButtonFrame borderColor:[UIColor whiteColor] backgroundColor:[UIColor blackColor]];
     [_menuButton setBackgroundColor:[UIColor blackColor]];
-    [_menuButton setTitle:@"Menu" forState:UIControlStateNormal];
+    [_menuButton setTitle:@"Login" forState:UIControlStateNormal];
     [_menuButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]];
 //    [_menuButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_menuButton addTarget:self action:@selector(menuButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -216,9 +217,11 @@
     _recommendationTableView = [[UITableView alloc] initWithFrame:recommendationTableViewFrame];
     _recommendationTableView.dataSource = self;
     _recommendationTableView.delegate = self;
-    [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+//    [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [_recommendationTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_recommendationTableView setBackgroundColor:[UIColor clearColor]];
     [_recommendationParentView addSubview:_recommendationTableView];
+    
     
     // Comments view
     CGFloat commentsParentViewX = recommendationParentViewX + recommendationParentViewWidth + GAP_WIDTH;
@@ -291,10 +294,12 @@
     _sharedUser = [TVUser sharedUser];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recommendationShowsUpdated:) name:@"RecommendationUpdated" object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCarouselShowsUpdates:) name:@"FavouriteShowUpdated" object:_sharedUser];
-    _sharedUser.username = @"alice";
-    _sharedUser.password = @"a";
-    [_sharedUser login];
+//    _sharedUser.username = @"alice";
+//    _sharedUser.password = @"a";
+//    [_sharedUser login];
 //    [_sharedUser retrieveUserData];
 //    [_sharedShowStore retrieveShows];
     [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
@@ -307,9 +312,9 @@
 //    }];
     
     [self setNeedsStatusBarAppearanceUpdate];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self menuButtonTapped:nil];
-//    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self menuButtonTapped:nil];
+    });
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -326,8 +331,8 @@
 
 - (void)menuButtonTapped:(id)sender {
     LogMethod;
-    [_sharedUser login];
-    [_sharedUser retrieveUserData];
+//    [_sharedUser login];
+//    [_sharedUser retrieveUserData];
     TVLoginViewController *loginVC = [[TVLoginViewController alloc] init];
     [loginVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [loginVC setModalPresentationStyle:UIModalPresentationFormSheet];
@@ -360,7 +365,8 @@
 //    [calendarVC.view setBounds:CGRectMake(GAP_WIDTH, 20, _mainScreen.size.width - 2 * GAP_WIDTH, _mainScreen.size.height - GAP_WIDTH - 20)];
 //    [self presentViewController:calendarVC animated:YES completion:nil];
 //    [_sharedShowStore retrieveEpisodesForDay:[NSDate date]];
-    [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
+//    [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
+    [_sharedUser retrieveRecommendations];
 }
 
 #pragma mark - NSNotificationCenter methods
@@ -377,6 +383,11 @@
     }
     
 //    [_recommendationTableView reloadData];
+}
+
+- (void)recommendationShowsUpdated:(NSNotification *)notification {
+    LogMethod;
+    [_recommendationTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)iCarouselShowsUpdates:(NSNotification *)notification {
@@ -467,7 +478,8 @@
         return [_sharedShowStore.todayEpisodes count];
     } else if (tableView == _recommendationTableView) {
 //        return [_sharedShowStore.shows count];
-        return 5;
+        NSLog(@"%d", [_sharedUser.recommendations count]);
+        return [_sharedUser.recommendations count];
     } else if (tableView == _commentsTableView) {
         return 0;
     }
@@ -477,14 +489,13 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    LogMethod;
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *array1 = [[NSArray alloc] initWithObjects: @"Game of Thrones", @"Breaking Bad", @"Big Bang Theory",  @"The Wire", @"The Daily Show",nil];
-    NSArray *array2 = [[NSArray alloc] initWithObjects:  @"Alfred", @"Jane",  @"Carmen", @"Joe",@"Bill",nil];
+    LogMethod;
     if (tableView == _todayTableView) {
-        
         TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
         if (cell == nil) {
             cell = [[TVEpisodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TodayShow" cellWidth:tableView.bounds.size.width cellHeight:50];
@@ -494,27 +505,34 @@
 //        NSLog(@"%@", theShow.title);
         [cell setShowTitle:theShow.title airedTime:episode.airedDateUTC];
         return cell;
-    } else if (tableView == _recommendationTableView) {
-
-
-       // UIImageView *bannerImageView = nil;
-//        NSLog(@"We in rec yo");
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
+    }
+    else if (tableView == _recommendationTableView) {
+        NSLog(@"recommendation table viwe cell");
+        TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendationShow"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TodayShow"];
-        
-//            CGRect bannerRect = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.width / BANNER_ASPECT_RATIO);
-//            bannerImageView = [[UIImageView alloc] initWithFrame:bannerRect];
-//            [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
-//            [cell.contentView addSubview:bannerImageView];
+            cell = [[TVEpisodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecommendationShow" cellWidth:tableView.bounds.size.width cellHeight:50];
         }
-//<<<<<<< HEAD
-//        return cell;
-//=======
-        cell.textLabel.text = [array1 objectAtIndex:indexPath.row];
-        [cell.textLabel setTextColor:LABEL_COLOR];
-        cell.detailTextLabel.text = [array2 objectAtIndex:indexPath.row];
-        [cell.detailTextLabel setTextColor:[UIColor lightGrayColor]];
+        TVShow *theShow = _sharedUser.recommendations[indexPath.row];
+//        NSLog(@"%@", theShow.title);
+        PFObject *recommender = objc_getAssociatedObject(theShow, @"Recommender");
+        [cell setShowTitle:theShow.title detailText:[NSString stringWithFormat:@"recommended by %@ %@", recommender[@"fbFirstName"], recommender[@"fbLastName"]]];
+//        NSLog(@"%@", cell.showTitleLabel.text);
+//        NSLog(@"Return cell");
+        return cell;
+
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
+//        if (cell == nil) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TodayShow"];
+//        
+////            CGRect bannerRect = CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.width / BANNER_ASPECT_RATIO);
+////            bannerImageView = [[UIImageView alloc] initWithFrame:bannerRect];
+////            [bannerImageView setContentMode:UIViewContentModeScaleAspectFill];
+////            [cell.contentView addSubview:bannerImageView];
+//        }
+//        cell.textLabel.text = [array1 objectAtIndex:indexPath.row];
+//        [cell.textLabel setTextColor:LABEL_COLOR];
+//        cell.detailTextLabel.text = [array2 objectAtIndex:indexPath.row];
+//        [cell.detailTextLabel setTextColor:[UIColor lightGrayColor]];
         //cell.textLabel.text = @"abc";
 //        for (UIView *subView in cell.contentView.subviews) {
 //            if ([subView isKindOfClass:[UIImageView class]]) {
@@ -529,8 +547,7 @@
 //        } else {
 //            [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
 //        }
-    return cell;
-//>>>>>>> 9d0bf515e2d076d80caae1617fc54c95d0c627f1
+//    return cell;
     } else {
         return nil;
     }
@@ -551,7 +568,10 @@
     if (tableView == _todayTableView) {
         return 50;
     } else if (tableView == _recommendationTableView) {
-        return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
+        NSLog(@"recommendation table viwe height");
+//        return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
+        return 50;
+//        return 44;
     } else {
         return 44;
     }
@@ -559,9 +579,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _todayTableView) {
-        TVShow *theShow = _sharedShowStore.shows[indexPath.row];
+//        TVShow *theShow = _sharedShowStore.shows[indexPath.row];
+        TVEpisode *selectedEpisode = _sharedShowStore.todayEpisodes[indexPath.row];
+        TVShow *theShow = selectedEpisode.show;
+    
         NSString *posterURLString = [theShow.posterURL absoluteString];
-        
         posterURLString = [posterURLString stringByReplacingOccurrencesOfString:@".jpg" withString:@"-300.jpg"];
         
         UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _carouselView.bounds.size.height * POSTER_ASPECT_RATIO, _carouselView.bounds.size.height)];

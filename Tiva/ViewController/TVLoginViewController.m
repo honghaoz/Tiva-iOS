@@ -13,6 +13,7 @@
 #import "TVUser.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "TVAppDelegate.h"
+#import <Parse/Parse.h>
 
 @interface TVLoginViewController ()
 
@@ -51,6 +52,7 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:LABEL_COLOR];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skipButtonTapped:) name:@"LoginSucceed" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,7 +126,7 @@
     [_skip.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
     [_skip addTarget:self action:@selector(skipButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [_signUpView addSubview:_skip];
-    NSLog(@"%@", NSStringFromCGRect(_skip.frame));
+//    NSLog(@"%@", NSStringFromCGRect(_skip.frame));
     
     // Sign in view
     CGFloat signInViewX = signUpViewWidth;
@@ -138,29 +140,47 @@
     _mainScrollView = [[ZHHMainScrollView alloc] initWithFrame:self.view.bounds contentViewWithViews:@[_signUpView, _signInView] direction:ScrollHorizontal];
     [self.view addSubview:_mainScrollView];
     [self.view addSubview:_tivaLabel];
+    
     // FB Login
     FBLoginView *loginView =[[FBLoginView alloc] initWithReadPermissions:@[@"public_profile", @"email", @"user_friends"]];
     loginView.delegate = self;
     // Align the button in the center horizontally
-    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), self.view.frame.size.height - 80);
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), self.view.frame.size.height - 160);
     [self.view addSubview:loginView];
 }
 
 // User logged in
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    NSLog(@"User is in");
-    NSLog(@"Username: %@", user.username);
-    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
+    LogMethod;
+    if (![[TVUser sharedUser] isLoggedIn]) {
+        [TVUser sharedUser].fbLastName = user.last_name;
+        [TVUser sharedUser].fbFirstName = user.first_name;
+        [TVUser sharedUser].fbID = user.objectID;
+        [[TVUser sharedUser] signUp];
+        if ([[TVUser sharedUser] isLoggedIn]) {
+            [self skipButtonTapped:nil];
+        }
+    } else {
+        [self skipButtonTapped:nil];
+    }
+//    NSLog(@"usr_id::%@",user.objectID);
+//    NSLog(@"usr_first_name::%@",user.first_name);
+//    NSLog(@"usr_middle_name::%@",user.middle_name);
+//    NSLog(@"usr_last_nmae::%@",user.last_name);
+//    NSLog(@"usr_Username::%@",user.username);
+//    NSLog(@"usr_b_day::%@",user.birthday);
+//    NSLog(@"%@", user.name);
+//    NSLog(@"%@", user.username);
+//    NSLog(@"User is in");
+//    NSLog(@"Username: %@", user.username);
+//    TVAppDelegate *theAppDelegate = (TVAppDelegate *) [UIApplication sharedApplication].delegate;
     
-    //[theAppDelegate setFbUserName:user.username];
-    // ---------------THIS IS FAKE!!! CHANGE IT----------------
-    [theAppDelegate setFbUserName:@"alice"];
-   // [self dismissViewControllerAnimated:YES completion:NO];
 }
 
 // Handle possible errors that can occur during login
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
+    LogMethod;
     NSString *alertMessage, *alertTitle;
     
     // If the user should perform an action outside of you app to recover,
