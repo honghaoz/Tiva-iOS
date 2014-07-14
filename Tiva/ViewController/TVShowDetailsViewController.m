@@ -141,6 +141,7 @@
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         NSLog(@"it works");
+                                        [[TVShowStore sharedStore] retrieveComments];
                                     }
                                 }];
 }

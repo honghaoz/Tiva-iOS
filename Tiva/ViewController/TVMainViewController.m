@@ -59,6 +59,7 @@
     
     UIView *_commentsParentView;
     UILabel *_commentsTitle;
+    UILabel *_emptyComments;
     UITableView *_commentsTableView;
 }
 
@@ -227,7 +228,7 @@
     CGFloat commentsParentViewX = recommendationParentViewX + recommendationParentViewWidth + GAP_WIDTH;
     CGFloat commentsParentViewY = recommendationParentViewY;
     CGFloat commentsParentViewWidth = recommendationParentViewWidth;
-    CGFloat commentsParentViewHeight = recommendationParentViewHeight * 1/2;
+    CGFloat commentsParentViewHeight = recommendationParentViewHeight;
     CGRect commentsParentViewFrame = CGRectMake(commentsParentViewX, commentsParentViewY, commentsParentViewWidth, commentsParentViewHeight);
     _commentsParentView = [[UIView alloc] initWithFrame:commentsParentViewFrame];
     [TVHelperMethods setMaskTo:_commentsParentView byRoundingCorners:UIRectCornerAllCorners withRadius:5.0];
@@ -248,13 +249,13 @@
     [_commentsParentView addSubview:_commentsTitle];
 
     
-    UILabel *emptyComments = [[UILabel alloc] initWithFrame:CGRectOffset(commentsTitleFrame, 0, commentsTitleHeight)];
-    [emptyComments setText:@"No comments available"];
-    [emptyComments setTextAlignment:NSTextAlignmentCenter];
-    [emptyComments setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
-    [emptyComments setBackgroundColor:[UIColor clearColor]];
-    [emptyComments setTextColor:FONT_COLOR];
-    [_commentsParentView addSubview:emptyComments];
+    _emptyComments = [[UILabel alloc] initWithFrame:CGRectOffset(commentsTitleFrame, 0, commentsTitleHeight + 120)];
+    [_emptyComments setText:@"No comments available"];
+    [_emptyComments setTextAlignment:NSTextAlignmentCenter];
+    [_emptyComments setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:21]];
+    [_emptyComments setBackgroundColor:[UIColor clearColor]];
+    [_emptyComments setTextColor:FONT_COLOR];
+    [_commentsParentView addSubview:_emptyComments];
     
     // Recommendation table view
     CGFloat commentsTableViewX = 0;
@@ -304,6 +305,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStoreUpdates:) name:@"ShowStoreUpdated" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recommendationShowsUpdated:) name:@"RecommendationUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commentsUpdated:) name:@"CommentsUpdated" object:nil];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCarouselShowsUpdates:) name:@"FavouriteShowUpdated" object:_sharedUser];
 //    _sharedUser.username = @"alice";
@@ -312,7 +315,7 @@
 //    [_sharedUser retrieveUserData];
 //    [_sharedShowStore retrieveShows];
     [_sharedShowStore retrieveEpisodesFromDay:[NSDate date] toDay:[NSDate date]];
-    
+    [_sharedShowStore retrieveComments];
 //    [[TVTraktUser sharedUser] setUsername:@"honghaoz" andPassword:@"Zhh358279765099"];
 //    [[TVAPIClient sharedClient] testUsername:[TVTraktUser sharedUser].username passwordSha1:[TVTraktUser sharedUser].passwordSha1 success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSLog(@"success: %@", responseObject);
@@ -400,6 +403,14 @@
 - (void)recommendationShowsUpdated:(NSNotification *)notification {
     LogMethod;
     [_recommendationTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)commentsUpdated:(NSNotification *)notification {
+    LogMethod;
+    if ([_sharedShowStore.comments count] > 0) {
+        _emptyComments.text = @"";
+    }
+    [_commentsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)iCarouselShowsUpdates:(NSNotification *)notification {
@@ -493,7 +504,7 @@
 //        NSLog(@"%d", [_sharedUser.recommendations count]);
         return [_sharedUser.recommendations count];
     } else if (tableView == _commentsTableView) {
-        return 0;
+        return [_sharedShowStore.comments count];
     }
     else {
         return 0;
@@ -560,7 +571,23 @@
 //            [bannerImageView setImageWithURL:[_sharedShowStore.shows[indexPath.row] bannerURL]];
 //        }
 //    return cell;
-    } else {
+    } else if (tableView == _commentsTableView) {
+        TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Comment"];
+        if (cell == nil) {
+            cell = [[TVEpisodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Comment" cellWidth:tableView.bounds.size.width cellHeight:50];
+        }
+        
+        NSString *content = _sharedShowStore.comments[indexPath.row];
+        NSString *sender = objc_getAssociatedObject(content, @"sender");
+        TVShow *show = objc_getAssociatedObject(content, @"show");
+        
+        [cell setShowTitle:content detailText:[NSString stringWithFormat:@"%@ by %@", show.title, sender]];
+        //        NSLog(@"%@", cell.showTitleLabel.text);
+        //        NSLog(@"Return cell");
+        return cell;
+    }
+    
+    else {
         return nil;
     }
 }
@@ -585,7 +612,7 @@
         return 50;
 //        return 44;
     } else {
-        return 44;
+        return 50;
     }
 }
 

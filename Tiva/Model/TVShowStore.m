@@ -13,6 +13,7 @@
 #import "NSMutableArray+InsertInOrder.h"
 #import "TVHelperMethods.h"
 #import "NSMutableArray+AddUnique.h"
+#import <objc/runtime.h>
 
 @implementation TVShowStore
 
@@ -170,6 +171,30 @@
     query.limit = 1000;
     [query setCachePolicy:kPFCachePolicyNetworkElseCache];
     [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            //
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (PFObject *object in objects) {
+                    NSString *contents = object[@"contents"];
+                    PFObject *sender = object[@"sender"];
+                    PFObject *show = object[@"showID_ref"];
+                    [sender fetchIfNeeded];
+                    [show fetchIfNeeded];
+                    TVShow *commentShow = [[TVShow alloc] initWithParseShowObjectNoEpisodes:show];
+                    NSString *senderName = [NSString stringWithFormat:@"%@ %@", sender[@"fbFirstName"], sender[@"fbLastName"]];
+                    objc_setAssociatedObject(contents, @"sender", senderName, OBJC_ASSOCIATION_RETAIN);
+                    objc_setAssociatedObject(contents, @"show", commentShow, OBJC_ASSOCIATION_RETAIN);
+                    [self.comments addObject:contents];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"CommentsUpdated" object:self userInfo:nil];
+                });
+            });
+        } else {
+            // Error
+        }
+    }];
 }
 
 - (void)processEpisodesDictionary {
