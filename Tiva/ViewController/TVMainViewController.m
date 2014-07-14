@@ -474,11 +474,11 @@
 //    LogMethod;
     if (tableView == _todayTableView) {
 //        return [_sharedShowStore.shows count];
-        NSLog(@"%d", [_sharedShowStore.todayEpisodes count]);
+//        NSLog(@"%d", [_sharedShowStore.todayEpisodes count]);
         return [_sharedShowStore.todayEpisodes count];
     } else if (tableView == _recommendationTableView) {
 //        return [_sharedShowStore.shows count];
-        NSLog(@"%d", [_sharedUser.recommendations count]);
+//        NSLog(@"%d", [_sharedUser.recommendations count]);
         return [_sharedUser.recommendations count];
     } else if (tableView == _commentsTableView) {
         return 0;
@@ -489,12 +489,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    LogMethod;
+//    LogMethod;
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LogMethod;
+//    LogMethod;
     if (tableView == _todayTableView) {
         TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodayShow"];
         if (cell == nil) {
@@ -507,7 +507,7 @@
         return cell;
     }
     else if (tableView == _recommendationTableView) {
-        NSLog(@"recommendation table viwe cell");
+//        NSLog(@"recommendation table viwe cell");
         TVEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendationShow"];
         if (cell == nil) {
             cell = [[TVEpisodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RecommendationShow" cellWidth:tableView.bounds.size.width cellHeight:50];
@@ -568,7 +568,7 @@
     if (tableView == _todayTableView) {
         return 50;
     } else if (tableView == _recommendationTableView) {
-        NSLog(@"recommendation table viwe height");
+//        NSLog(@"recommendation table viwe height");
 //        return tableView.bounds.size.width / BANNER_ASPECT_RATIO;
         return 50;
 //        return 44;

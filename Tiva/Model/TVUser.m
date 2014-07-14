@@ -30,6 +30,13 @@
     return _favouriteShows;
 }
 
+- (NSMutableArray *)recommendations {
+    if (_recommendations == nil) {
+        _recommendations = [[NSMutableArray alloc] init];
+    }
+    return _recommendations;
+}
+
 //- (id)init {
 //    self = [super init];
 //    if (self) {
@@ -100,6 +107,7 @@
 //                                            [user saveEventually];
                                             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSucceed" object:nil];
                                             [self retrieveRecommendations];
+                                            [self retrieveFavorites];
                                         } else {
                                             // The login failed. Check error to see why.
                                             NSLog(@"login failed");
@@ -118,9 +126,11 @@
     }
 }
 
-- (void)retrieveUserData {
+- (void)retrieveFavorites {
     LogMethod;
     _currentPFUser = [PFUser currentUser];
+//    _favouriteShows = [NSMutableArray new];
+    [self.favouriteShows removeAllObjects];
     if (!_currentPFUser) {
         [self login];
     } else {
@@ -176,7 +186,8 @@
     if (_currentPFUser == nil) {
         return;
     }
-    _recommendations = [NSMutableArray new];
+//    _recommendations = [NSMutableArray new];
+    [self.recommendations removeAllObjects];
     PFQuery *queryForRecommendation = [PFQuery queryWithClassName:@"Recommendation"];
     queryForRecommendation.limit = 1000;
     [queryForRecommendation setCachePolicy:kPFCachePolicyNetworkElseCache];
@@ -184,8 +195,6 @@
     PFQuery *queryForUser = [PFUser query];
     [queryForUser whereKey:@"fbID" equalTo:[TVUser sharedUser].fbID];
 
-
-    
     [queryForRecommendation whereKey:@"recommendee" matchesQuery:queryForUser];
     [queryForRecommendation orderByDescending:@"createdAt"];
     [queryForRecommendation findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

@@ -120,6 +120,16 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"%@", userInfo);
     if ([userInfo[@"type"] isEqualToString:@"Recommendation"]) {
         [[TVUser sharedUser] retrieveRecommendations];
+//        
+//        PFObject *showObject = object[@"showID"];
+//        PFObject *recommender = object[@"recommender"];
+//        [showObject fetchIfNeeded];
+//        [recommender fetchIfNeeded];
+//        TVShow *aShow = [[TVShow alloc] initWithParseShowObjectNoEpisodes:showObject];
+//
+//        objc_setAssociatedObject(aShow, @"Recommender", recommender, OBJC_ASSOCIATION_RETAIN);
+//        [_recommendations addObject:aShow];
+        //FixME: only add new show
     }
 //    [PFPush handlePush:userInfo];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"type"] message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

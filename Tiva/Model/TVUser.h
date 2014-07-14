@@ -34,8 +34,8 @@
 - (void)setUsername:(NSString *)username andPassword:(NSString *)password;
 - (void)signUp;
 - (void)login;
-- (void)retrieveUserData;
 
+- (void)retrieveFavorites;
 - (void)retrieveRecommendations;
 
 @end

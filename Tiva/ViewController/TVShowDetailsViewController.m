@@ -100,7 +100,7 @@
 - (IBAction)addPressed:(id)sender{
     //Add the show object
     [PFCloud callFunctionInBackground:@"addFavourite"
-                       withParameters:@{@"userID":fbUserid,@"showID":showID}
+                       withParameters:@{@"userID":[TVUser sharedUser].currentPFUser.objectId,@"showID":showID}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         NSLog(@"It works");
